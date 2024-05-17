@@ -159,5 +159,43 @@ namespace ThucTapChuyenNganh.Class
             cmd.Dispose();
             cmd = null;
         }
+        public static void FillCombo(string sql, ComboBox cbo, string ma, string ten)
+        {
+            SqlDataAdapter mydata = new SqlDataAdapter(sql, Function.Conn);
+            DataTable table = new DataTable();
+            mydata.Fill(table);
+            cbo.DataSource = table;
+            cbo.ValueMember = ma;
+            cbo.DisplayMember = ten;
+
+        }
+        public static string GetFieldValues(string sql)
+        {
+            string ma = "";
+            SqlCommand cmd = new SqlCommand(sql, Function.Conn);
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ma = reader.GetValue(0).ToString();
+            }
+            reader.Close();
+            return ma;
+        }
+        public static bool IsDate(string d)
+        {
+            string[] parts = d.Split('/');
+            if ((Convert.ToInt32(parts[0]) >= 1) && (Convert.ToInt32(parts[0]) <= 31) && (Convert.ToInt32(parts[1]) >= 1) && (Convert.ToInt32(parts[1]) <= 12) && Convert.ToInt32(parts[2]) >= 1900)
+                return true;
+            else
+                return false;
+        }
+
+        public static string ConvertDateTime(string d)
+        {
+            string[] parts = d.Split('/');
+            string dt = String.Format("{0}/{1}/{2}", parts[1], parts[0], parts[2]);
+            return dt;
+        }
     }
 }
