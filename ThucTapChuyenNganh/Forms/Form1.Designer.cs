@@ -137,10 +137,8 @@
             // 
             this.côngViệcToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.côngViệcToolStripMenuItem.Name = "côngViệcToolStripMenuItem";
-            //this.côngViệcToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.côngViệcToolStripMenuItem.Size = new System.Drawing.Size(194, 34);
             this.côngViệcToolStripMenuItem.Text = "Công việc";
-            this.côngViệcToolStripMenuItem.Click += new System.EventHandler(this.côngViệcToolStripMenuItem_Click);
             // 
             // hóaĐơnToolStripMenuItem
             // 
