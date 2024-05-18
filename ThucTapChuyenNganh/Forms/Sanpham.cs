@@ -20,13 +20,15 @@ namespace ThucTapChuyenNganh.Forms
         DataTable tblSP;
         private void Sanpham_Load(object sender, EventArgs e)
         {
+            ResetValues();
             txtMaSP.Enabled = false;
             btnBoqua.Enabled = false;
             Load_DataGridView();
-            Function.FillCombo("SELECT tblsanpham.MaSP, TenSP, MaLoai, Size, MaMau, tblsanpham.SoLuong, Anh, DonGiaNhap, DonGiaBan FROM (tblsanpham JOIN tblchitiethoadonnhap ON tblsanpham.MaSP=tblchitiethoadonnhap.MaSP) JOIN tblchitiethoadonban ON tblsanpham.MaSP=tblchitiethoadonban.MaSP", cboMaloai, "MaLoai", "TenLoai");
+            Function.Fillcombonew("SELECT tblsanpham.MaSP, TenSP, MaLoai, Size, MaMau, tblsanpham.SoLuong, Anh, DonGiaNhap, DonGiaBan FROM (tblsanpham JOIN tblchitiethoadonnhap ON tblsanpham.MaSP=tblchitiethoadonnhap.MaSP) JOIN tblchitiethoadonban ON tblsanpham.MaSP=tblchitiethoadonban.MaSP", cboMaloai, "MaLoai", "TenLoai", cboMamau, "MaMau", "TenMau");
             cboMaloai.SelectedIndex = -1;
-            ResetValues();
+            cboMamau.SelectedIndex = -1;
         }
+       
         private void ResetValues()
         {
             txtMaSP.Text = "";
@@ -138,8 +140,8 @@ namespace ThucTapChuyenNganh.Forms
                 txtAnh.Focus();
                 return;
             }
-            sql = "UPDATE tblsanpham SET  TenSP=N'" + txtTenSP.Text.Trim().ToString() +
-                "',Size=N'" + txtSize.Text.Trim()+ "',SoLuong=N'" + txtSoluong.Text.Trim() + "',Anh='" + txtAnh.Text + "' WHERE MaSP=N'" + txtMaSP.Text + "'";
+            sql = "UPDATE tblsanpham SET  TenSP=N'" + txtTenSP.Text.Trim().ToString() + "',MaLoai=N'" + cboMaloai.SelectedValue.ToString() + "',MaMau=N'" + cboMamau.SelectedValue.ToString() +
+                "',Size =N'" + txtSize.Text.Trim()+ "',SoLuong=N'" + txtSoluong.Text.Trim() + "',Anh='" + txtAnh.Text + "' WHERE MaSP=N'" + txtMaSP.Text + "'";
             Function.RunSql(sql);
             Load_DataGridView();
             ResetValues();
