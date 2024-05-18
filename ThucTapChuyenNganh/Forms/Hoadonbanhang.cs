@@ -70,25 +70,21 @@ namespace ThucTapChuyenNganh.Forms
             dgridChitiet.AllowUserToAddRows = false;
             dgridChitiet.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
-        /*private void Load_ThongtinHD()
+        private void Load_ThongtinHD()
         {
             string str;
-            str = "SELECT Ngayban FROM tblHDBan WHERE MaHDBan = N'" + txtMahoadon.Text + "'";
+            str = "SELECT Ngayban FROM tblchitiethoadonban WHERE MaHDB = N'" + txtMahoadon.Text + "'";
             txtNgayban.Text = Class.Function.ConvertDateTime(Class.Function.GetFieldValues(str));
-            str = "SELECT Manhanvien FROM tblHDBan WHERE MaHDBan = N'" +
-           txtMaHDBan.Text + "'";
-            cboManhanvien.Text = Functions.GetFieldValues(str);
+            str = "SELECT Manhanvien FROM tblchitiethoadonban WHERE MaHDB = N'" + txtMahoadon.Text + "'";
+            cboManhanvien.Text = Class.Function.GetFieldValues(str);
 
-            str = "SELECT Makhach FROM tblHDBan WHERE MaHDBan = N'" +
-            txtMaHDBan.Text + "'";
-            cboMakhach.Text = Functions.GetFieldValues(str);
+            str = "SELECT Makhach FROM tblchitiethoadonban WHERE MaHDB = N'" + txtMahoadon.Text + "'";
 
-            str = "SELECT Tongtien FROM tblHDBan WHERE MaHDBan = N'" +
-            txtMaHDBan.Text + "'";
-            txtTongtien.Text = Functions.GetFieldValues(str);
+            str = "SELECT Tongtien FROM tblchitiethoadonban WHERE MaHDB = N'" + txtMahoadon.Text + "'";
+            txtTongtien.Text = Class.Function.GetFieldValues(str);
 
             lblBangchu.Text = "Bằng chữ: " +
-            Functions.ChuyenSoSangChu(txtTongtien.Text);
-        }*/
+            Class.Function.ChuyenSoSangChu(txtTongtien.Text);
+        }
     }
 }
