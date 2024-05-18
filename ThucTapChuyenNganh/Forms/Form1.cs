@@ -68,5 +68,11 @@ namespace ThucTapChuyenNganh
             Forms.Sanpham a = new Forms.Sanpham();
             a.Show();
         }
+
+        private void mnuChitiethoadonnhap_Click(object sender, EventArgs e)
+        {
+            Forms.Chitiethoadonnhap a = new Forms.Chitiethoadonnhap();
+            a.Show();
+        }
     }
 }

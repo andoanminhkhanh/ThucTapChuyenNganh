@@ -53,6 +53,12 @@
     <Compile Include="Forms\Bangchamcong.Designer.cs">
       <DependentUpon>Bangchamcong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Chitiethoadonnhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Chitiethoadonnhap.Designer.cs">
+      <DependentUpon>Chitiethoadonnhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Congviec.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Bangchamcong.resx">
       <DependentUpon>Bangchamcong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Chitiethoadonnhap.resx">
+      <DependentUpon>Chitiethoadonnhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Congviec.resx">
       <DependentUpon>Congviec.cs</DependentUpon>

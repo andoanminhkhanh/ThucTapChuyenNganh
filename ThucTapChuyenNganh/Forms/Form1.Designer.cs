@@ -89,7 +89,7 @@
             this.mnuMausanpham});
             this.mnuSanpham.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuSanpham.Name = "mnuSanpham";
-            this.mnuSanpham.Size = new System.Drawing.Size(270, 34);
+            this.mnuSanpham.Size = new System.Drawing.Size(222, 34);
             this.mnuSanpham.Text = "Sản phẩm";
             this.mnuSanpham.Click += new System.EventHandler(this.mnuSanpham_Click);
             // 
@@ -97,7 +97,7 @@
             // 
             this.mnuLoaisanpham.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuLoaisanpham.Name = "mnuLoaisanpham";
-            this.mnuLoaisanpham.Size = new System.Drawing.Size(270, 34);
+            this.mnuLoaisanpham.Size = new System.Drawing.Size(230, 34);
             this.mnuLoaisanpham.Text = "Loại sản phẩm";
             this.mnuLoaisanpham.Click += new System.EventHandler(this.mnuLoaisanpham_Click);
             // 
@@ -105,7 +105,7 @@
             // 
             this.mnuMausanpham.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuMausanpham.Name = "mnuMausanpham";
-            this.mnuMausanpham.Size = new System.Drawing.Size(270, 34);
+            this.mnuMausanpham.Size = new System.Drawing.Size(230, 34);
             this.mnuMausanpham.Text = "Màu sản phẩm";
             this.mnuMausanpham.Click += new System.EventHandler(this.mnuMausanpham_Click);
             // 
@@ -113,14 +113,14 @@
             // 
             this.nhàCungCấpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.nhàCungCấpToolStripMenuItem.Name = "nhàCungCấpToolStripMenuItem";
-            this.nhàCungCấpToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.nhàCungCấpToolStripMenuItem.Size = new System.Drawing.Size(222, 34);
             this.nhàCungCấpToolStripMenuItem.Text = "Nhà cung cấp";
             // 
             // mnuKhachhang
             // 
             this.mnuKhachhang.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuKhachhang.Name = "mnuKhachhang";
-            this.mnuKhachhang.Size = new System.Drawing.Size(270, 34);
+            this.mnuKhachhang.Size = new System.Drawing.Size(222, 34);
             this.mnuKhachhang.Text = "Khách hàng";
             this.mnuKhachhang.Click += new System.EventHandler(this.mnuKhachhang_Click);
             // 
@@ -130,7 +130,7 @@
             this.côngViệcToolStripMenuItem});
             this.nhânViênToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.nhânViênToolStripMenuItem.Name = "nhânViênToolStripMenuItem";
-            this.nhânViênToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.nhânViênToolStripMenuItem.Size = new System.Drawing.Size(222, 34);
             this.nhânViênToolStripMenuItem.Text = "Nhân viên";
             // 
             // côngViệcToolStripMenuItem
@@ -157,6 +157,7 @@
             this.mnuChitiethoadonnhap.Name = "mnuChitiethoadonnhap";
             this.mnuChitiethoadonnhap.Size = new System.Drawing.Size(270, 34);
             this.mnuChitiethoadonnhap.Text = "Hóa đơn nhập hàng";
+            this.mnuChitiethoadonnhap.Click += new System.EventHandler(this.mnuChitiethoadonnhap_Click);
             // 
             // hóaĐơnBánHàngToolStripMenuItem
             // 
@@ -180,7 +181,7 @@
             // 
             this.mnuHoadonnhap.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuHoadonnhap.Name = "mnuHoadonnhap";
-            this.mnuHoadonnhap.Size = new System.Drawing.Size(260, 34);
+            this.mnuHoadonnhap.Size = new System.Drawing.Size(270, 34);
             this.mnuHoadonnhap.Text = "Tìm hóa đơn nhập";
             this.mnuHoadonnhap.Click += new System.EventHandler(this.mnuHoadonnhap_Click);
             // 
@@ -188,7 +189,7 @@
             // 
             this.tìmHóaĐơnBánToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.tìmHóaĐơnBánToolStripMenuItem.Name = "tìmHóaĐơnBánToolStripMenuItem";
-            this.tìmHóaĐơnBánToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            this.tìmHóaĐơnBánToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.tìmHóaĐơnBánToolStripMenuItem.Text = "Tìm hóa đơn bán";
             // 
             // quảnLýToolStripMenuItem
@@ -207,7 +208,7 @@
             // 
             this.tìmHóaĐơnNhậpToolStripMenuItem1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.tìmHóaĐơnNhậpToolStripMenuItem1.Name = "tìmHóaĐơnNhậpToolStripMenuItem1";
-            this.tìmHóaĐơnNhậpToolStripMenuItem1.Size = new System.Drawing.Size(247, 34);
+            this.tìmHóaĐơnNhậpToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
             this.tìmHóaĐơnNhậpToolStripMenuItem1.Text = "Bảng chấm công";
             this.tìmHóaĐơnNhậpToolStripMenuItem1.Click += new System.EventHandler(this.tìmHóaĐơnNhậpToolStripMenuItem1_Click);
             // 
@@ -215,7 +216,7 @@
             // 
             this.bảngLươngToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.bảngLươngToolStripMenuItem.Name = "bảngLươngToolStripMenuItem";
-            this.bảngLươngToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
+            this.bảngLươngToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.bảngLươngToolStripMenuItem.Text = "Bảng lương";
             // 
             // mnuThoat
