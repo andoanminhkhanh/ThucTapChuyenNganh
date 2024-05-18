@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Function.cs" />
+    <Compile Include="Forms\Bangchamcong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bangchamcong.Designer.cs">
+      <DependentUpon>Bangchamcong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Congviec.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Bangchamcong.resx">
+      <DependentUpon>Bangchamcong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Congviec.resx">
       <DependentUpon>Congviec.cs</DependentUpon>
     </EmbeddedResource>

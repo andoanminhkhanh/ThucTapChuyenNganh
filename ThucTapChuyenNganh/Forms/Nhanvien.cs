@@ -261,5 +261,17 @@ namespace ThucTapChuyenNganh.Forms
                 resetvalues();
             }
         }
+
+        private void btnBoqua_Click(object sender, EventArgs e)
+        {
+
+            resetvalues();
+            btnBoqua.Enabled = false;
+            btnThem.Enabled = true;
+            btnXoa.Enabled = true;
+            btnSua.Enabled = true;
+            btnLuu.Enabled = false;
+            txtMaNV.Enabled = false;
+        }
     }
 }

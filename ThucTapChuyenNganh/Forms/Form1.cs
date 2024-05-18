@@ -56,5 +56,11 @@ namespace ThucTapChuyenNganh
             Forms.Nhacungcap a = new Forms.Nhacungcap();
             a.Show();
         }
+
+        private void tìmHóaĐơnNhậpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Forms.Bangchamcong a = new Forms.Bangchamcong();
+            a.Show();
+        }
     }
 }
