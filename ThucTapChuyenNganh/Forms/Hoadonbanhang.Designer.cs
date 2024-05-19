@@ -74,7 +74,6 @@
             this.btnNgay = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.txtDienthoai = new System.Windows.Forms.TextBox();
-            this.mskDienthoai = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgridChitiet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -343,6 +342,7 @@
             this.cboManhanvien.Name = "cboManhanvien";
             this.cboManhanvien.Size = new System.Drawing.Size(214, 24);
             this.cboManhanvien.TabIndex = 28;
+            this.cboManhanvien.TextChanged += new System.EventHandler(this.cboManhanvien_TextChanged);
             // 
             // txtSoluong
             // 
@@ -350,6 +350,7 @@
             this.txtSoluong.Name = "txtSoluong";
             this.txtSoluong.Size = new System.Drawing.Size(126, 22);
             this.txtSoluong.TabIndex = 30;
+            this.txtSoluong.TextChanged += new System.EventHandler(this.txtSoluong_TextChanged);
             // 
             // txtTenhang
             // 
@@ -364,6 +365,7 @@
             this.txtGiamgia.Name = "txtGiamgia";
             this.txtGiamgia.Size = new System.Drawing.Size(126, 22);
             this.txtGiamgia.TabIndex = 32;
+            this.txtGiamgia.TextChanged += new System.EventHandler(this.txtGiamgia_TextChanged);
             // 
             // txtDongia
             // 
@@ -431,6 +433,7 @@
             this.btnHuyhoadon.TabIndex = 41;
             this.btnHuyhoadon.Text = "Hủy hóa đơn";
             this.btnHuyhoadon.UseVisualStyleBackColor = true;
+            this.btnHuyhoadon.Click += new System.EventHandler(this.btnHuyhoadon_Click);
             // 
             // btnInhoadon
             // 
@@ -468,6 +471,7 @@
             this.cboMasanpham.Name = "cboMasanpham";
             this.cboMasanpham.Size = new System.Drawing.Size(126, 24);
             this.cboMasanpham.TabIndex = 45;
+            this.cboMasanpham.TextChanged += new System.EventHandler(this.cboMasanpham_TextChanged);
             // 
             // btnNgay
             // 
@@ -496,20 +500,11 @@
             this.txtDienthoai.Size = new System.Drawing.Size(180, 22);
             this.txtDienthoai.TabIndex = 48;
             // 
-            // mskDienthoai
-            // 
-            this.mskDienthoai.Location = new System.Drawing.Point(756, 212);
-            this.mskDienthoai.Mask = "(999) 000-0000";
-            this.mskDienthoai.Name = "mskDienthoai";
-            this.mskDienthoai.Size = new System.Drawing.Size(180, 22);
-            this.mskDienthoai.TabIndex = 49;
-            // 
             // Hoadonbanhang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1130, 619);
-            this.Controls.Add(this.mskDienthoai);
             this.Controls.Add(this.txtDienthoai);
             this.Controls.Add(this.btnTim);
             this.Controls.Add(this.btnNgay);
@@ -613,6 +608,5 @@
         private System.Windows.Forms.Button btnNgay;
         private System.Windows.Forms.Button btnTim;
         private System.Windows.Forms.TextBox txtDienthoai;
-        private System.Windows.Forms.MaskedTextBox mskDienthoai;
     }
 }

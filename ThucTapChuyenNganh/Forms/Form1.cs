@@ -40,11 +40,11 @@ namespace ThucTapChuyenNganh
             a.Show();
         }
 
-        private void mnuHoadonnhap_Click(object sender, EventArgs e)
+        /*private void mnuHoadonnhap_Click(object sender, EventArgs e)
         {
             Forms.Hoadonnhap a = new Forms.Hoadonnhap();
             a.Show();
-        }
+        }*/
 
         private void mnuThoat_Click(object sender, EventArgs e)
         {
@@ -72,6 +72,30 @@ namespace ThucTapChuyenNganh
         private void mnuChitiethoadonnhap_Click(object sender, EventArgs e)
         {
             Forms.Chitiethoadonnhap a = new Forms.Chitiethoadonnhap();
+            a.Show();
+        }
+
+        private void mnuChitiethoadonban_Click(object sender, EventArgs e)
+        {
+            Forms.Hoadonbanhang a = new Forms.Hoadonbanhang();
+            a.Show();
+        }
+
+        private void mnuNhacungcap_Click_1(object sender, EventArgs e)
+        {
+            Forms.Nhacungcap a = new Forms.Nhacungcap();
+            a.Show();
+        }
+
+        private void mnuNhanvien_Click(object sender, EventArgs e)
+        {
+            Forms.Nhanvien a = new Forms.Nhanvien();
+            a.Show();
+        }
+
+        private void mnuCongviec_Click(object sender, EventArgs e)
+        {
+            Forms.Congviec a = new Forms.Congviec();
             a.Show();
         }
     }
