@@ -42,7 +42,7 @@ namespace ThucTapChuyenNganh
 
         private void mnuHoadonnhap_Click(object sender, EventArgs e)
         {
-            Forms.TimHDN a = new Forms.TimHDN();
+            Forms.Hoadonnhap a = new Forms.Hoadonnhap();
             a.Show();
         }
 
@@ -51,54 +51,28 @@ namespace ThucTapChuyenNganh
             this.Close();
         }
 
-        /*private void mnuNhacungcap_Click(object sender, EventArgs e)
-        {
-            Forms.Nhacungcap a = new Forms.Nhacungcap();
-            a.Show();
-        }*/
-
-        /*private void tìmHóaĐơnNhậpToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Forms.Bangchamcong a = new Forms.Bangchamcong();
-            a.Show();
-        }*/
-
-        private void mnuTimhoadonban_Click(object sender, EventArgs e)
-        {
-            Forms.TimHDB a = new Forms.TimHDB();
-            a.Show();
-        }
-
-        private void mnuBangchamcong_Click(object sender, EventArgs e)
-        {
-            Forms.Bangchamcong a = new Forms.Bangchamcong();
-            a.Show();
-        }
-
         private void mnuNhacungcap_Click(object sender, EventArgs e)
         {
             Forms.Nhacungcap a = new Forms.Nhacungcap();
             a.Show();
         }
 
-        private void mnuNhanvien_Click(object sender, EventArgs e)
+        private void tìmHóaĐơnNhậpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Forms.Nhanvien a = new Forms.Nhanvien();
+            Forms.Bangchamcong a = new Forms.Bangchamcong();
             a.Show();
         }
 
-        private void mnuCongviec_Click(object sender, EventArgs e)
+        private void mnuSanpham_Click(object sender, EventArgs e)
         {
-            Forms.Congviec a = new Forms.Congviec();
+            Forms.Sanpham a = new Forms.Sanpham();
             a.Show();
         }
 
-        private void mnuChitiethoadonban_Click(object sender, EventArgs e)
+        private void mnuChitiethoadonnhap_Click(object sender, EventArgs e)
         {
-            Forms.Hoadonbanhang a = new Forms.Hoadonbanhang();
+            Forms.Chitiethoadonnhap a = new Forms.Chitiethoadonnhap();
             a.Show();
         }
-
-        
     }
 }

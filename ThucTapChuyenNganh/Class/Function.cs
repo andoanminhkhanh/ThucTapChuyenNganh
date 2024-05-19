@@ -16,7 +16,7 @@ namespace ThucTapChuyenNganh.Class
         public static string connString;
         public static void Connect()
         {
-            connString = "Data Source=DESKTOP-6P2TSJE\\SQLEXPRESS;Initial Catalog=TTCN;Integrated Security=True;Encrypt=False";
+            connString = "Data Source=DESKTOP-6P2TSJE\\SQLEXPRESS;Initial Catalog=Thuctapchuyennganh;Integrated Security=True;Encrypt=False";
             Conn = new SqlConnection();
             Conn.ConnectionString = connString;
             Conn.Open();
@@ -46,6 +46,22 @@ namespace ThucTapChuyenNganh.Class
             cbo.DataSource = table;
             cbo.ValueMember = ma;
             cbo.DisplayMember = ten;
+        }
+        public static void Fillcombonew(string sql, ComboBox cbo1, string ma1, string ten1, ComboBox cbo2, string ma2, string ten2)
+        {
+            SqlDataAdapter Mydata = new SqlDataAdapter(sql, Class.Function.Conn);
+            DataTable table = new DataTable();
+            Mydata.Fill(table);
+
+            // Điền dữ liệu vào ComboBox thứ nhất
+            cbo1.DataSource = table;
+            cbo1.ValueMember = ma1;
+            cbo1.DisplayMember = ten1;
+
+            // Điền dữ liệu vào ComboBox thứ hai
+            cbo2.DataSource = table;
+            cbo2.ValueMember = ma2;
+            cbo2.DisplayMember = ten2;
         }
         public static void RunSql(string sql)
         {
