@@ -20,13 +20,15 @@ namespace ThucTapChuyenNganh.Forms
         DataTable tblSP;
         private void Sanpham_Load(object sender, EventArgs e)
         {
-            ResetValues();
+            
             txtMaSP.Enabled = false;
             btnBoqua.Enabled = false;
             Load_DataGridView();
-            Function.Fillcombonew("SELECT tblsanpham.MaSP, TenSP, MaLoai, Size, MaMau, tblsanpham.SoLuong, Anh, DonGiaNhap, DonGiaBan FROM (tblsanpham JOIN tblchitiethoadonnhap ON tblsanpham.MaSP=tblchitiethoadonnhap.MaSP) JOIN tblchitiethoadonban ON tblsanpham.MaSP=tblchitiethoadonban.MaSP", cboMaloai, "MaLoai", "TenLoai", cboMamau, "MaMau", "TenMau");
-            cboMaloai.SelectedIndex = -1;
+            Class.Function.Fillcombo("SELECT MaMau, TenMau FROM tblmau", cboMamau, "MaMau", "TenMau");
             cboMamau.SelectedIndex = -1;
+            Class.Function.Fillcombo("SELECT MaLoai, TheLoai FROM tbltheloai", cboMaloai, "MaLoai", "TheLoai");
+            cboMaloai.SelectedIndex = -1;
+            ResetValues();
         }
        
         private void ResetValues()
@@ -220,8 +222,8 @@ namespace ThucTapChuyenNganh.Forms
                 MessageBox.Show("Có " + tblSP.Rows.Count + " bản ghi thỏa mãn điều kiện!!!","Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             DataGridView.DataSource = tblSP;
+            btnBoqua.Enabled = true;
             ResetValues();
-
         }
 
         private void btnDong_Click(object sender, EventArgs e)
