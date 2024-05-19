@@ -24,12 +24,11 @@ namespace ThucTapChuyenNganh.Forms
             txtMaSP.Enabled = false;
             btnBoqua.Enabled = false;
             Load_DataGridView();
-            Function.Fillcombo("SELECT MaMau, TenMau FROM tblmau", cboMamau, "MaMau", "TenMau");
+            Class.Function.Fillcombo("SELECT MaMau, TenMau FROM tblmau", cboMamau, "MaMau", "TenMau");
             cboMamau.SelectedIndex = -1;
-            Function.Fillcombo("SELECT MaLoai, TheLoai FROM tbltheloai", cboMaloai, "MaLoai", "TheLoai");
+            Class.Function.Fillcombo("SELECT MaLoai, TheLoai FROM tbltheloai", cboMaloai, "MaLoai", "TheLoai");
             cboMaloai.SelectedIndex = -1;
             ResetValues();
-            Load_DataGridView();
         }
        
         private void ResetValues()
@@ -223,8 +222,8 @@ namespace ThucTapChuyenNganh.Forms
                 MessageBox.Show("Có " + tblSP.Rows.Count + " bản ghi thỏa mãn điều kiện!!!","Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             DataGridView.DataSource = tblSP;
+            btnBoqua.Enabled = true;
             ResetValues();
-
         }
 
         private void btnDong_Click(object sender, EventArgs e)
