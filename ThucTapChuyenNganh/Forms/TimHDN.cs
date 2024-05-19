@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ThucTapChuyenNganh.Forms
 {
-    public partial class Hoadonnhap : Form
+    public partial class TimHDN : Form
     {
-        public Hoadonnhap()
+        public TimHDN()
         {
             InitializeComponent();
         }
@@ -100,7 +100,7 @@ namespace ThucTapChuyenNganh.Forms
             if (MessageBox.Show("Bạn có muốn hiển thị thông tin chi tiết?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 mahd = dgridHoadonnhap.CurrentRow.Cells["MaHDN"].Value.ToString();
-                Hoadonnhap frm = new Hoadonnhap();
+                TimHDN frm = new TimHDN();
                 frm.txtMaHDN.Text = mahd;
                 frm.StartPosition = FormStartPosition.CenterScreen;
                 frm.ShowDialog();
