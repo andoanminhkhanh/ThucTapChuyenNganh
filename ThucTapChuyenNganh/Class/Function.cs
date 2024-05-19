@@ -16,7 +16,7 @@ namespace ThucTapChuyenNganh.Class
         public static string connString;
         public static void Connect()
         {
-            connString = "Data Source=LAPTOP-THOQUC6C\\MSSQLSERVER01;Initial Catalog=TTCN;Integrated Security=True;Encrypt=False";
+            connString = "Data Source=DESKTOP-6P2TSJE\\SQLEXPRESS;Initial Catalog=Thuctapchuyennganh;Integrated Security=True;Encrypt=False";
             Conn = new SqlConnection();
             Conn.ConnectionString = connString;
             Conn.Open();
@@ -143,7 +143,7 @@ namespace ThucTapChuyenNganh.Class
             else
                 return false;
         }
-        public static void RunSqlDel(string sql)
+        public static void RunSqlDel (string sql)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = Class.Function.Conn;
@@ -248,6 +248,8 @@ namespace ThucTapChuyenNganh.Class
                         break;
                 }
             }
+            //Loại bỏ trường hợp x00
+            mTemp = mTemp.Replace("không mươi không ", "");
             mTemp = mTemp.Replace("không mươi không", "");
             //Loại bỏ trường hợp 00x
             mTemp = mTemp.Replace("không mươi ", "linh ");
@@ -268,8 +270,7 @@ namespace ThucTapChuyenNganh.Class
             //Bỏ ký tự space
             mTemp = mTemp.Trim();
             //Viết hoa ký tự đầu tiên
-            mTemp = mTemp.Substring(0, 1).ToUpper() + mTemp.Substring(1)
-           + " đồng";
+            mTemp = mTemp.Substring(0, 1).ToUpper() + mTemp.Substring(1) + " đồng";
             return mTemp;
         }
     }

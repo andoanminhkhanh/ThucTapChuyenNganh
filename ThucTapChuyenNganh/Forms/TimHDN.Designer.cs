@@ -1,6 +1,6 @@
 ﻿namespace ThucTapChuyenNganh.Forms
 {
-    partial class Hoadonnhap
+    partial class TimHDN
     {
         /// <summary>
         /// Required designer variable.
