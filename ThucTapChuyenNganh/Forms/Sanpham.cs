@@ -20,13 +20,16 @@ namespace ThucTapChuyenNganh.Forms
         DataTable tblSP;
         private void Sanpham_Load(object sender, EventArgs e)
         {
-            ResetValues();
+            
             txtMaSP.Enabled = false;
             btnBoqua.Enabled = false;
             Load_DataGridView();
-            Function.Fillcombonew("SELECT tblsanpham.MaSP, TenSP, MaLoai, Size, MaMau, tblsanpham.SoLuong, Anh, DonGiaNhap, DonGiaBan FROM (tblsanpham JOIN tblchitiethoadonnhap ON tblsanpham.MaSP=tblchitiethoadonnhap.MaSP) JOIN tblchitiethoadonban ON tblsanpham.MaSP=tblchitiethoadonban.MaSP", cboMaloai, "MaLoai", "TenLoai", cboMamau, "MaMau", "TenMau");
-            cboMaloai.SelectedIndex = -1;
+            Function.Fillcombo("SELECT MaMau, TenMau FROM tblmau", cboMamau, "MaMau", "TenMau");
             cboMamau.SelectedIndex = -1;
+            Function.Fillcombo("SELECT MaLoai, TheLoai FROM tbltheloai", cboMaloai, "MaLoai", "TheLoai");
+            cboMaloai.SelectedIndex = -1;
+            ResetValues();
+            Load_DataGridView();
         }
        
         private void ResetValues()

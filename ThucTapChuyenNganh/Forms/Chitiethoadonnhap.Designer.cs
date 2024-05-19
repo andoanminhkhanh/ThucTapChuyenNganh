@@ -509,6 +509,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Chitiethoadonnhap";
             this.Text = "Chitiethoadonnhap";
+            this.Load += new System.EventHandler(this.Chitiethoadonnhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
