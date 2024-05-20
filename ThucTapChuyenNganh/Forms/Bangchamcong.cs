@@ -29,7 +29,7 @@ namespace ThucTapChuyenNganh.Forms
         private void load_datagridview()
         {
             string sql;
-            sql = "SELECT * from tblbangchamcong";
+            sql = "SELECT * from tblchamcong";
 
             tblchamcong = Function.GetDataToTable(sql);
             dgridcChamCong.DataSource = tblchamcong;
@@ -82,7 +82,7 @@ namespace ThucTapChuyenNganh.Forms
                 return;
             }
 
-            sql = "INSERT INTO tblbangchamcong(MaNV, NgayLam, GioVaoLam, GioTanLam) VALUES (N'" + txtMaNV.Text.Trim() + "',  CONVERT(DATE, N'" + DateTime.Now.ToString("dd-MM-yyyy") + "' , 105), CONVERT(TIME, N'" + mskGiovao.Text.Trim() + "'), CONVERT(TIME, N'" + mskGiora.Text.Trim() + "'))";
+            sql = "INSERT INTO tblchamcong (MaNV, NgayLam, GioVaoLam, GioTanLam) VALUES (N'" + txtMaNV.Text.Trim() + "',  CONVERT(DATE, N'" + DateTime.Now.ToString("dd-MM-yyyy") + "' , 105), CONVERT(TIME, N'" + mskGiovao.Text.Trim() + "'), CONVERT(TIME, N'" + mskGiora.Text.Trim() + "'))";
 
             Function.RunSql(sql);
             load_datagridview();
@@ -116,7 +116,7 @@ namespace ThucTapChuyenNganh.Forms
                 MessageBox.Show("Bạn chưa chọn bản ghi nào", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            sql = "UPDATE tblbangchamcong SET GioTanLam = CONVERT(TIME, N'" + DateTime.Now.ToString("HH:mm:ss") + "') WHERE MaNV = N'" + txtMaNV.Text.Trim() + "'";
+            sql = "UPDATE tblchamcong SET GioTanLam = CONVERT(TIME, N'" + DateTime.Now.ToString("HH:mm:ss") + "') WHERE MaNV = N'" + txtMaNV.Text.Trim() + "'";
             Function.RunSql(sql);
             load_datagridview();
             resetvalues();
@@ -125,43 +125,43 @@ namespace ThucTapChuyenNganh.Forms
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            //string sql;
-            //if (tblchamcong.Rows.Count == 0)
-            //{
-            //    MessageBox.Show("Không còn dữ liệu nào", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
+            string sql;
+            if (tblchamcong.Rows.Count == 0)
+            {
+                MessageBox.Show("Không còn dữ liệu nào", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
 
-            //}
-            //if (txtMaNV.Text == "")
-            //{
-            //    MessageBox.Show("Bạn chưa chọn bản ghi nào", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-            //if (mskNgayLam.Text == "  /  /")
-            //{
-            //    MessageBox.Show("Bạn phải nhập ngày làm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-            //if (mskGiovao.Text == "  :")
-            //{
-            //    MessageBox.Show("Bạn phải nhập giờ vào làm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-            //if (mskGiora.Text == "  :")
-            //{
-            //    MessageBox.Show("Bạn phải nhập giờ tan làm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
+            }
+            if (txtMaNV.Text == "")
+            {
+                MessageBox.Show("Bạn chưa chọn bản ghi nào", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (mskNgayLam.Text == "  /  /")
+            {
+                MessageBox.Show("Bạn phải nhập ngày làm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (mskGiovao.Text == "  :")
+            {
+                MessageBox.Show("Bạn phải nhập giờ vào làm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (mskGiora.Text == "  :")
+            {
+                MessageBox.Show("Bạn phải nhập giờ tan làm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            //sql = "UPDATE tblchamcong SET NgayLam = CONVERT(DATE, N'" + mskNgayLam.Text.Trim() + "', 105), GioVaoLam = N'" + mskGiovao.Text.Trim() + "', GioTanLam = N'" + mskGiora.Text.Trim() + "' WHERE MaNV = N'" + txtMaNV.Text.Trim() + "'";
-           
-            //Function.RunSql(sql);
-            //load_datagridview();
-            //resetvalues();
+            sql = "UPDATE tblchamcong SET NgayLam = CONVERT(DATE, N'" + mskNgayLam.Text.Trim() + "', 105), GioVaoLam = N'" + mskGiovao.Text.Trim() + "', GioTanLam = N'" + mskGiora.Text.Trim() + "' WHERE MaNV = N'" + txtMaNV.Text.Trim() + "'";
 
-            //btnBoqua.Enabled = false;
+            Function.RunSql(sql);
+            load_datagridview();
+            resetvalues();
 
-            
+            btnBoqua.Enabled = false;
+
+
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -179,11 +179,16 @@ namespace ThucTapChuyenNganh.Forms
             }
             if (MessageBox.Show("Bạn muốn xóa không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                sql = "DELETE FROM tblbangchamcong WHERE MaNV =N'" + txtMaNV.Text + "' AND  NgayLam = N'"+mskNgayLam.Text+"'";
+                sql = "DELETE FROM tblchamcong WHERE MaNV =N'" + txtMaNV.Text + "' AND  NgayLam = CONVERT(DATE, N'" + mskNgayLam.Text+"',105)";
                 Function.RunSql(sql);
                 load_datagridview();
                 resetvalues();
             }
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
