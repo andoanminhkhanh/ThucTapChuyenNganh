@@ -68,7 +68,7 @@ namespace ThucTapChuyenNganh.Forms
 
         private void DataGridView_Click(object sender, EventArgs e)
         {
-            string maloai, mamau;
+            string maloai, mamau, ma;
             if (tblSP.Rows.Count == 0)
             {
                 MessageBox.Show("Không có dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -78,12 +78,19 @@ namespace ThucTapChuyenNganh.Forms
             txtTenSP.Text = DataGridView.CurrentRow.Cells["TenSP"].Value.ToString();
             maloai = DataGridView.CurrentRow.Cells["MaLoai"].Value.ToString();
             cboMaloai.Text = Function.GetFieldValues("SELECT TheLoai FROM tbltheloai WHERE MaLoai = N'" + maloai + "'");
+          
             txtSize.Text = DataGridView.CurrentRow.Cells["Size"].Value.ToString();
+           
             mamau = DataGridView.CurrentRow.Cells["MaMau"].Value.ToString();
             cboMamau.Text = Function.GetFieldValues("SELECT TenMau FROM tblmau WHERE MaMau = N'" + mamau + "'");
+           
             txtSoluong.Text = DataGridView.CurrentRow.Cells["SoLuong"].Value.ToString();
-            txtDongianhap.Text = DataGridView.CurrentRow.Cells["DonGiaNhap"].Value.ToString();
+            //txtDongianhap.Text = DataGridView.CurrentRow.Cells["DonGiaNhap"].Value.ToString();
+            ma = DataGridView.CurrentRow.Cells["MaSP"].Value.ToString();
+            txtDongianhap.Text = Function.GetFieldValues("SELECT DonGiaNhap FROM tblchitiethoadonnhap WHERE MaSP = N'" + ma + "'");
+            
             txtDongiaban.Text = DataGridView.CurrentRow.Cells["DonGiaBan"].Value.ToString();
+           
             txtAnh.Text = Function.GetFieldValues("SELECT Anh FROM tblsanpham WHERE MaSP = N'" + txtMaSP.Text + "'");
             picAnh.Image = Image.FromFile(txtAnh.Text);
 
@@ -206,7 +213,7 @@ namespace ThucTapChuyenNganh.Forms
                 MessageBox.Show("Hãy nhập một điều kiện tìm kiếm!!!", "Yêu cầu ...",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            sql = "SELECT * FROM tblsanpham WHERE 1=1";
+            sql = "SELECT tblsanpham.MaSP, TenSP, MaLoai, Size, MaMau, tblsanpham.SoLuong, Anh, DonGiaNhap, DonGiaBan FROM tblsanpham JOIN tblchitiethoadonnhap ON tblsanpham.MaSP = tblchitiethoadonnhap.MaSP WHERE 1=1";
             if (txtMaSP.Text != "")
                 sql = sql + " AND MaSP Like N'%" + txtMaSP.Text + "%'";
             if (txtTenSP.Text != "")

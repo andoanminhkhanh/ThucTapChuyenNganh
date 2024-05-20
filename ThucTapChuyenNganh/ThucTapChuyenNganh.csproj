@@ -125,6 +125,12 @@
     <Compile Include="Forms\TimHDB.Designer.cs">
       <DependentUpon>TimHDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Tonghopcongtheothang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tonghopcongtheothang.Designer.cs">
+      <DependentUpon>Tonghopcongtheothang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Bangchamcong.resx">
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TimHDB.resx">
       <DependentUpon>TimHDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tonghopcongtheothang.resx">
+      <DependentUpon>Tonghopcongtheothang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

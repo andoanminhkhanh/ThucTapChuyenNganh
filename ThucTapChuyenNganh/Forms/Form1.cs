@@ -98,5 +98,11 @@ namespace ThucTapChuyenNganh
             Forms.Congviec a = new Forms.Congviec();
             a.Show();
         }
+
+        private void côngTheoThángToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms.Tonghopcongtheothang a = new Forms.Tonghopcongtheothang();
+            a.Show();
+        }
     }
 }
