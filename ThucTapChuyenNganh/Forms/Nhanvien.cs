@@ -273,5 +273,10 @@ namespace ThucTapChuyenNganh.Forms
             btnLuu.Enabled = false;
             txtMaNV.Enabled = false;
         }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
