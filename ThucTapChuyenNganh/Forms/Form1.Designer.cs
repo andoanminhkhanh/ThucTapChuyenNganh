@@ -95,7 +95,7 @@
             // 
             this.mnuLoaisanpham.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuLoaisanpham.Name = "mnuLoaisanpham";
-            this.mnuLoaisanpham.Size = new System.Drawing.Size(224, 26);
+            this.mnuLoaisanpham.Size = new System.Drawing.Size(189, 26);
             this.mnuLoaisanpham.Text = "Loại sản phẩm";
             this.mnuLoaisanpham.Click += new System.EventHandler(this.mnuLoaisanpham_Click);
             // 
@@ -103,7 +103,7 @@
             // 
             this.mnuMausanpham.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuMausanpham.Name = "mnuMausanpham";
-            this.mnuMausanpham.Size = new System.Drawing.Size(224, 26);
+            this.mnuMausanpham.Size = new System.Drawing.Size(189, 26);
             this.mnuMausanpham.Text = "Màu sản phẩm";
             this.mnuMausanpham.Click += new System.EventHandler(this.mnuMausanpham_Click);
             // 
@@ -137,7 +137,7 @@
             // 
             this.mnuCongviec.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuCongviec.Name = "mnuCongviec";
-            this.mnuCongviec.Size = new System.Drawing.Size(224, 26);
+            this.mnuCongviec.Size = new System.Drawing.Size(160, 26);
             this.mnuCongviec.Text = "Công việc";
             this.mnuCongviec.Click += new System.EventHandler(this.mnuCongviec_Click);
             // 
@@ -156,7 +156,7 @@
             // 
             this.mnuChitiethoadonnhap.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuChitiethoadonnhap.Name = "mnuChitiethoadonnhap";
-            this.mnuChitiethoadonnhap.Size = new System.Drawing.Size(224, 26);
+            this.mnuChitiethoadonnhap.Size = new System.Drawing.Size(220, 26);
             this.mnuChitiethoadonnhap.Text = "Hóa đơn nhập hàng";
             this.mnuChitiethoadonnhap.Click += new System.EventHandler(this.mnuChitiethoadonnhap_Click);
             // 
@@ -164,7 +164,7 @@
             // 
             this.mnuChitiethoadonban.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuChitiethoadonban.Name = "mnuChitiethoadonban";
-            this.mnuChitiethoadonban.Size = new System.Drawing.Size(224, 26);
+            this.mnuChitiethoadonban.Size = new System.Drawing.Size(220, 26);
             this.mnuChitiethoadonban.Text = "Hóa đơn bán hàng";
             this.mnuChitiethoadonban.Click += new System.EventHandler(this.mnuChitiethoadonban_Click);
             // 
@@ -183,14 +183,14 @@
             // 
             this.mnuTimHDN.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuTimHDN.Name = "mnuTimHDN";
-            this.mnuTimHDN.Size = new System.Drawing.Size(224, 26);
+            this.mnuTimHDN.Size = new System.Drawing.Size(212, 26);
             this.mnuTimHDN.Text = "Tìm hóa đơn nhập";
             // 
             // mnuTimHDB
             // 
             this.mnuTimHDB.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuTimHDB.Name = "mnuTimHDB";
-            this.mnuTimHDB.Size = new System.Drawing.Size(224, 26);
+            this.mnuTimHDB.Size = new System.Drawing.Size(212, 26);
             this.mnuTimHDB.Text = "Tìm hóa đơn bán";
             // 
             // quảnLýToolStripMenuItem

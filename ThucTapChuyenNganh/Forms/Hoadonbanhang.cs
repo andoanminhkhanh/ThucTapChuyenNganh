@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using ThucTapChuyenNganh.Class;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using COMExcel = Microsoft.Office.Interop.Excel;
+
 
 namespace ThucTapChuyenNganh.Forms
 {
@@ -34,6 +36,7 @@ namespace ThucTapChuyenNganh.Forms
             txtTenkhachhang.Enabled = false;
             txtDiachi.Enabled = false;
             txtDienthoai.Enabled = true ;
+            cboManhanvien.Enabled = false;
             txtTenhang.ReadOnly = true;
             txtDongia.ReadOnly = true;
             txtThanhtien.ReadOnly = true;
@@ -59,7 +62,8 @@ namespace ThucTapChuyenNganh.Forms
         private void Load_data()
         {
             string sql;
-            sql = "select tblsanpham.MaSP, tblsanpham.TenSP, tblchitiethoadonban.Soluong, tblchitiethoadonban.DonGiaBan, tblchitiethoadonban.GiamGia, (tblchitiethoadonban.DonGiaBan*tblchitiethoadonban.SoLuong*(1-tblchitiethoadonban.GiamGia)) as ThanhTien from tblsanpham JOIN tblchitiethoadonban ON tblsanpham.MaSP=tblchitiethoadonban.MaSP";
+            //sql = "select tblchitiethoadonban.MaSP, tblsanpham.TenSP, tblchitiethoadonban.Soluong, tblsanpham.DonGiaBan, tblchitiethoadonban.GiamGia, (tblsanpham.DonGiaBan*tblchitiethoadonban.SoLuong*(1-tblchitiethoadonban.GiamGia)) as ThanhTien where tblchitiethoadonban.MaHDB = N'" + txtMahoadon.Text + "' and tblchitiethoadonban.MaSP = tblsanpham.MaSP";
+            sql = "select a.MaSP, b.TenSP, a.SoLuong, b.DonGiaBan, a.GiamGia, (a.SoLuong*b.DonGiaBan*(1-a.GiamGia)) from tblchitiethoadonban as a, tblsanpham as b where a.MaHDB = N'" + txtMahoadon.Text + "' and a.MaSP = b.MaSP";
             tblcthdb = Class.Function.GetDataToTable(sql);
             dgridChitiet.DataSource = tblcthdb;
             dgridChitiet.Columns[0].HeaderText = "Mã sản phẩm";
@@ -68,12 +72,12 @@ namespace ThucTapChuyenNganh.Forms
             dgridChitiet.Columns[3].HeaderText = "Đơn giá";
             dgridChitiet.Columns[4].HeaderText = "Giảm giá %";
             dgridChitiet.Columns[5].HeaderText = "Thành tiền";
-            dgridChitiet.Columns[0].Width = 80;
-            dgridChitiet.Columns[1].Width = 100;
-            dgridChitiet.Columns[2].Width = 80;
-            dgridChitiet.Columns[3].Width = 90;
-            dgridChitiet.Columns[4].Width = 90;
-            dgridChitiet.Columns[5].Width = 90;
+            dgridChitiet.Columns[0].Width = 100;
+            dgridChitiet.Columns[1].Width = 120;
+            dgridChitiet.Columns[2].Width = 120;
+            dgridChitiet.Columns[3].Width = 110;
+            dgridChitiet.Columns[4].Width = 110;
+            dgridChitiet.Columns[5].Width = 120;
             dgridChitiet.AllowUserToAddRows = false;
             dgridChitiet.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
@@ -84,12 +88,9 @@ namespace ThucTapChuyenNganh.Forms
             txtNgayban.Text = Class.Function.ConvertDateTime(Class.Function.GetFieldValues(str));
             str = "SELECT MaNV FROM tblchitiethoadonban WHERE MaHDB = N'" + txtMahoadon.Text + "'";
             cboManhanvien.Text = Class.Function.GetFieldValues(str);
-
             str = "SELECT MaKH FROM tblhoadonban WHERE MaHDB = N'" + txtMahoadon.Text + "'";
-
             str = "SELECT TongTien FROM tblthoadonban WHERE MaHDB = N'" + txtMahoadon.Text + "'";
             txtTongtien.Text = Class.Function.GetFieldValues(str);
-
             lblBangchu.Text = "Bằng chữ: " + Class.Function.ChuyenSoSangChu(txtTongtien.Text);
         }
 
@@ -100,6 +101,7 @@ namespace ThucTapChuyenNganh.Forms
             btnInhoadon.Enabled = false;
             btnThemhoadon.Enabled = false;
             txtMahoadon.ReadOnly = true;
+            cboManhanvien.Enabled = true;
             ResetValues();
             Load_data();
         }
@@ -216,7 +218,7 @@ namespace ThucTapChuyenNganh.Forms
                 return;
             }
             // Kiểm tra xem số lượng hàng trong kho còn đủ để cung cấp không ?
-            sl = Convert.ToDouble(Function.GetFieldValues("SELECT Soluong FROM tblsanpham WHERE Mahang = N'" + cboMasanpham.SelectedValue + "'"));
+            sl = Convert.ToDouble(Function.GetFieldValues("SELECT Soluong FROM tblsanpham WHERE MaSP = N'" + cboMasanpham.SelectedValue + "'"));
             if (Convert.ToDouble(txtSoluong.Text) > sl)
             {
                 MessageBox.Show("Số lượng sản phẩm này chỉ còn " + sl, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -224,7 +226,7 @@ namespace ThucTapChuyenNganh.Forms
                 txtSoluong.Focus();
                 return;
             }
-            sql = "INSERT INTO tblchitiethoadonban(MaHDB, MaSP, Soluong, Dongiaban, Giamgia, ThanhTien) VALUES(N'" + txtMahoadon.Text.Trim() + "', N'" + cboMasanpham.SelectedValue + "'," + txtSoluong.Text + "," + txtGiamgia.Text + ", " + txtThanhtien.Text + ")";
+            sql = "INSERT INTO tblchitiethoadonban(MaHDB, MaSP, SoLuong, DonGiaBan, Giamgia) VALUES(N'" + txtMahoadon.Text.Trim() + "', N'" + cboMasanpham.SelectedValue + "'," + txtSoluong.Text + "," + txtDongia.Text + "," + txtGiamgia.Text + ")";
             Function.RunSql(sql);
             Load_data();
             // Cập nhật lại số lượng của mặt hàng vào bảng tblHang
@@ -352,7 +354,7 @@ namespace ThucTapChuyenNganh.Forms
             // Khi kich chon Ma hang thi ten hang va gia ban se tu dong hien ra
             str = "SELECT TenSP FROM tblsanpham WHERE MaSP =N'" + cboMasanpham.SelectedValue+ "'";
             txtTenhang.Text = Function.GetFieldValues(str);
-            str = "SELECT Dongiaban FROM tblchitiethoadonban WHERE MaSP =N'" + cboMasanpham.SelectedValue + "'";
+            str = "SELECT DonGiaBan FROM tblsanpham WHERE MaSP =N'" + cboMasanpham.SelectedValue + "'";
             txtDongia.Text = Function.GetFieldValues(str);
         }
 
@@ -394,6 +396,163 @@ namespace ThucTapChuyenNganh.Forms
                 dg = Convert.ToDouble(txtDongia.Text);
             tt = sl * dg - sl * dg * gg / 100;
             txtThanhtien.Text = tt.ToString();
+        }
+
+        private void btnInhoadon_Click(object sender, EventArgs e)
+        {
+            // Khởi động chương trình Excel
+            COMExcel.Application exApp = new COMExcel.Application();
+            COMExcel.Workbook exBook; //Trong 1 chương trình Excel có nhiều Workbook
+            COMExcel.Worksheet exSheet; //Trong 1 Workbook có nhiều Worksheet
+            COMExcel.Range exRange;
+            string sql;
+            int hang = 0, cot = 0;
+            DataTable tblThongtinHD, tblThongtinHang;
+            exBook = exApp.Workbooks.Add(COMExcel.XlWBATemplate.xlWBATWorksheet);
+            exSheet = exBook.Worksheets[1];
+            // Định dạng chung
+            exRange = exSheet.Cells[1, 1];
+            exRange.Range["A1:B3"].Font.Size = 10;
+            exRange.Range["A1:B3"].Font.Name = "Times new roman";
+            exRange.Range["A1:B3"].Font.Bold = true;
+            exRange.Range["A1:B3"].Font.ColorIndex = 5; //Màu xanh da trời
+            exRange.Range["A1:A1"].ColumnWidth = 7;
+            exRange.Range["B1:B1"].ColumnWidth = 15;
+            exRange.Range["A1:B1"].MergeCells = true;
+            exRange.Range["A1:B1"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
+            exRange.Range["A1:B1"].Value = "VSPink Store";
+
+            exRange.Range["A2:B2"].MergeCells = true;
+            exRange.Range["A2:B2"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
+            exRange.Range["A2:B2"].Value = "A10CT1 - Nam Trung Yên - Cầu Giấy - Hà Nội";
+
+            exRange.Range["A3:B3"].MergeCells = true;
+            exRange.Range["A3:B3"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
+            exRange.Range["A3:B3"].Value = "Điện thoại: (09)49910666";
+            exRange.Range["C2:E2"].Font.Size = 16;
+            exRange.Range["C2:E2"].Font.Name = "Times new roman";
+            exRange.Range["C2:E2"].Font.Bold = true;
+            exRange.Range["C2:E2"].Font.ColorIndex = 3; //Màu đỏ
+            exRange.Range["C2:E2"].MergeCells = true;
+            exRange.Range["C2:E2"].HorizontalAlignment =
+           COMExcel.XlHAlign.xlHAlignCenter;
+            exRange.Range["C2:E2"].Value = "HÓA ĐƠN BÁN HÀNG";
+            // Biểu diễn thông tin chung của hóa đơn bán
+            sql = "SELECT a.MaHDB, a.Ngayban, a.Tongtien, b.TenKH, b.Diachi, b.Dienthoai, c.TenNV FROM tblhoadonban AS a, tblkhachhang AS b, tblnhanvien AS c WHERE a.MaHDB = N'" + txtMahoadon.Text + "' AND a.MaKH = b.MaKH AND a.MaNV = c.MaNV";
+            tblThongtinHD = Function.GetDataToTable(sql);
+            exRange.Range["B6:C9"].Font.Size = 12;
+            exRange.Range["B6:C9"].Font.Name = "Times new roman";
+            exRange.Range["B6:B6"].Value = "Mã hóa đơn:";
+            exRange.Range["C6:E6"].MergeCells = true;
+            exRange.Range["C6:E6"].Value = tblThongtinHD.Rows[0][0].ToString();
+            exRange.Range["B7:B7"].Value = "Khách hàng:";
+            exRange.Range["C7:E7"].MergeCells = true;
+            exRange.Range["C7:E7"].Value = tblThongtinHD.Rows[0][3].ToString();
+            exRange.Range["B8:B8"].Value = "Địa chỉ:";
+            exRange.Range["C8:E8"].MergeCells = true;
+            exRange.Range["C8:E8"].Value = tblThongtinHD.Rows[0][4].ToString();
+            exRange.Range["B9:B9"].Value = "Điện thoại:";
+            exRange.Range["C9:E9"].MergeCells = true;
+            exRange.Range["C9:E9"].Value = tblThongtinHD.Rows[0][5].ToString();
+            //Lấy thông tin các mặt hàng
+            sql = "SELECT b.TenSP, a.Soluong, b.DonGiaBan, a.Giamgia, a.Thanhtien " + "FROM tblChitiethoadonban AS a , tblSP AS b WHERE a.Mahoadon = N'" + txtMahoadon.Text + "' AND a.MaSP = b.MaSP";
+            tblThongtinHang = Function.GetDataToTable(sql);
+            //Tạo dòng tiêu đề bảng
+            exRange.Range["A11:F11"].Font.Bold = true;
+            exRange.Range["A11:F11"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
+            exRange.Range["C11:F11"].ColumnWidth = 12;
+            exRange.Range["A11:A11"].Value = "STT";
+            exRange.Range["B11:B11"].Value = "Tên hàng";
+            exRange.Range["C11:C11"].Value = "Số lượng";
+            exRange.Range["D11:D11"].Value = "Đơn giá";
+            exRange.Range["E11:E11"].Value = "Giảm giá";
+            exRange.Range["F11:F11"].Value = "Thành tiền";
+            for (hang = 0; hang <= tblThongtinHang.Rows.Count - 1; hang ++)
+            {
+                //Điền số thứ tự vào cột 1 từ dòng 12
+                exSheet.Cells[1][hang + 12] = hang + 1;
+                for (cot = 0; cot <= tblThongtinHang.Columns.Count - 1; cot++)
+                    //Điền thông tin hàng từ cột thứ 2, dòng 12
+                    exSheet.Cells[cot + 2][hang + 12] = tblThongtinHang.Rows[hang][cot].ToString();
+            }
+            exRange = exSheet.Cells[cot][hang + 14];
+            exRange.Font.Bold = true;
+            exRange.Value2 = "Tổng tiền:";
+            exRange = exSheet.Cells[cot + 1][hang + 14];
+            exRange.Font.Bold = true;
+            exRange.Value2 = tblThongtinHD.Rows[0][2].ToString();
+            exRange = exSheet.Cells[1][hang + 15]; //Ô A1 
+            exRange.Range["A1:F1"].MergeCells = true;
+            exRange.Range["A1:F1"].Font.Bold = true;
+            exRange.Range["A1:F1"].Font.Italic = true;
+            exRange.Range["A1:F1"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignRight;
+            exRange.Range["A1:F1"].Value = "Bằng chữ: " + Function.ChuyenSoSangChu(tblThongtinHD.Rows[0][2].ToString());
+            exRange = exSheet.Cells[4][hang + 17]; //Ô A1 
+            exRange.Range["A1:C1"].MergeCells = true;
+            exRange.Range["A1:C1"].Font.Italic = true;
+            exRange.Range["A1:C1"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
+            DateTime d = Convert.ToDateTime(tblThongtinHD.Rows[0][1]);
+            exRange.Range["A1:C1"].Value = "Hà Nội, ngày " + d.Day + " tháng " + d.Month + " năm " + d.Year;
+            exRange.Range["A2:C2"].MergeCells = true;
+            exRange.Range["A2:C2"].Font.Italic = true;
+            exRange.Range["A2:C2"].HorizontalAlignment =COMExcel.XlHAlign.xlHAlignCenter;
+            exRange.Range["A2:C2"].Value = "Nhân viên bán hàng";
+            exRange.Range["A6:C6"].MergeCells = true;
+            exRange.Range["A6:C6"].Font.Italic = true;
+            exRange.Range["A6:C6"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
+            exRange.Range["A6:C6"].Value = tblThongtinHD.Rows[0][6];
+            exSheet.Name = "Hóa đơn nhập";
+            exApp.Visible = true;
+        }
+
+        private void btnTimkiem_Click(object sender, EventArgs e)
+        {
+            if (cboMahoadon.Text == "")
+            {
+                MessageBox.Show("Bạn phải chọn một mã hóa đơn để tìm","Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cboMahoadon.Focus();
+                return;
+            }
+            txtMahoadon.Text = cboMahoadon.Text;
+            Load_ThongtinHD();
+            Load_data();
+            btnHuyhoadon.Enabled = true;
+            btnLuu.Enabled = true;
+            btnInhoadon.Enabled = true;
+            cboMahoadon.SelectedIndex = -1;
+        }
+
+        private void txtSoluong_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((e.KeyChar >= '0') && (e.KeyChar <= '9')) || (Convert.ToInt32(e.KeyChar) == 8))
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void txtGiamgia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((e.KeyChar >= '0') && (e.KeyChar <= '9')) || (Convert.ToInt32(e.KeyChar) == 8))
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void cboMahoadon_DropDown(object sender, EventArgs e)
+        {
+            Function.FillCombo("SELECT MaHDBan FROM tblHDBan", cboMahoadon, "MaHDBan","MaHDBan");
+            cboMahoadon.SelectedIndex = -1;
+        }
+
+        private void Hoadonbanhang_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Xóa dữ liệu trong các điều khiển trước khi đóng Form
+            ResetValues();
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

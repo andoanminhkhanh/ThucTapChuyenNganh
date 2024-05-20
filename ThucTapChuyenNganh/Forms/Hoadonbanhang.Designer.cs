@@ -351,6 +351,7 @@
             this.txtSoluong.Size = new System.Drawing.Size(126, 22);
             this.txtSoluong.TabIndex = 30;
             this.txtSoluong.TextChanged += new System.EventHandler(this.txtSoluong_TextChanged);
+            this.txtSoluong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSoluong_KeyPress);
             // 
             // txtTenhang
             // 
@@ -361,11 +362,12 @@
             // 
             // txtGiamgia
             // 
-            this.txtGiamgia.Location = new System.Drawing.Point(544, 265);
+            this.txtGiamgia.Location = new System.Drawing.Point(544, 269);
             this.txtGiamgia.Name = "txtGiamgia";
             this.txtGiamgia.Size = new System.Drawing.Size(126, 22);
             this.txtGiamgia.TabIndex = 32;
             this.txtGiamgia.TextChanged += new System.EventHandler(this.txtGiamgia_TextChanged);
+            this.txtGiamgia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiamgia_KeyPress);
             // 
             // txtDongia
             // 
@@ -395,6 +397,7 @@
             this.cboMahoadon.Name = "cboMahoadon";
             this.cboMahoadon.Size = new System.Drawing.Size(226, 24);
             this.cboMahoadon.TabIndex = 37;
+            this.cboMahoadon.DropDown += new System.EventHandler(this.cboMahoadon_DropDown);
             // 
             // btnThemhoadon
             // 
@@ -414,6 +417,7 @@
             this.btnTimkiem.TabIndex = 39;
             this.btnTimkiem.Text = "Tìm kiếm";
             this.btnTimkiem.UseVisualStyleBackColor = true;
+            this.btnTimkiem.Click += new System.EventHandler(this.btnTimkiem_Click);
             // 
             // btnLuu
             // 
@@ -443,6 +447,7 @@
             this.btnInhoadon.TabIndex = 42;
             this.btnInhoadon.Text = "In hóa đơn";
             this.btnInhoadon.UseVisualStyleBackColor = true;
+            this.btnInhoadon.Click += new System.EventHandler(this.btnInhoadon_Click);
             // 
             // btnDong
             // 
@@ -452,6 +457,7 @@
             this.btnDong.TabIndex = 43;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // dgridChitiet
             // 
@@ -553,6 +559,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Hoadonbanhang";
             this.Text = "Hoadonbanhang";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Hoadonbanhang_FormClosing);
             this.Load += new System.EventHandler(this.Hoadonbanhang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgridChitiet)).EndInit();
             this.ResumeLayout(false);

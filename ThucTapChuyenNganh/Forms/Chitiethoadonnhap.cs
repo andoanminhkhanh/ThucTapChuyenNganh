@@ -34,9 +34,9 @@ namespace ThucTapChuyenNganh.Forms
             txtTongtien.ReadOnly = true;
             txtGiamgia.Text = "0";
             txtTongtien.Text = "0";
-            Class.Function.Fillcombo("SELECT Manhanvien, Tennhanvien FROM tblnhanvien", cboManhanvien, "Manhanvien", "Tennhanvien");
+            Class.Function.Fillcombo("SELECT MaNV, TenNV FROM tblnhanvien", cboManhanvien, "Tennhanvien", "Manhanvien");
             cboManhanvien.SelectedIndex = -1;
-            Class.Function.Fillcombo("SELECT MaSP, TenSP FROM  tblsanpham", cboMaSP, "MaSP", "TenSP");
+            Class.Function.Fillcombo("SELECT MaSP, TenSP FROM  tblsanpham", cboMaSP, "TenSP", "MaSP");
             cboMaSP.SelectedIndex = -1;
             Class.Function.Fillcombo("SELECT MaHDB FROM tblchitiethoadonban", cboMahoadon, "MaHDB", "MaHDB");
             cboMahoadon.SelectedIndex = -1;

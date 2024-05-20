@@ -50,7 +50,7 @@ namespace ThucTapChuyenNganh.Forms
         private void Load_DataGridView()
         {
             string sql;
-            sql = "SELECT tblsanpham.MaSP, TenSP, MaLoai, Size, MaMau, tblsanpham.SoLuong, Anh, DonGiaNhap, DonGiaBan FROM(tblsanpham JOIN tblchitiethoadonnhap ON tblsanpham.MaSP = tblchitiethoadonnhap.MaSP) JOIN tblchitiethoadonban ON tblsanpham.MaSP = tblchitiethoadonban.MaSP";
+            sql = "SELECT tblsanpham.MaSP, TenSP, MaLoai, Size, MaMau, tblsanpham.SoLuong, Anh, DonGiaNhap, DonGiaBan FROM tblsanpham JOIN tblchitiethoadonnhap ON tblsanpham.MaSP = tblchitiethoadonnhap.MaSP";
             tblSP = Function.GetDataToTable(sql);
             DataGridView.DataSource = tblSP;
             DataGridView.Columns[0].HeaderText = "Mã sản phẩm";
