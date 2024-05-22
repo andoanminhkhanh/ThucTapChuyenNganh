@@ -35,6 +35,10 @@ namespace ThucTapChuyenNganh.Forms
             dgridKhachhang.Columns[1].HeaderText = "Tên khách hàng";
             dgridKhachhang.Columns[2].HeaderText = "Địa chỉ";
             dgridKhachhang.Columns[3].HeaderText = "Điện thoại";
+            dgridKhachhang.Columns[0].Width = 110;
+            dgridKhachhang.Columns[1].Width = 120;
+            dgridKhachhang.Columns[2].Width = 120;
+            dgridKhachhang.Columns[3].Width = 110;
             dgridKhachhang.AllowUserToAddRows = false;
             dgridKhachhang.EditMode = DataGridViewEditMode.EditProgrammatically;
         }

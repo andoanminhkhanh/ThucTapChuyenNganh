@@ -33,6 +33,8 @@ namespace ThucTapChuyenNganh.Forms
             dgridMausanpham.DataSource = tblmau;
             dgridMausanpham.Columns[0].HeaderText = "Mã màu";
             dgridMausanpham.Columns[1].HeaderText = "Tên màu";
+            dgridMausanpham.Columns[0].Width = 265;
+            dgridMausanpham.Columns[1].Width = 265;
             dgridMausanpham.AllowUserToAddRows = false;
             dgridMausanpham.EditMode = DataGridViewEditMode.EditProgrammatically;
         }

@@ -28,11 +28,13 @@ namespace ThucTapChuyenNganh.Forms
         private void load_data()
         {
             string sql;
-            sql = "select MaLoai,TenLoai from tbltheloai";
+            sql = "select MaLoai,TheLoai from tbltheloai";
             tblloai = Class.Function.GetDataToTable(sql);
             dgridLoaisanpham.DataSource = tblloai;
             dgridLoaisanpham.Columns[0].HeaderText = "Mã loại";
             dgridLoaisanpham.Columns[1].HeaderText = "Tên loại";
+            dgridLoaisanpham.Columns[0].Width = 255;
+            dgridLoaisanpham.Columns[1].Width = 255;
             dgridLoaisanpham.AllowUserToAddRows = false;
             dgridLoaisanpham.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
@@ -50,7 +52,7 @@ namespace ThucTapChuyenNganh.Forms
                 return;
             }
             txtMaloai.Text = dgridLoaisanpham.CurrentRow.Cells["MaLoai"].Value.ToString();
-            txtTenloai.Text = dgridLoaisanpham.CurrentRow.Cells["TenLoai"].Value.ToString();
+            txtTenloai.Text = dgridLoaisanpham.CurrentRow.Cells["TheLoai"].Value.ToString();
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
             btnBoqua.Enabled = true;
@@ -106,7 +108,7 @@ namespace ThucTapChuyenNganh.Forms
                 txtMaloai.Focus();
                 txtMaloai.Text = "";
             }
-            sql = "insert into tbltheloai(MaLoai,TenLoai) values (N'" + txtMaloai.Text + "',N'" + txtTenloai.Text + "')";
+            sql = "insert into tbltheloai(MaLoai,TheLoai) values (N'" + txtMaloai.Text + "',N'" + txtTenloai.Text + "')";
             Class.Function.RunSql(sql);
             load_data();
             btnThem.Enabled = true;
@@ -136,7 +138,7 @@ namespace ThucTapChuyenNganh.Forms
                 txtTenloai.Focus();
                 return;
             }
-            sql = "Update tblloai set Tenmau=N'" + txtTenloai.Text.Trim().ToString() + "' where Maloai=N'" + txtMaloai.Text + "'";
+            sql = "Update tbltheloai set TheLoai=N'" + txtTenloai.Text.Trim().ToString() + "' where Maloai=N'" + txtMaloai.Text + "'";
             Class.Function.RunSql(sql);
             load_data();
             ResetValues();
@@ -158,7 +160,7 @@ namespace ThucTapChuyenNganh.Forms
             }
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
-                sql = "delete tblloai where Maloai =N'" + txtMaloai.Text + "'";
+                sql = "delete tbltheloai where Maloai =N'" + txtMaloai.Text + "'";
                 Class.Function.RunSqlDel(sql);
                 load_data();
                 ResetValues();

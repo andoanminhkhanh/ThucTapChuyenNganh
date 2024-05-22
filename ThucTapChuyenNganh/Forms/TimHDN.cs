@@ -22,6 +22,8 @@ namespace ThucTapChuyenNganh.Forms
             ResetValues();
             Class.Function.Fillcombo("select MaNCC, TenNCC from tblnhacungcap", cboMaNCC, "MaNCC", "TenNCC");
             cboMaNCC.SelectedIndex = -1;
+            Class.Function.Fillcombo("select MaNV, TenNV from tblnhanvien", cboManhanvien, "MaNV", "TenNV");
+            cboMaNCC.SelectedIndex = -1;
             dgridHoadonnhap.DataSource = null;
         }
         private void ResetValues()
@@ -35,7 +37,7 @@ namespace ThucTapChuyenNganh.Forms
         private void btnTimkiem_Click(object sender, EventArgs e)
         {
             string sql;
-            if ((txtMaHDN.Text == "") && (txtThang.Text == "") && (txtNam.Text == "") && (txtMaNV.Text == "") && (cboMaNCC.Text == "") && (txtTongtien.Text == ""))
+            if ((txtMaHDN.Text == "") && (txtThang.Text == "") && (txtNam.Text == "") && (cboManhanvien.Text == "") && (cboMaNCC.Text == "") && (txtTongtien.Text == ""))
             {
                 MessageBox.Show("Hãy nhập một điều kiện tìm kiếm!!!", "Yêu cầu...", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -47,8 +49,8 @@ namespace ThucTapChuyenNganh.Forms
                 sql = sql + "and month(NgayNhap) =" + txtThang.Text;
             if (txtNam.Text != "")
                 sql = sql + "and year(NgayNhap) =" + txtNam.Text;
-            if (txtMaNV.Text != "")
-                sql = sql + "and MaNV like N'%" + txtMaNV.Text + "%'";
+            if (cboManhanvien.Text != "")
+                sql = sql + "and MaNV like N'%" + cboManhanvien.SelectedValue.ToString() + "%'";
             if (cboMaNCC.Text != "")
                 sql = sql + "and MaNCC =N'" + cboMaNCC.SelectedValue.ToString() + "'";
             if (txtTongtien.Text != "")
@@ -71,11 +73,11 @@ namespace ThucTapChuyenNganh.Forms
             dgridHoadonnhap.Columns[2].HeaderText = "Ngày nhâp";
             dgridHoadonnhap.Columns[3].HeaderText = "Mã nhà cung cấp";
             dgridHoadonnhap.Columns[4].HeaderText = "Tổng tiền";
-            dgridHoadonnhap.Columns[0].Width = 150;
+            dgridHoadonnhap.Columns[0].Width = 80;
             dgridHoadonnhap.Columns[1].Width = 100;
             dgridHoadonnhap.Columns[2].Width = 80;
-            dgridHoadonnhap.Columns[3].Width = 80;
-            dgridHoadonnhap.Columns[4].Width = 80;
+            dgridHoadonnhap.Columns[3].Width = 110;
+            dgridHoadonnhap.Columns[4].Width = 100;
             dgridHoadonnhap.AllowUserToAddRows = false;
             dgridHoadonnhap.EditMode = DataGridViewEditMode.EditProgrammatically;
         }

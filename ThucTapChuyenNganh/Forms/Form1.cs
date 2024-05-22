@@ -57,11 +57,12 @@ namespace ThucTapChuyenNganh
             a.Show();
         }
 
-        private void tìmHóaĐơnNhậpToolStripMenuItem1_Click(object sender, EventArgs e)
+        /*private void tìmHóaĐơnNhậpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Forms.Bangchamcong a = new Forms.Bangchamcong();
             a.Show();
-        }
+        }*/
+
 
         private void mnuSanpham_Click(object sender, EventArgs e)
         {
@@ -102,6 +103,24 @@ namespace ThucTapChuyenNganh
         private void côngTheoThángToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Forms.Tonghopcongtheothang a = new Forms.Tonghopcongtheothang();
+            a.Show();
+        }
+
+        private void mnuBangchamcong_Click(object sender, EventArgs e)
+        {
+            Forms.Bangchamcong a = new Forms.Bangchamcong();
+            a.Show();
+        }
+
+        private void mnuTimHDN_Click(object sender, EventArgs e)
+        {
+            Forms.TimHDN a = new Forms.TimHDN();
+            a.Show();
+        }
+
+        private void mnuTimHDB_Click(object sender, EventArgs e)
+        {
+            Forms.TimHDB a = new Forms.TimHDB();
             a.Show();
         }
     }
