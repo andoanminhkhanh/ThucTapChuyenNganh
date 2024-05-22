@@ -31,20 +31,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtMaNV = new System.Windows.Forms.TextBox();
+            this.txtTenNV = new System.Windows.Forms.TextBox();
+            this.DataGridView = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtThang = new System.Windows.Forms.TextBox();
+            this.txtNam = new System.Windows.Forms.TextBox();
+            this.txtTong = new System.Windows.Forms.TextBox();
+            this.btnTim = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnBoqua = new System.Windows.Forms.Button();
+            this.btnDong = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -78,32 +78,32 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Tên nhân viên";
             // 
-            // textBox1
+            // txtMaNV
             // 
-            this.textBox1.Location = new System.Drawing.Point(270, 92);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(411, 33);
-            this.textBox1.TabIndex = 3;
+            this.txtMaNV.Location = new System.Drawing.Point(270, 92);
+            this.txtMaNV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtMaNV.Name = "txtMaNV";
+            this.txtMaNV.Size = new System.Drawing.Size(411, 33);
+            this.txtMaNV.TabIndex = 3;
             // 
-            // textBox2
+            // txtTenNV
             // 
-            this.textBox2.Location = new System.Drawing.Point(270, 148);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(411, 33);
-            this.textBox2.TabIndex = 4;
+            this.txtTenNV.Location = new System.Drawing.Point(270, 148);
+            this.txtTenNV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtTenNV.Name = "txtTenNV";
+            this.txtTenNV.Size = new System.Drawing.Size(411, 33);
+            this.txtTenNV.TabIndex = 4;
             // 
-            // dataGridView1
+            // DataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(82, 214);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(988, 191);
-            this.dataGridView1.TabIndex = 5;
+            this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridView.Location = new System.Drawing.Point(82, 214);
+            this.DataGridView.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.DataGridView.Name = "DataGridView";
+            this.DataGridView.RowHeadersWidth = 62;
+            this.DataGridView.RowTemplate.Height = 28;
+            this.DataGridView.Size = new System.Drawing.Size(988, 191);
+            this.DataGridView.TabIndex = 5;
             // 
             // label4
             // 
@@ -135,88 +135,88 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Tổng";
             // 
-            // textBox3
+            // txtThang
             // 
-            this.textBox3.Location = new System.Drawing.Point(875, 92);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(194, 33);
-            this.textBox3.TabIndex = 9;
+            this.txtThang.Location = new System.Drawing.Point(875, 92);
+            this.txtThang.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtThang.Name = "txtThang";
+            this.txtThang.Size = new System.Drawing.Size(194, 33);
+            this.txtThang.TabIndex = 9;
             // 
-            // textBox4
+            // txtNam
             // 
-            this.textBox4.Location = new System.Drawing.Point(875, 149);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(194, 33);
-            this.textBox4.TabIndex = 10;
+            this.txtNam.Location = new System.Drawing.Point(875, 149);
+            this.txtNam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtNam.Name = "txtNam";
+            this.txtNam.Size = new System.Drawing.Size(194, 33);
+            this.txtNam.TabIndex = 10;
             // 
-            // textBox5
+            // txtTong
             // 
-            this.textBox5.Location = new System.Drawing.Point(875, 425);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(194, 33);
-            this.textBox5.TabIndex = 11;
+            this.txtTong.Location = new System.Drawing.Point(875, 425);
+            this.txtTong.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtTong.Name = "txtTong";
+            this.txtTong.Size = new System.Drawing.Size(194, 33);
+            this.txtTong.TabIndex = 11;
             // 
-            // button1
+            // btnTim
             // 
-            this.button1.Location = new System.Drawing.Point(83, 490);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 41);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Tìm";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnTim.Location = new System.Drawing.Point(83, 490);
+            this.btnTim.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(108, 41);
+            this.btnTim.TabIndex = 12;
+            this.btnTim.Text = "Tìm";
+            this.btnTim.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnSua
             // 
-            this.button2.Location = new System.Drawing.Point(363, 490);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(108, 41);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Sửa";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSua.Location = new System.Drawing.Point(363, 490);
+            this.btnSua.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(108, 41);
+            this.btnSua.TabIndex = 13;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnBoqua
             // 
-            this.button3.Location = new System.Drawing.Point(663, 489);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 42);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Bỏ qua";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnBoqua.Location = new System.Drawing.Point(663, 489);
+            this.btnBoqua.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnBoqua.Name = "btnBoqua";
+            this.btnBoqua.Size = new System.Drawing.Size(108, 42);
+            this.btnBoqua.TabIndex = 14;
+            this.btnBoqua.Text = "Bỏ qua";
+            this.btnBoqua.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnDong
             // 
-            this.button4.Location = new System.Drawing.Point(962, 489);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(108, 42);
-            this.button4.TabIndex = 15;
-            this.button4.Text = "Đóng";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnDong.Location = new System.Drawing.Point(962, 489);
+            this.btnDong.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(108, 42);
+            this.btnDong.TabIndex = 15;
+            this.btnDong.Text = "Đóng";
+            this.btnDong.UseVisualStyleBackColor = true;
             // 
             // Bangluong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1156, 563);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.btnDong);
+            this.Controls.Add(this.btnBoqua);
+            this.Controls.Add(this.btnSua);
+            this.Controls.Add(this.btnTim);
+            this.Controls.Add(this.txtTong);
+            this.Controls.Add(this.txtNam);
+            this.Controls.Add(this.txtThang);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.DataGridView);
+            this.Controls.Add(this.txtTenNV);
+            this.Controls.Add(this.txtMaNV);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -225,7 +225,8 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Bangluong";
             this.Text = "Bangluong";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Bangluong_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,18 +237,18 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtMaNV;
+        private System.Windows.Forms.TextBox txtTenNV;
+        private System.Windows.Forms.DataGridView DataGridView;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox txtThang;
+        private System.Windows.Forms.TextBox txtNam;
+        private System.Windows.Forms.TextBox txtTong;
+        private System.Windows.Forms.Button btnTim;
+        private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Button btnBoqua;
+        private System.Windows.Forms.Button btnDong;
     }
 }
