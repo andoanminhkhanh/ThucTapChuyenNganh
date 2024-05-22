@@ -30,9 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtMaNV = new System.Windows.Forms.TextBox();
-            this.txtTenNV = new System.Windows.Forms.TextBox();
             this.DataGridView = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,6 +41,7 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.btnBoqua = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
+            this.cboMaNV = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,38 +59,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(77, 101);
+            this.label2.Location = new System.Drawing.Point(78, 119);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(142, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "Mã nhân viên";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(77, 157);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(148, 25);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Tên nhân viên";
-            // 
-            // txtMaNV
-            // 
-            this.txtMaNV.Location = new System.Drawing.Point(270, 92);
-            this.txtMaNV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtMaNV.Name = "txtMaNV";
-            this.txtMaNV.Size = new System.Drawing.Size(411, 33);
-            this.txtMaNV.TabIndex = 3;
-            // 
-            // txtTenNV
-            // 
-            this.txtTenNV.Location = new System.Drawing.Point(270, 148);
-            this.txtTenNV.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtTenNV.Name = "txtTenNV";
-            this.txtTenNV.Size = new System.Drawing.Size(411, 33);
-            this.txtTenNV.TabIndex = 4;
             // 
             // DataGridView
             // 
@@ -104,11 +76,12 @@
             this.DataGridView.RowTemplate.Height = 28;
             this.DataGridView.Size = new System.Drawing.Size(988, 191);
             this.DataGridView.TabIndex = 5;
+            this.DataGridView.Click += new System.EventHandler(this.DataGridView_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(792, 93);
+            this.label4.Location = new System.Drawing.Point(792, 96);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 25);
@@ -118,7 +91,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(794, 157);
+            this.label5.Location = new System.Drawing.Point(794, 153);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 25);
@@ -137,7 +110,7 @@
             // 
             // txtThang
             // 
-            this.txtThang.Location = new System.Drawing.Point(875, 92);
+            this.txtThang.Location = new System.Drawing.Point(875, 88);
             this.txtThang.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtThang.Name = "txtThang";
             this.txtThang.Size = new System.Drawing.Size(194, 33);
@@ -145,7 +118,7 @@
             // 
             // txtNam
             // 
-            this.txtNam.Location = new System.Drawing.Point(875, 149);
+            this.txtNam.Location = new System.Drawing.Point(875, 145);
             this.txtNam.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtNam.Name = "txtNam";
             this.txtNam.Size = new System.Drawing.Size(194, 33);
@@ -199,11 +172,20 @@
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
             // 
+            // cboMaNV
+            // 
+            this.cboMaNV.FormattingEnabled = true;
+            this.cboMaNV.Location = new System.Drawing.Point(236, 111);
+            this.cboMaNV.Name = "cboMaNV";
+            this.cboMaNV.Size = new System.Drawing.Size(267, 33);
+            this.cboMaNV.TabIndex = 16;
+            // 
             // Bangluong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1156, 563);
+            this.Controls.Add(this.cboMaNV);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnBoqua);
             this.Controls.Add(this.btnSua);
@@ -215,9 +197,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.DataGridView);
-            this.Controls.Add(this.txtTenNV);
-            this.Controls.Add(this.txtMaNV);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -236,9 +215,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtMaNV;
-        private System.Windows.Forms.TextBox txtTenNV;
         private System.Windows.Forms.DataGridView DataGridView;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -250,5 +226,6 @@
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnBoqua;
         private System.Windows.Forms.Button btnDong;
+        private System.Windows.Forms.ComboBox cboMaNV;
     }
 }
