@@ -190,5 +190,6 @@ namespace ThucTapChuyenNganh.Forms
         {
             this.Close();
         }
+
     }
 }

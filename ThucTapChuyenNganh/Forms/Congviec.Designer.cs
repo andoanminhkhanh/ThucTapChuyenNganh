@@ -50,9 +50,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(219, 9);
+            this.label1.Location = new System.Drawing.Point(403, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(382, 36);
+            this.label1.Size = new System.Drawing.Size(329, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "DANH MỤC CÔNG VIỆC";
             // 
@@ -61,22 +61,22 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(31, 71);
+            this.label2.Location = new System.Drawing.Point(187, 141);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 23);
+            this.label2.Size = new System.Drawing.Size(112, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Mã công việc:";
             // 
             // txtMaCV
             // 
-            this.txtMaCV.Location = new System.Drawing.Point(181, 68);
+            this.txtMaCV.Location = new System.Drawing.Point(337, 138);
             this.txtMaCV.Name = "txtMaCV";
             this.txtMaCV.Size = new System.Drawing.Size(237, 26);
             this.txtMaCV.TabIndex = 2;
             // 
             // txtTenCV
             // 
-            this.txtTenCV.Location = new System.Drawing.Point(181, 116);
+            this.txtTenCV.Location = new System.Drawing.Point(337, 186);
             this.txtTenCV.Name = "txtTenCV";
             this.txtTenCV.Size = new System.Drawing.Size(237, 26);
             this.txtTenCV.TabIndex = 4;
@@ -86,17 +86,17 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Location = new System.Drawing.Point(31, 119);
+            this.label3.Location = new System.Drawing.Point(187, 189);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 23);
+            this.label3.Size = new System.Drawing.Size(115, 19);
             this.label3.TabIndex = 3;
             this.label3.Text = "Tên công việc:";
             // 
             // txtHeSoLuong
             // 
-            this.txtHeSoLuong.Location = new System.Drawing.Point(572, 81);
+            this.txtHeSoLuong.Location = new System.Drawing.Point(756, 151);
             this.txtHeSoLuong.Name = "txtHeSoLuong";
-            this.txtHeSoLuong.Size = new System.Drawing.Size(195, 26);
+            this.txtHeSoLuong.Size = new System.Drawing.Size(219, 26);
             this.txtHeSoLuong.TabIndex = 6;
             // 
             // label4
@@ -104,29 +104,29 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label4.Location = new System.Drawing.Point(454, 84);
+            this.label4.Location = new System.Drawing.Point(638, 154);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 23);
+            this.label4.Size = new System.Drawing.Size(103, 19);
             this.label4.TabIndex = 5;
             this.label4.Text = "Hệ số lương:";
             // 
             // dgridCongViec
             // 
             this.dgridCongViec.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgridCongViec.Location = new System.Drawing.Point(35, 166);
+            this.dgridCongViec.Location = new System.Drawing.Point(159, 314);
             this.dgridCongViec.Name = "dgridCongViec";
             this.dgridCongViec.RowHeadersWidth = 62;
             this.dgridCongViec.RowTemplate.Height = 28;
-            this.dgridCongViec.Size = new System.Drawing.Size(732, 204);
+            this.dgridCongViec.Size = new System.Drawing.Size(848, 258);
             this.dgridCongViec.TabIndex = 7;
             this.dgridCongViec.Click += new System.EventHandler(this.dgridCongViec_Click);
             // 
             // btnThem
             // 
             this.btnThem.ForeColor = System.Drawing.Color.Black;
-            this.btnThem.Location = new System.Drawing.Point(21, 386);
+            this.btnThem.Location = new System.Drawing.Point(182, 612);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(79, 42);
+            this.btnThem.Size = new System.Drawing.Size(126, 60);
             this.btnThem.TabIndex = 8;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
@@ -135,9 +135,9 @@
             // btnSua
             // 
             this.btnSua.ForeColor = System.Drawing.Color.Black;
-            this.btnSua.Location = new System.Drawing.Point(155, 386);
+            this.btnSua.Location = new System.Drawing.Point(316, 612);
             this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(79, 42);
+            this.btnSua.Size = new System.Drawing.Size(126, 60);
             this.btnSua.TabIndex = 9;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
@@ -146,9 +146,9 @@
             // btnXoa
             // 
             this.btnXoa.ForeColor = System.Drawing.Color.Black;
-            this.btnXoa.Location = new System.Drawing.Point(286, 386);
+            this.btnXoa.Location = new System.Drawing.Point(447, 612);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(79, 42);
+            this.btnXoa.Size = new System.Drawing.Size(126, 60);
             this.btnXoa.TabIndex = 10;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
@@ -157,9 +157,9 @@
             // btnLuu
             // 
             this.btnLuu.ForeColor = System.Drawing.Color.Black;
-            this.btnLuu.Location = new System.Drawing.Point(418, 386);
+            this.btnLuu.Location = new System.Drawing.Point(579, 612);
             this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(79, 42);
+            this.btnLuu.Size = new System.Drawing.Size(126, 60);
             this.btnLuu.TabIndex = 11;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
@@ -168,9 +168,9 @@
             // btnBoqua
             // 
             this.btnBoqua.ForeColor = System.Drawing.Color.Black;
-            this.btnBoqua.Location = new System.Drawing.Point(553, 386);
+            this.btnBoqua.Location = new System.Drawing.Point(714, 612);
             this.btnBoqua.Name = "btnBoqua";
-            this.btnBoqua.Size = new System.Drawing.Size(79, 42);
+            this.btnBoqua.Size = new System.Drawing.Size(126, 60);
             this.btnBoqua.TabIndex = 12;
             this.btnBoqua.Text = "Bỏ qua";
             this.btnBoqua.UseVisualStyleBackColor = true;
@@ -179,9 +179,9 @@
             // btnDong
             // 
             this.btnDong.ForeColor = System.Drawing.Color.Black;
-            this.btnDong.Location = new System.Drawing.Point(688, 386);
+            this.btnDong.Location = new System.Drawing.Point(849, 612);
             this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(79, 42);
+            this.btnDong.Size = new System.Drawing.Size(126, 60);
             this.btnDong.TabIndex = 13;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
@@ -191,7 +191,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1184, 730);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnBoqua);
             this.Controls.Add(this.btnLuu);
