@@ -104,5 +104,11 @@ namespace ThucTapChuyenNganh
             Forms.TimHDB a = new Forms.TimHDB();
             a.Show();
         }
+
+        private void mnuBangluong_Click(object sender, EventArgs e)
+        {
+            Forms.Bangluong a = new Forms.Bangluong();
+            a.Show();
+        }
     }
 }

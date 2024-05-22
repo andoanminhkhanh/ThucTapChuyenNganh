@@ -44,8 +44,9 @@
             this.mnuTimHDN = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTimHDB = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuBangchamcong = new System.Windows.Forms.ToolStripMenuItem();
-            this.bảngLươngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tìmHóaĐơnNhậpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.côngTheoThángToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBangluong = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -185,43 +186,53 @@
             // 
             this.mnuTimHDN.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuTimHDN.Name = "mnuTimHDN";
-            this.mnuTimHDN.Size = new System.Drawing.Size(270, 34);
+            this.mnuTimHDN.Size = new System.Drawing.Size(260, 34);
             this.mnuTimHDN.Text = "Tìm hóa đơn nhập";
             // 
             // mnuTimHDB
             // 
             this.mnuTimHDB.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuTimHDB.Name = "mnuTimHDB";
-            this.mnuTimHDB.Size = new System.Drawing.Size(270, 34);
+            this.mnuTimHDB.Size = new System.Drawing.Size(260, 34);
             this.mnuTimHDB.Text = "Tìm hóa đơn bán";
-            this.mnuTimHDB.Click += new System.EventHandler(this.mnuTimHDB_Click);
             // 
             // quảnLýToolStripMenuItem
             // 
             this.quảnLýToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.quảnLýToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuBangchamcong,
-            this.bảngLươngToolStripMenuItem});
+            this.tìmHóaĐơnNhậpToolStripMenuItem1,
+            this.mnuBangluong});
             this.quảnLýToolStripMenuItem.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quảnLýToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.quảnLýToolStripMenuItem.Name = "quảnLýToolStripMenuItem";
             this.quảnLýToolStripMenuItem.Size = new System.Drawing.Size(91, 28);
             this.quảnLýToolStripMenuItem.Text = "Quản lý";
             // 
-            // mnuBangchamcong
+            // tìmHóaĐơnNhậpToolStripMenuItem1
             // 
-            this.mnuBangchamcong.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.mnuBangchamcong.Name = "mnuBangchamcong";
-            this.mnuBangchamcong.Size = new System.Drawing.Size(247, 34);
-            this.mnuBangchamcong.Text = "Bảng chấm công";
-            this.mnuBangchamcong.Click += new System.EventHandler(this.mnuBangchamcong_Click);
+            this.tìmHóaĐơnNhậpToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.côngTheoThángToolStripMenuItem});
+            this.tìmHóaĐơnNhậpToolStripMenuItem1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tìmHóaĐơnNhậpToolStripMenuItem1.Name = "tìmHóaĐơnNhậpToolStripMenuItem1";
+            this.tìmHóaĐơnNhậpToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
+            this.tìmHóaĐơnNhậpToolStripMenuItem1.Text = "Bảng chấm công";
+            this.tìmHóaĐơnNhậpToolStripMenuItem1.Click += new System.EventHandler(this.tìmHóaĐơnNhậpToolStripMenuItem1_Click);
             // 
-            // bảngLươngToolStripMenuItem
+            // côngTheoThángToolStripMenuItem
             // 
-            this.bảngLươngToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.bảngLươngToolStripMenuItem.Name = "bảngLươngToolStripMenuItem";
-            this.bảngLươngToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
-            this.bảngLươngToolStripMenuItem.Text = "Bảng lương";
+            this.côngTheoThángToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.côngTheoThángToolStripMenuItem.Name = "côngTheoThángToolStripMenuItem";
+            this.côngTheoThángToolStripMenuItem.Size = new System.Drawing.Size(246, 34);
+            this.côngTheoThángToolStripMenuItem.Text = "Công theo tháng";
+            this.côngTheoThángToolStripMenuItem.Click += new System.EventHandler(this.côngTheoThángToolStripMenuItem_Click);
+            // 
+            // mnuBangluong
+            // 
+            this.mnuBangluong.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.mnuBangluong.Name = "mnuBangluong";
+            this.mnuBangluong.Size = new System.Drawing.Size(270, 34);
+            this.mnuBangluong.Text = "Bảng lương";
+            this.mnuBangluong.Click += new System.EventHandler(this.mnuBangluong_Click);
             // 
             // mnuThoat
             // 
@@ -292,11 +303,12 @@
         private System.Windows.Forms.ToolStripMenuItem mnuTimHDN;
         private System.Windows.Forms.ToolStripMenuItem mnuTimHDB;
         private System.Windows.Forms.ToolStripMenuItem quảnLýToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuBangchamcong;
-        private System.Windows.Forms.ToolStripMenuItem bảngLươngToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tìmHóaĐơnNhậpToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnuBangluong;
         private System.Windows.Forms.ToolStripMenuItem mnuThoat;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem côngTheoThángToolStripMenuItem;
     }
 }
 

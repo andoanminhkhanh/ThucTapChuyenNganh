@@ -35,7 +35,6 @@
             this.btnTimkiem = new System.Windows.Forms.Button();
             this.btnThemhoadon = new System.Windows.Forms.Button();
             this.cboMahoadon = new System.Windows.Forms.ComboBox();
-            this.cboMaSP = new System.Windows.Forms.ComboBox();
             this.txtTongtien = new System.Windows.Forms.TextBox();
             this.txtDongia = new System.Windows.Forms.TextBox();
             this.txtGiamgia = new System.Windows.Forms.TextBox();
@@ -69,6 +68,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.mskNgaynhap = new System.Windows.Forms.MaskedTextBox();
             this.btnXoa = new System.Windows.Forms.Button();
+            this.txtMaSP = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,15 +141,6 @@
             this.cboMahoadon.Name = "cboMahoadon";
             this.cboMahoadon.Size = new System.Drawing.Size(155, 28);
             this.cboMahoadon.TabIndex = 80;
-            // 
-            // cboMaSP
-            // 
-            this.cboMaSP.FormattingEnabled = true;
-            this.cboMaSP.Location = new System.Drawing.Point(120, 282);
-            this.cboMaSP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cboMaSP.Name = "cboMaSP";
-            this.cboMaSP.Size = new System.Drawing.Size(141, 28);
-            this.cboMaSP.TabIndex = 78;
             // 
             // txtTongtien
             // 
@@ -461,11 +452,19 @@
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
             // 
+            // txtMaSP
+            // 
+            this.txtMaSP.Location = new System.Drawing.Point(120, 280);
+            this.txtMaSP.Name = "txtMaSP";
+            this.txtMaSP.Size = new System.Drawing.Size(141, 26);
+            this.txtMaSP.TabIndex = 90;
+            // 
             // Chitiethoadonnhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1181, 736);
+            this.Controls.Add(this.txtMaSP);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.mskNgaynhap);
             this.Controls.Add(this.label21);
@@ -476,7 +475,6 @@
             this.Controls.Add(this.btnTimkiem);
             this.Controls.Add(this.btnThemhoadon);
             this.Controls.Add(this.cboMahoadon);
-            this.Controls.Add(this.cboMaSP);
             this.Controls.Add(this.txtTongtien);
             this.Controls.Add(this.txtDongia);
             this.Controls.Add(this.txtGiamgia);
@@ -525,7 +523,6 @@
         private System.Windows.Forms.Button btnTimkiem;
         private System.Windows.Forms.Button btnThemhoadon;
         private System.Windows.Forms.ComboBox cboMahoadon;
-        private System.Windows.Forms.ComboBox cboMaSP;
         private System.Windows.Forms.TextBox txtTongtien;
         private System.Windows.Forms.TextBox txtDongia;
         private System.Windows.Forms.TextBox txtGiamgia;
@@ -559,5 +556,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.MaskedTextBox mskNgaynhap;
         private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.TextBox txtMaSP;
     }
 }
