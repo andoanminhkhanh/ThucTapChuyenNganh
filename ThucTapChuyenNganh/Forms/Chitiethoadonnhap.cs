@@ -34,10 +34,10 @@ namespace ThucTapChuyenNganh.Forms
             txtTongtien.ReadOnly = true;
             txtGiamgia.Text = "0";
             txtTongtien.Text = "0";
-            Class.Function.Fillcombo("SELECT MaNV, TenNV FROM tblnhanvien", cboManhanvien, "Tennhanvien", "Manhanvien");
+            Class.Function.Fillcombo("SELECT Manhanvien, Tennhanvien FROM tblnhanvien", cboManhanvien, "Manhanvien", "Tennhanvien");
             cboManhanvien.SelectedIndex = -1;
-            Class.Function.Fillcombo("SELECT MaSP, TenSP FROM  tblsanpham", cboMaSP, "TenSP", "MaSP");
-            cboMaSP.SelectedIndex = -1;
+            //Class.Function.Fillcombo("SELECT MaSP, TenSP FROM  tblsanpham", cboMaSP, "MaSP", "TenSP");
+            //cboMaSP.SelectedIndex = -1;
             Class.Function.Fillcombo("SELECT MaHDB FROM tblchitiethoadonban", cboMahoadon, "MaHDB", "MaHDB");
             cboMahoadon.SelectedIndex = -1;
             if (txtMahoadon.Text != "")
