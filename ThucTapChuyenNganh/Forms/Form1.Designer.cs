@@ -185,15 +185,16 @@
             // 
             this.mnuTimHDN.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuTimHDN.Name = "mnuTimHDN";
-            this.mnuTimHDN.Size = new System.Drawing.Size(260, 34);
+            this.mnuTimHDN.Size = new System.Drawing.Size(270, 34);
             this.mnuTimHDN.Text = "Tìm hóa đơn nhập";
             // 
             // mnuTimHDB
             // 
             this.mnuTimHDB.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuTimHDB.Name = "mnuTimHDB";
-            this.mnuTimHDB.Size = new System.Drawing.Size(260, 34);
+            this.mnuTimHDB.Size = new System.Drawing.Size(270, 34);
             this.mnuTimHDB.Text = "Tìm hóa đơn bán";
+            this.mnuTimHDB.Click += new System.EventHandler(this.mnuTimHDB_Click);
             // 
             // quảnLýToolStripMenuItem
             // 
@@ -211,7 +212,7 @@
             // 
             this.mnuBangchamcong.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuBangchamcong.Name = "mnuBangchamcong";
-            this.mnuBangchamcong.Size = new System.Drawing.Size(270, 34);
+            this.mnuBangchamcong.Size = new System.Drawing.Size(247, 34);
             this.mnuBangchamcong.Text = "Bảng chấm công";
             this.mnuBangchamcong.Click += new System.EventHandler(this.mnuBangchamcong_Click);
             // 
@@ -219,7 +220,7 @@
             // 
             this.bảngLươngToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.bảngLươngToolStripMenuItem.Name = "bảngLươngToolStripMenuItem";
-            this.bảngLươngToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.bảngLươngToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
             this.bảngLươngToolStripMenuItem.Text = "Bảng lương";
             // 
             // mnuThoat

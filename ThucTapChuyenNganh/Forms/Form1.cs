@@ -98,5 +98,11 @@ namespace ThucTapChuyenNganh
             Forms.Bangchamcong a = new Forms.Bangchamcong();
             a.Show();
         }
+
+        private void mnuTimHDB_Click(object sender, EventArgs e)
+        {
+            Forms.TimHDB a = new Forms.TimHDB();
+            a.Show();
+        }
     }
 }
