@@ -161,6 +161,7 @@
             this.btnBoqua.TabIndex = 14;
             this.btnBoqua.Text = "Bỏ qua";
             this.btnBoqua.UseVisualStyleBackColor = true;
+            this.btnBoqua.Click += new System.EventHandler(this.btnBoqua_Click);
             // 
             // btnDong
             // 
@@ -171,6 +172,7 @@
             this.btnDong.TabIndex = 15;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // cboMaNV
             // 

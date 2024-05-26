@@ -53,28 +53,28 @@ namespace ThucTapChuyenNganh.Forms
                 MessageBox.Show("Không có dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-           /*
-            manv = DataGridView.CurrentRow.Cells["MaLoai"].Value.ToString();
-            cboMaloai.Text = Function.GetFieldValues("SELECT TheLoai FROM tbltheloai WHERE MaLoai = N'" + maloai + "'");
-
-            txtSize.Text = DataGridView.CurrentRow.Cells["Size"].Value.ToString();
-
-            mamau = DataGridView.CurrentRow.Cells["MaMau"].Value.ToString();
-            cboMamau.Text = Function.GetFieldValues("SELECT TenMau FROM tblmau WHERE MaMau = N'" + mamau + "'");
-
-            txtSoluong.Text = DataGridView.CurrentRow.Cells["SoLuong"].Value.ToString();
-            //txtDongianhap.Text = DataGridView.CurrentRow.Cells["DonGiaNhap"].Value.ToString();
-            ma = DataGridView.CurrentRow.Cells["MaSP"].Value.ToString();
-            txtDongianhap.Text = Function.GetFieldValues("SELECT DonGiaNhap FROM tblchitiethoadonnhap WHERE MaSP = N'" + ma + "'");
-
-            txtDongiaban.Text = DataGridView.CurrentRow.Cells["DonGiaBan"].Value.ToString();
-
-            txtAnh.Text = Function.GetFieldValues("SELECT Anh FROM tblsanpham WHERE MaSP = N'" + txtMaSP.Text + "'");
-            picAnh.Image = Image.FromFile(txtAnh.Text);
-
+           
+            manv = DataGridView.CurrentRow.Cells["MaNV"].Value.ToString();
+            cboMaNV.Text = Function.GetFieldValues("SELECT MaNV FROM tblnhanvien WHERE MaNV = N'" + manv + "'");
+            txtThang.Text = DataGridView.CurrentRow.Cells["Thang"].Value.ToString();
+            txtNam.Text = DataGridView.CurrentRow.Cells["Nam"].Value.ToString();
             btnSua.Enabled = true;
-            btnXoa.Enabled = true;
-            btnBoqua.Enabled = true;*/
+            btnBoqua.Enabled = true;
+        }
+
+        private void btnBoqua_Click(object sender, EventArgs e)
+        {           
+                ResetValues();
+                btnBoqua.Enabled = false;
+                btnSua.Enabled = true;
+                btnDong.Enabled = false;
+                btnTim.Enabled = false;
+                cboMaNV.Enabled = false;            
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
