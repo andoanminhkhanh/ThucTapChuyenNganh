@@ -69,7 +69,7 @@ namespace ThucTapChuyenNganh.Forms
             string sql;
             //sql = "select tblsanpham.MaSP, tblsanpham.TenSP, tblchitiethoadonban.Soluong, tblchitiethoadonban.DonGiaBan, tblchitiethoadonban.GiamGia, (tblchitiethoadonban.DonGiaBan*tblchitiethoadonban.SoLuong*(1-tblchitiethoadonban.GiamGia)) as ThanhTien from tblsanpham JOIN tblchitiethoadonban ON tblsanpham.MaSP=tblchitiethoadonban.MaSP";
             //tblCTHDN = Class.Function.GetDataToTable(sql);
-            DataGridView.DataSource = tblCTHDN;
+            /*DataGridView.DataSource = tblCTHDN;
             DataGridView.Columns[0].HeaderText = "Mã sản phẩm";
             DataGridView.Columns[1].HeaderText = "Tên sản phẩm";
             DataGridView.Columns[2].HeaderText = "Số lượng";
@@ -77,7 +77,7 @@ namespace ThucTapChuyenNganh.Forms
             DataGridView.Columns[4].HeaderText = "Giảm giá %";
             DataGridView.Columns[5].HeaderText = "Tổng tiền";
             DataGridView.AllowUserToAddRows = false;
-            DataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            DataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;*/
         }
     }
 }

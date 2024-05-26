@@ -63,7 +63,6 @@ namespace ThucTapChuyenNganh.Forms
             DataGridView.Columns[8].HeaderText = "Đơn giá bán";
             DataGridView.AllowUserToAddRows = false;
             DataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
-            Load_DataGridView();
         }
 
         private void DataGridView_Click(object sender, EventArgs e)
@@ -188,7 +187,7 @@ namespace ThucTapChuyenNganh.Forms
             btnXoa.Enabled = true;
             btnSua.Enabled = true;
             txtMaSP.Enabled = false;
-
+            Load_DataGridView();
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
