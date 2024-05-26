@@ -20,7 +20,6 @@ namespace ThucTapChuyenNganh.Forms
         DataTable tblSP;
         private void Sanpham_Load(object sender, EventArgs e)
         {
-            
             txtMaSP.Enabled = false;
             btnBoqua.Enabled = false;
             Load_DataGridView();
@@ -64,6 +63,7 @@ namespace ThucTapChuyenNganh.Forms
             DataGridView.Columns[8].HeaderText = "Đơn giá bán";
             DataGridView.AllowUserToAddRows = false;
             DataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            Load_DataGridView();
         }
 
         private void DataGridView_Click(object sender, EventArgs e)

@@ -22,6 +22,8 @@ namespace ThucTapChuyenNganh.Forms
         {
             btnBoqua.Enabled = false;
             Load_DataGridView();
+            Class.Function.Fillcombo("SELECT MaNV, TenNV FROM tblnhanvien", cboMaNV, "MaNV", "TenNV");
+            cboMaNV.SelectedIndex = -1;
             ResetValues();
         }
         private void ResetValues()
@@ -58,7 +60,6 @@ namespace ThucTapChuyenNganh.Forms
             cboMaNV.Text = Function.GetFieldValues("SELECT MaNV FROM tblnhanvien WHERE MaNV = N'" + manv + "'");
             txtThang.Text = DataGridView.CurrentRow.Cells["Thang"].Value.ToString();
             txtNam.Text = DataGridView.CurrentRow.Cells["Nam"].Value.ToString();
-            btnSua.Enabled = true;
             btnBoqua.Enabled = true;
         }
 
@@ -66,15 +67,49 @@ namespace ThucTapChuyenNganh.Forms
         {           
                 ResetValues();
                 btnBoqua.Enabled = false;
-                btnSua.Enabled = true;
-                btnDong.Enabled = false;
-                btnTim.Enabled = false;
-                cboMaNV.Enabled = false;            
+                btnDong.Enabled = true;
+                btnTim.Enabled = true;
+                cboMaNV.Enabled = true;
+                Load_DataGridView();
         }
 
         private void btnDong_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnTim_Click(object sender, EventArgs e)
+        {
+            string sql;
+            if ((cboMaNV.Text == "") && (txtThang.Text == "") && (txtNam.Text == "") )
+            {
+                MessageBox.Show("Hãy nhập một điều kiện tìm kiếm!!!", "Yêu cầu ...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            sql = "SELECT * FROM tblbangluong WHERE 1=1";
+            if (txtThang.Text != "")
+                sql = sql + " AND Thang Like N'%" + txtThang.Text + "%'";
+            if (txtNam.Text != "")
+                sql = sql + " AND Nam Like N'%" + txtNam.Text + "%'";
+            if (cboMaNV.Text != "")
+                sql = sql + " AND MaNV Like N'%" + cboMaNV.SelectedValue + "%'";
+            tblBL = Function.GetDataToTable(sql);
+            if (tblBL.Rows.Count == 0)
+                MessageBox.Show("Không có bản ghi thỏa mãn điều kiện!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+                MessageBox.Show("Có " + tblBL.Rows.Count + " bản ghi thỏa mãn điều kiện!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            DataGridView.DataSource = tblBL;
+            btnBoqua.Enabled = true;
+            ResetValues();
+        }
+
+        private void txtTong_TextChanged(object sender, EventArgs e)
+        {
+            double tt;
+            /*
+            tt = sl * dg - sl * dg * gg / 100;
+            txtTong.Text = tt.ToString();*/
+
         }
     }
 }

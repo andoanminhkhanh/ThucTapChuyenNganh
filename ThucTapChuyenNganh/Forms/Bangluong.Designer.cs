@@ -38,7 +38,6 @@
             this.txtNam = new System.Windows.Forms.TextBox();
             this.txtTong = new System.Windows.Forms.TextBox();
             this.btnTim = new System.Windows.Forms.Button();
-            this.btnSua = new System.Windows.Forms.Button();
             this.btnBoqua = new System.Windows.Forms.Button();
             this.btnDong = new System.Windows.Forms.Button();
             this.cboMaNV = new System.Windows.Forms.ComboBox();
@@ -131,6 +130,7 @@
             this.txtTong.Name = "txtTong";
             this.txtTong.Size = new System.Drawing.Size(194, 33);
             this.txtTong.TabIndex = 11;
+            this.txtTong.TextChanged += new System.EventHandler(this.txtTong_TextChanged);
             // 
             // btnTim
             // 
@@ -141,20 +141,11 @@
             this.btnTim.TabIndex = 12;
             this.btnTim.Text = "Tìm";
             this.btnTim.UseVisualStyleBackColor = true;
-            // 
-            // btnSua
-            // 
-            this.btnSua.Location = new System.Drawing.Point(363, 490);
-            this.btnSua.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(108, 41);
-            this.btnSua.TabIndex = 13;
-            this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
             // btnBoqua
             // 
-            this.btnBoqua.Location = new System.Drawing.Point(663, 489);
+            this.btnBoqua.Location = new System.Drawing.Point(522, 490);
             this.btnBoqua.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnBoqua.Name = "btnBoqua";
             this.btnBoqua.Size = new System.Drawing.Size(108, 42);
@@ -190,7 +181,6 @@
             this.Controls.Add(this.cboMaNV);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnBoqua);
-            this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnTim);
             this.Controls.Add(this.txtTong);
             this.Controls.Add(this.txtNam);
@@ -225,7 +215,6 @@
         private System.Windows.Forms.TextBox txtNam;
         private System.Windows.Forms.TextBox txtTong;
         private System.Windows.Forms.Button btnTim;
-        private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnBoqua;
         private System.Windows.Forms.Button btnDong;
         private System.Windows.Forms.ComboBox cboMaNV;

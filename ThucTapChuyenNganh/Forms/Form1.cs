@@ -62,14 +62,6 @@ namespace ThucTapChuyenNganh
             Forms.Bangchamcong a = new Forms.Bangchamcong();
             a.Show();
         }*/
-
-
-        private void mnuSanpham_Click(object sender, EventArgs e)
-        {
-            Forms.Sanpham a = new Forms.Sanpham();
-            a.Show();
-        }
-
         private void mnuChitiethoadonnhap_Click(object sender, EventArgs e)
         {
             Forms.Chitiethoadonnhap a = new Forms.Chitiethoadonnhap();
@@ -124,6 +116,18 @@ namespace ThucTapChuyenNganh
         private void mnuBangchamcong_Click(object sender, EventArgs e)
         {
             Forms.Bangchamcong a = new Forms.Bangchamcong();
+            a.Show();
+        }
+
+        private void mnuBangluong_Click(object sender, EventArgs e)
+        {
+            Forms.Bangluong a = new Forms.Bangluong();
+            a.Show();
+        }
+
+        private void mnuSanpham_Click(object sender, EventArgs e)
+        {
+            Forms.Sanpham a = new Forms.Sanpham();
             a.Show();
         }
     }
