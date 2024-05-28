@@ -20,7 +20,6 @@ namespace ThucTapChuyenNganh.Forms
         DataTable tblSP;
         private void Sanpham_Load(object sender, EventArgs e)
         {
-            
             txtMaSP.Enabled = false;
             btnBoqua.Enabled = false;
             Load_DataGridView();
@@ -188,7 +187,7 @@ namespace ThucTapChuyenNganh.Forms
             btnXoa.Enabled = true;
             btnSua.Enabled = true;
             txtMaSP.Enabled = false;
-
+            Load_DataGridView();
         }
 
         private void btnOpen_Click(object sender, EventArgs e)

@@ -16,7 +16,7 @@ namespace ThucTapChuyenNganh.Class
         public static string connString;
         public static void Connect()
         {
-            connString = "Data Source=DESKTOP-6P2TSJE\\SQLEXPRESS;Initial Catalog=TTCN;Integrated Security=True;Encrypt=False";
+            connString = "Data Source=LAPTOP-THOQUC6C\\MSSQLSERVER01;Initial Catalog=TTCN;Integrated Security=True;Encrypt=False";
             Conn = new SqlConnection();
             Conn.ConnectionString = connString;
             Conn.Open();
@@ -272,28 +272,6 @@ namespace ThucTapChuyenNganh.Class
             //Viết hoa ký tự đầu tiên
             mTemp = mTemp.Substring(0, 1).ToUpper() + mTemp.Substring(1) + " đồng";
             return mTemp;
-        }
-        public static string CreateCustomerKey()
-        {
-            string lastCustomerID = GetLastCustomerID();
-            if (string.IsNullOrEmpty(lastCustomerID))
-            {
-                return "KH01"; // Nếu không có nhân viên nào, bắt đầu từ NV01
-            }
-            // Tách phần số từ mã nhân viên
-            int soPart = int.Parse(lastCustomerID.Substring(2));
-            soPart++; // Tăng số lên 1
-
-            // Tạo mã nhân viên mới
-            return "KH" + soPart.ToString("D2");
-        }
-        private static string GetLastCustomerID()
-        {
-            string query = "SELECT TOP 1 MaKH FROM tblKhachhang ORDER BY MaKH DESC";
-
-            SqlCommand cmd = new SqlCommand(query, Conn);
-            object result = cmd.ExecuteScalar();
-            return result != null ? result.ToString() : null;
         }
     }
 }

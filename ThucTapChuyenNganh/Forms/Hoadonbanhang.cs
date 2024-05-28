@@ -162,10 +162,10 @@ namespace ThucTapChuyenNganh.Forms
             if (tblkh.Rows.Count == 0)
             {
                 MessageBox.Show("Chưa có khách hàng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                string newCustomerID = Function.CreateCustomerKey();
+               // string newCustomerID = Function.CreateCustomerKey();
 
                 // Hiển thị mã nhân viên mới lên TextBox hoặc sử dụng cho mục đích khác
-                txtMakhachhang.Text = newCustomerID;
+               // txtMakhachhang.Text = newCustomerID;
                 txtTenkhachhang.Enabled = true;
                 txtDiachi.Enabled = true;
                 //txtTenkhachhang.Text = "";
