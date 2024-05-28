@@ -76,11 +76,7 @@ namespace ThucTapChuyenNganh
             a.Show();
         }
 
-        private void mnuChitiethoadonban_Click(object sender, EventArgs e)
-        {
-            Forms.Hoadonbanhang a = new Forms.Hoadonbanhang();
-            a.Show();
-        }
+        
 
         private void mnuNhacungcap_Click_1(object sender, EventArgs e)
         {
@@ -125,6 +121,13 @@ namespace ThucTapChuyenNganh
         {
             Forms.Bangchamcong a = new Forms.Bangchamcong();
             a.Show();
+        }
+
+        private void mnuChitiethoadonban_Click(object sender, EventArgs e)
+        {
+            Forms.Chitiethoadonbanhang a = new Forms.Chitiethoadonbanhang();
+            a.Show();
+            this.Hide();
         }
     }
 }

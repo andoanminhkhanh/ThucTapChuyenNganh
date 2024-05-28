@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\FunctionKhanh.cs" />
     <Compile Include="Class\Function.cs" />
     <Compile Include="Forms\Bangchamcong.cs">
       <SubType>Form</SubType>
@@ -59,6 +60,12 @@
     <Compile Include="Forms\Bangluong.Designer.cs">
       <DependentUpon>Bangluong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Chitiethoadonbanhang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Chitiethoadonbanhang.Designer.cs">
+      <DependentUpon>Chitiethoadonbanhang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Chitiethoadonnhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +77,12 @@
     </Compile>
     <Compile Include="Forms\Congviec.Designer.cs">
       <DependentUpon>Congviec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dangnhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dangnhap.Designer.cs">
+      <DependentUpon>Dangnhap.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
@@ -145,11 +158,17 @@
     <EmbeddedResource Include="Forms\Bangluong.resx">
       <DependentUpon>Bangluong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Chitiethoadonbanhang.resx">
+      <DependentUpon>Chitiethoadonbanhang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Chitiethoadonnhap.resx">
       <DependentUpon>Chitiethoadonnhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Congviec.resx">
       <DependentUpon>Congviec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dangnhap.resx">
+      <DependentUpon>Dangnhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

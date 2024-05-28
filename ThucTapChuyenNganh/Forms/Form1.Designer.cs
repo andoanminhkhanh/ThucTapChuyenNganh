@@ -64,8 +64,7 @@
             this.mnuThoat});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(900, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -158,7 +157,7 @@
             // 
             this.mnuChitiethoadonnhap.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuChitiethoadonnhap.Name = "mnuChitiethoadonnhap";
-            this.mnuChitiethoadonnhap.Size = new System.Drawing.Size(220, 26);
+            this.mnuChitiethoadonnhap.Size = new System.Drawing.Size(224, 26);
             this.mnuChitiethoadonnhap.Text = "Hóa đơn nhập hàng";
             this.mnuChitiethoadonnhap.Click += new System.EventHandler(this.mnuChitiethoadonnhap_Click);
             // 
@@ -166,7 +165,7 @@
             // 
             this.mnuChitiethoadonban.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuChitiethoadonban.Name = "mnuChitiethoadonban";
-            this.mnuChitiethoadonban.Size = new System.Drawing.Size(220, 26);
+            this.mnuChitiethoadonban.Size = new System.Drawing.Size(224, 26);
             this.mnuChitiethoadonban.Text = "Hóa đơn bán hàng";
             this.mnuChitiethoadonban.Click += new System.EventHandler(this.mnuChitiethoadonban_Click);
             // 
@@ -185,14 +184,14 @@
             // 
             this.mnuTimHDN.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuTimHDN.Name = "mnuTimHDN";
-            this.mnuTimHDN.Size = new System.Drawing.Size(224, 26);
+            this.mnuTimHDN.Size = new System.Drawing.Size(212, 26);
             this.mnuTimHDN.Text = "Tìm hóa đơn nhập";
             // 
             // mnuTimHDB
             // 
             this.mnuTimHDB.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuTimHDB.Name = "mnuTimHDB";
-            this.mnuTimHDB.Size = new System.Drawing.Size(224, 26);
+            this.mnuTimHDB.Size = new System.Drawing.Size(212, 26);
             this.mnuTimHDB.Text = "Tìm hóa đơn bán";
             this.mnuTimHDB.Click += new System.EventHandler(this.mnuTimHDB_Click_1);
             // 
@@ -214,7 +213,7 @@
             this.côngTheoThángToolStripMenuItem});
             this.mnuBangchamcong.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.mnuBangchamcong.Name = "mnuBangchamcong";
-            this.mnuBangchamcong.Size = new System.Drawing.Size(224, 26);
+            this.mnuBangchamcong.Size = new System.Drawing.Size(203, 26);
             this.mnuBangchamcong.Text = "Bảng chấm công";
             this.mnuBangchamcong.Click += new System.EventHandler(this.mnuBangchamcong_Click);
             // 
@@ -222,14 +221,14 @@
             // 
             this.côngTheoThángToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.côngTheoThángToolStripMenuItem.Name = "côngTheoThángToolStripMenuItem";
-            this.côngTheoThángToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.côngTheoThángToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
             this.côngTheoThángToolStripMenuItem.Text = "Công theo tháng";
             // 
             // bảngLươngToolStripMenuItem
             // 
             this.bảngLươngToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.bảngLươngToolStripMenuItem.Name = "bảngLươngToolStripMenuItem";
-            this.bảngLươngToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.bảngLươngToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             this.bảngLươngToolStripMenuItem.Text = "Bảng lương";
             // 
             // mnuThoat
@@ -246,7 +245,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 25.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(210, 171);
+            this.label1.Location = new System.Drawing.Point(187, 137);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(415, 49);
             this.label1.TabIndex = 1;
@@ -257,7 +256,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 25.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(184, 282);
+            this.label2.Location = new System.Drawing.Point(164, 226);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(453, 49);
             this.label2.TabIndex = 2;
@@ -265,14 +264,13 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 562);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Quan ly cua hang";
             this.Load += new System.EventHandler(this.Form1_Load);
