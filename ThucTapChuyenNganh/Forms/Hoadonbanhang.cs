@@ -134,7 +134,6 @@ namespace ThucTapChuyenNganh.Forms
 
         private void ResetValues()
         {
-            string str;
             txtMahoadon.Text = Function.CreateKey("HDB");
             txtNgayban.Text = DateTime.Now.ToShortDateString();
             cboManhanvien.Text = "";
@@ -190,20 +189,6 @@ namespace ThucTapChuyenNganh.Forms
             str = "insert into tblkhachhang(MaKH, TenKH, DiaChi, DienThoai) values (N'" + txtMakhachhang.Text.Trim() + "', N '" + txtTenkhachhang.Text.Trim() + "', N'" + txtDiachi.Text.Trim() + "', '" + txtDienthoai.Text.Trim() + "')";
             Function.RunSql(str);
         }
-        /*private void CalculateTotal()
-        {
-            if (int.TryParse(txtSoluong.Text, out int soluong) && decimal.TryParse(txtDongia.Text, out decimal dongia) && decimal.TryParse(txtGiamgia.Text, out decimal giamgia))
-            {
-                giamgia = giamgia / 100; // Chuyển đổi phần trăm giảm giá thành dạng số thập phân
-                decimal thanhtien = (soluong * dongia) * (1 - giamgia);
-                txtThanhtien.Text = thanhtien.ToString("0.00"); // Định dạng thành tiền với 2 chữ số thập phân
-                CalculateTotalPrice(); // Update the total price whenever the line item total changes
-            }
-            else
-            {
-                //MessageBox.Show("Vui lòng nhập số lượng và đơn giá hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }*/
         private void btnThemsanpham_Click(object sender, EventArgs e)
         {
             ResetValuesHang();
@@ -250,25 +235,6 @@ namespace ThucTapChuyenNganh.Forms
             // Reset các giá trị nhập vào
             //ResetProductInputs();
         }
-        /*private void ResetProductInputs()
-        {
-            cboMasanpham.SelectedIndex = -1;
-            txtTenhang.Clear();
-            txtSoluong.Clear();
-            txtDongia.Clear();
-            txtGiamgia.Text = "0";
-            txtThanhtien.Clear();
-        }*/
-        /*private void CalculateTotalPrice()
-        {
-            decimal tongtien = 0;
-            foreach (DataRow row in tblcthdb.Rows)
-            {
-                tongtien += Convert.ToDecimal(row["Thanhtien"]);
-            }
-            txtTongtien.Text = tongtien.ToString("0.00");
-            lblBangchu.Text = "Bằng chữ: " + Function.ChuyenSoSangChu(txtTongtien.Text);
-        }*/
         private void btnLuu_Click(object sender, EventArgs e)
         {
             string sql;

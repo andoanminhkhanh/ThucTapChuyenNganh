@@ -49,7 +49,6 @@ namespace ThucTapChuyenNganh.Forms
 
         private void DataGridView_Click(object sender, EventArgs e)
         {
-            string manv;
             if (tblBL.Rows.Count == 0)
             {
                 MessageBox.Show("Không có dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);

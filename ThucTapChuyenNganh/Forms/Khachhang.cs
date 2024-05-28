@@ -98,12 +98,6 @@ namespace ThucTapChuyenNganh.Forms
         {
             string sql;
             sql = "select MaKH from tblkhachhang where MaKH = N'" + txtMaKH.Text + "'";
-            //if (txtMaKH.Text == "")
-            //{
-                //MessageBox.Show("Bạn phải nhập mã khách hàng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //txtMaKH.Focus();
-                //return;
-            //}
             if (txtTenKH.Text == "")
             {
                 MessageBox.Show("Bạn phải nhập tên khách hàng", "Thong bao", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -122,15 +116,6 @@ namespace ThucTapChuyenNganh.Forms
                 mskDienThoai.Focus();
                 return;
             }
-            //ktra trung ma
-            //string sql;
-            //sql = "select MaKH from tblkhachhang where MaKH = N'" + txtMaKH.Text.Trim() + "'";
-            //if (Class.Function.CheckKey(sql))
-            //{
-                //MessageBox.Show("Mã khách hàng này đã có", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //txtMaKH.Focus();
-                //txtMaKH.Text = "";
-            //}
             sql = "insert into tblkhachhang(MaKH,TenKH,DiaChi,DienThoai) values (N'" + txtMaKH.Text + "',N'" + txtTenKH.Text + "',N'" + txtDiaChi.Text + "','" + mskDienThoai.Text + "')";
             Class.Function.RunSql(sql);
             load_data();
