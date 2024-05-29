@@ -41,7 +41,7 @@ namespace ThucTapChuyenNganh.Forms
                 btnInhoadon.Enabled = true;
             }
             Load_DataGridViewChitiet();
-            ResetValues();
+            
         }
 
         DataTable tblCTHDN;
