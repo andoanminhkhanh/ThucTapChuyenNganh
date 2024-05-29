@@ -74,7 +74,7 @@ namespace ThucTapChuyenNganh.Forms
         private void Load_DataGridViewChitiet()
         {
             string sql;
-            sql = "SELECT tblsanpham.MaSP, TenSP, tblchitiethoadonnhap.SoLuong, tblsanpham.DonGiaBan, tblchitiethoadonnhap.Giamgia, (DonGiaNhap*GiamGia*tblchitiethoadonnhap.SoLuong) as Thanhtien \r\nFROM (tblchitiethoadonnhap join tblhoadonnhap on tblchitiethoadonnhap.MaHDN=tblhoadonnhap.MaHDN) \r\n\t\tJOIN tblsanpham on tblchitiethoadonnhap.MaSP=tblsanpham.MaSP";
+            sql = "SELECT tblsanpham.MaSP, TenSP, tblchitiethoadonnhap.SoLuong, tblsanpham.DonGiaBan, tblchitiethoadonnhap.Giamgia, (DonGiaNhap*GiamGia*tblchitiethoadonnhap.SoLuong) as Thanhtien FROM (tblchitiethoadonnhap join tblhoadonnhap on tblchitiethoadonnhap.MaHDN=tblhoadonnhap.MaHDN) JOIN tblsanpham on tblchitiethoadonnhap.MaSP=tblsanpham.MaSP";
             tblCTHDN = Function.GetDataToTable(sql);
             DataGridView.DataSource = tblCTHDN;
 
