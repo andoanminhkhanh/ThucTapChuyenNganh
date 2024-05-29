@@ -175,20 +175,6 @@ namespace ThucTapChuyenNganh.Forms
             //DisplayDiscount();
             Load_DataGridViewChitiet();
         }
-        //private void DisplayDiscount()
-        //{
-        //    if (cboMasanpham.SelectedValue != null)
-        //    {
-        //        string selectedMasanpham = cboMasanpham.SelectedValue.ToString();
-        //        if (!string.IsNullOrEmpty(selectedMasanpham))
-        //        {
-        //            string query = "SELECT GiamGia FROM tblchitiethoadonban WHERE MaSP = N'\" + selectedMasanpham + \"'";
-        //            string discount = Class.FunctionKhanh.GetFieldValues(query);
-        //            txtGiamgia.Text = string.IsNullOrEmpty(discount) ? "0" : discount;
-        //        }
-        //    }
-        //}
-
         private void txtSoluong_TextChanged(object sender, EventArgs e)
         {
             CalculateTotal();
