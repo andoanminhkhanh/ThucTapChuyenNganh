@@ -65,7 +65,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnXoaSP = new System.Windows.Forms.Button();
             this.txtMaSP = new System.Windows.Forms.TextBox();
             this.txtNgaynhap = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -74,6 +74,7 @@
             this.txtTongtien = new System.Windows.Forms.TextBox();
             this.txtDienthoai = new System.Windows.Forms.TextBox();
             this.txtDong = new System.Windows.Forms.Button();
+            this.btnThemsanpham = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,6 +129,7 @@
             this.btnTimkiem.TabIndex = 82;
             this.btnTimkiem.Text = "Tìm kiếm";
             this.btnTimkiem.UseVisualStyleBackColor = true;
+            this.btnTimkiem.Click += new System.EventHandler(this.btnTimkiem_Click);
             // 
             // btnThemhoadon
             // 
@@ -431,15 +433,15 @@
             this.label21.TabIndex = 87;
             this.label21.Text = "Mã hóa đơn";
             // 
-            // btnXoa
+            // btnXoaSP
             // 
-            this.btnXoa.Location = new System.Drawing.Point(424, 666);
-            this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(72, 41);
-            this.btnXoa.TabIndex = 89;
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoaSP.Location = new System.Drawing.Point(687, 598);
+            this.btnXoaSP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnXoaSP.Name = "btnXoaSP";
+            this.btnXoaSP.Size = new System.Drawing.Size(133, 41);
+            this.btnXoaSP.TabIndex = 89;
+            this.btnXoaSP.Text = "Xóa sản phẩm";
+            this.btnXoaSP.UseVisualStyleBackColor = true;
             // 
             // txtMaSP
             // 
@@ -505,11 +507,22 @@
             this.txtDong.UseVisualStyleBackColor = true;
             this.txtDong.Click += new System.EventHandler(this.txtDong_Click);
             // 
+            // btnThemsanpham
+            // 
+            this.btnThemsanpham.Location = new System.Drawing.Point(523, 598);
+            this.btnThemsanpham.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnThemsanpham.Name = "btnThemsanpham";
+            this.btnThemsanpham.Size = new System.Drawing.Size(143, 41);
+            this.btnThemsanpham.TabIndex = 98;
+            this.btnThemsanpham.Text = "Thêm sản phẩm";
+            this.btnThemsanpham.UseVisualStyleBackColor = true;
+            // 
             // Chitiethoadonnhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1181, 736);
+            this.Controls.Add(this.btnThemsanpham);
             this.Controls.Add(this.txtDong);
             this.Controls.Add(this.txtDienthoai);
             this.Controls.Add(this.txtTongtien);
@@ -518,7 +531,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNgaynhap);
             this.Controls.Add(this.txtMaSP);
-            this.Controls.Add(this.btnXoa);
+            this.Controls.Add(this.btnXoaSP);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.DataGridView);
             this.Controls.Add(this.btnInhoadon);
@@ -604,7 +617,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnXoaSP;
         private System.Windows.Forms.TextBox txtMaSP;
         private System.Windows.Forms.TextBox txtNgaynhap;
         private System.Windows.Forms.Label label3;
@@ -613,5 +626,6 @@
         private System.Windows.Forms.TextBox txtTongtien;
         private System.Windows.Forms.TextBox txtDienthoai;
         private System.Windows.Forms.Button txtDong;
+        private System.Windows.Forms.Button btnThemsanpham;
     }
 }

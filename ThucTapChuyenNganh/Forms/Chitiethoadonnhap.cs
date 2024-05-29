@@ -26,7 +26,10 @@ namespace ThucTapChuyenNganh.Forms
             btnLuu.Enabled = false;
             btnHuyhoadon.Enabled = false;
             btnInhoadon.Enabled = false;
-            
+            btnThemsanpham.Enabled = false;
+
+            btnTimkiem.Click += new EventHandler(btnTimkiem_Click);
+
             Function.FillCombo("SELECT MaNV, TenNV FROM tblnhanvien",cboManhanvien, "MaNV", "MaNV");
             cboManhanvien.SelectedIndex = -1;
 
@@ -159,10 +162,11 @@ namespace ThucTapChuyenNganh.Forms
                     txtMaNCC.Focus();
                     return;
                 }
-                //lưu thông tin chung vào bảng tblhdban    
+                //lưu thông tin chung vào bảng tblhdban
+                /*
                 sql = "INSERT INTO tblHDBan(MaHDBan, Ngayban, Manhanvien, Makhach, Tongtien) VALUES(N'" + txtMahoadon.Text.Trim() + "', '" +
                         Function.ConvertDateTime(txtNgaynhap.Text.Trim()) + "',N'" + cboManhanvien.SelectedValue + "',N'" +
-                        txtMaNCC.SelectedValue + "'," + txtTongtien.Text + ")";
+                        txtMaNCC.SelectedValue + "'," + txtTongtien.Text + ")";*/
                 Function.RunSql(sql);
             }
 
@@ -186,29 +190,29 @@ namespace ThucTapChuyenNganh.Forms
                 txtGiamgia.Focus();
                 return;
             }
-            sql = "SELECT Mahang FROM tblChitietHDBan WHERE MaHang=N'" + txtMaSP.SelectedValue + "' AND MaHDBan = N'" + txtMahoadon.Text.Trim() + "'";
+            //sql = "SELECT Mahang FROM tblChitietHDBan WHERE MaHang=N'" + txtMaSP.SelectedValue + "' AND MaHDBan = N'" + txtMahoadon.Text.Trim() + "'";
             if (Function.CheckKey(sql))
             {
                 MessageBox.Show("Mã hàng này đã có, bạn phải nhập mã khác", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ResetValuesHang();
+                //ResetValuesHang();
                 txtMaSP.Focus();
                 return;
             }
             // Kiểm tra xem số lượng hàng trong kho còn đủ để cung cấp không?
-            sl = Convert.ToDouble(Function.GetFieldValues("SELECT Soluong FROM tblHang WHERE Mahang = N'" + txtMahoadon.SelectedValue + "'"));
+            /*sl = Convert.ToDouble(Function.GetFieldValues("SELECT Soluong FROM tblHang WHERE Mahang = N'" + txtMahoadon.SelectedValue + "'"));
             if (Convert.ToDouble(txtSoluong.Text) > sl)
             {
                 MessageBox.Show("Số lượng mặt hàng này chỉ còn " + sl, "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtSoluong.Text = "";
                 txtSoluong.Focus();
                 return;
-            }
-            sql = "INSERT INTO tblChitietHDBan(MaHDBan,Mahang,Soluong,Dongia,Giamgia, Thanhtien) VALUES(N'" + txtMahoadon.Text.Trim() + "', N'" + txtMaSP.SelectedValue + "'," + txtSoluong.Text + ",," + txtSoluong.Text + "," + txtGiamgia.Text + "," + txtThanhtien.Text + ")";
+            }*/
+            //sql = "INSERT INTO tblChitietHDBan(MaHDBan,Mahang,Soluong,Dongia,Giamgia, Thanhtien) VALUES(N'" + txtMahoadon.Text.Trim() + "', N'" + txtMaSP.SelectedValue + "'," + txtSoluong.Text + ",," + txtSoluong.Text + "," + txtGiamgia.Text + "," + txtThanhtien.Text + ")";
             Function.RunSql(sql);
             Load_DataGridViewChitiet();
             // Cập nhật lại số lượng của mặt hàng vào bảng tblHang
-            SLcon = sl - Convert.ToDouble(txtSoluong.Text);
-            sql = "UPDATE tblHang SET Soluong =" + SLcon + " WHERE Mahang= N'" + txtMaSP.SelectedValue + "'";
+            //SLcon = sl - Convert.ToDouble(txtSoluong.Text);
+            //sql = "UPDATE tblHang SET Soluong =" + SLcon + " WHERE Mahang= N'" + txtMaSP.SelectedValue + "'";
             Function.RunSql(sql);
             // Cập nhật lại tổng tiền cho hóa đơn bán
 
@@ -218,10 +222,15 @@ namespace ThucTapChuyenNganh.Forms
             Function.RunSql(sql);
             txtTongtien.Text = Tongmoi.ToString();
             lblBangchu.Text = "Bằng chữ: " + Function.ChuyenSoSangChu(Tongmoi.ToString());
-            ResetValuesHang();
-            btnXoa.Enabled = true;
+            //ResetValuesHang();
+            btnXoaSP.Enabled = true;
             btnThemhoadon.Enabled = true;
             btnInhoadon.Enabled = true;
+
+        }
+
+        private void btnTimkiem_Click(object sender, EventArgs e)
+        {
 
         }
     }
