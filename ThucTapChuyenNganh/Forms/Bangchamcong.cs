@@ -116,7 +116,7 @@ namespace ThucTapChuyenNganh.Forms
                 MessageBox.Show("Bạn chưa chọn bản ghi nào", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            sql = "UPDATE tblbangchamcong SET GioTanLam = CONVERT(TIME, N'" + DateTime.Now.ToString("HH:mm:ss") + "') WHERE MaNV = N'" + txtMaNV.Text.Trim() + "'";
+            sql = "UPDATE tblbangchamcong SET GioTanLam = CONVERT(TIME, N'" + DateTime.Now.ToString("HH:mm:ss") + "') WHERE MaNV = N'" + txtMaNV.Text.Trim() + "' AND  NgayLam = CONVERT(DATE, N'" + mskNgayLam.Text + "',105)";
             Function.RunSql(sql);
             load_datagridview();
             resetvalues();
@@ -153,7 +153,7 @@ namespace ThucTapChuyenNganh.Forms
                 return;
             }
 
-            sql = "UPDATE tblbangchamcong SET NgayLam = CONVERT(DATE, N'" + mskNgayLam.Text.Trim() + "', 105), GioVaoLam = N'" + mskGiovao.Text.Trim() + "', GioTanLam = N'" + mskGiora.Text.Trim() + "' WHERE MaNV = N'" + txtMaNV.Text.Trim() + "'";
+            sql = "UPDATE tblbangchamcong SET GioVaoLam = N'" + mskGiovao.Text.Trim() + "', GioTanLam = N'" + mskGiora.Text.Trim() + "'WHERE MaNV = N'" + txtMaNV.Text.Trim() + "'AND NgayLam = CONVERT(DATE, N'" + mskNgayLam.Text.Trim() + "', 105)";
 
             Function.RunSql(sql);
             load_datagridview();
