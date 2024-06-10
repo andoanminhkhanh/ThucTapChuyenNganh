@@ -48,7 +48,6 @@ namespace ThucTapChuyenNganh.Forms
         
         private void ResetValues()
         {
-            string str;
             //txtMahoadon.Text = Function.CreateKey("HDB");
             txtMahoadon.Text = "";
             txtNgaynhap.Text = DateTime.Now.ToShortDateString();
@@ -162,7 +161,7 @@ namespace ThucTapChuyenNganh.Forms
                 //lưu thông tin chung vào bảng tblhdban    
                 sql = "INSERT INTO tblHDBan(MaHDBan, Ngayban, Manhanvien, Makhach, Tongtien) VALUES(N'" + txtMahoadon.Text.Trim() + "', '" +
                         Function.ConvertDateTime(txtNgaynhap.Text.Trim()) + "',N'" + cboManhanvien.SelectedValue + "',N'" +
-                        txtMaNCC.SelectedValue + "'," + txtTongtien.Text + ")";
+                        txtMaNCC.Text + "'," + txtTongtien.Text + ")";
                 Function.RunSql(sql);
             }
 
@@ -186,16 +185,16 @@ namespace ThucTapChuyenNganh.Forms
                 txtGiamgia.Focus();
                 return;
             }
-            sql = "SELECT Mahang FROM tblChitietHDBan WHERE MaHang=N'" + txtMaSP.SelectedValue + "' AND MaHDBan = N'" + txtMahoadon.Text.Trim() + "'";
+            sql = "SELECT Mahang FROM tblChitietHDBan WHERE MaHang=N'" + txtMaSP.SelectedText + "' AND MaHDBan = N'" + txtMahoadon.Text.Trim() + "'";
             if (Function.CheckKey(sql))
             {
                 MessageBox.Show("Mã hàng này đã có, bạn phải nhập mã khác", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ResetValuesHang();
+                //ResetValuesHang();
                 txtMaSP.Focus();
                 return;
             }
             // Kiểm tra xem số lượng hàng trong kho còn đủ để cung cấp không?
-            sl = Convert.ToDouble(Function.GetFieldValues("SELECT Soluong FROM tblHang WHERE Mahang = N'" + txtMahoadon.SelectedValue + "'"));
+            sl = Convert.ToDouble(Function.GetFieldValues("SELECT Soluong FROM tblHang WHERE Mahang = N'" + txtMahoadon.SelectedText + "'"));
             if (Convert.ToDouble(txtSoluong.Text) > sl)
             {
                 MessageBox.Show("Số lượng mặt hàng này chỉ còn " + sl, "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -203,12 +202,12 @@ namespace ThucTapChuyenNganh.Forms
                 txtSoluong.Focus();
                 return;
             }
-            sql = "INSERT INTO tblChitietHDBan(MaHDBan,Mahang,Soluong,Dongia,Giamgia, Thanhtien) VALUES(N'" + txtMahoadon.Text.Trim() + "', N'" + txtMaSP.SelectedValue + "'," + txtSoluong.Text + ",," + txtSoluong.Text + "," + txtGiamgia.Text + "," + txtThanhtien.Text + ")";
+            sql = "INSERT INTO tblChitietHDBan(MaHDBan,Mahang,Soluong,Dongia,Giamgia, Thanhtien) VALUES(N'" + txtMahoadon.Text.Trim() + "', N'" + txtMaSP.SelectedText + "'," + txtSoluong.Text + ",," + txtSoluong.Text + "," + txtGiamgia.Text + "," + txtThanhtien.Text + ")";
             Function.RunSql(sql);
             Load_DataGridViewChitiet();
             // Cập nhật lại số lượng của mặt hàng vào bảng tblHang
             SLcon = sl - Convert.ToDouble(txtSoluong.Text);
-            sql = "UPDATE tblHang SET Soluong =" + SLcon + " WHERE Mahang= N'" + txtMaSP.SelectedValue + "'";
+            sql = "UPDATE tblHang SET Soluong =" + SLcon + " WHERE Mahang= N'" + txtMaSP.SelectedText + "'";
             Function.RunSql(sql);
             // Cập nhật lại tổng tiền cho hóa đơn bán
 
@@ -218,7 +217,7 @@ namespace ThucTapChuyenNganh.Forms
             Function.RunSql(sql);
             txtTongtien.Text = Tongmoi.ToString();
             lblBangchu.Text = "Bằng chữ: " + Function.ChuyenSoSangChu(Tongmoi.ToString());
-            ResetValuesHang();
+            //ResetValuesHang();
             btnXoa.Enabled = true;
             btnThemhoadon.Enabled = true;
             btnInhoadon.Enabled = true;

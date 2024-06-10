@@ -124,7 +124,6 @@
             this.cboMasanpham.Size = new System.Drawing.Size(126, 24);
             this.cboMasanpham.TabIndex = 93;
             this.cboMasanpham.SelectedIndexChanged += new System.EventHandler(this.cboMasanpham_SelectedIndexChanged);
-            //this.cboMasanpham.TextChanged += new System.EventHandler(this.cboMasanpham_TextChanged);
             // 
             // DataGridViewChitiet
             // 
@@ -204,6 +203,7 @@
             this.cboMahoadon.Name = "cboMahoadon";
             this.cboMahoadon.Size = new System.Drawing.Size(226, 24);
             this.cboMahoadon.TabIndex = 85;
+            this.cboMahoadon.DropDown += new System.EventHandler(this.cboMahoadon_DropDown);
             // 
             // txtTongtien
             // 
@@ -232,6 +232,8 @@
             this.txtGiamgia.Name = "txtGiamgia";
             this.txtGiamgia.Size = new System.Drawing.Size(126, 22);
             this.txtGiamgia.TabIndex = 81;
+            this.txtGiamgia.TextChanged += new System.EventHandler(this.txtGiamgia_TextChanged);
+            this.txtGiamgia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiamgia_KeyPress);
             // 
             // txtTenhang
             // 

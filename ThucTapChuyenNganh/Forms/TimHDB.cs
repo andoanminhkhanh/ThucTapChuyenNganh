@@ -46,7 +46,7 @@ namespace ThucTapChuyenNganh.Forms
                 MessageBox.Show("Hãy nhập một điều kiện tìm kiếm!!!", "Yeu cau ...", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            sql = "SELECT MaHDB, MaNV, NgayBan, MaKH, TongTien, MaVanDon, TrangThai,MONTH(NgayBan) AS MonthOfSale, YEAR(NgayBan) AS YearOfSale FROM tblhoadonban WHERE 1=1";
+            sql = "SELECT MaHDB, MaNV, NgayBan, MaKH, TongTien, MaVanDon, TrangThai,MONTH(NgayBan) AS Tháng, YEAR(NgayBan) AS Năm FROM tblhoadonban WHERE 1=1";
             if (txtMaHDB.Text != "")
                 sql = sql + " AND MaHDB Like N'%" + txtMaHDB.Text + "%'";
             if (txtThang.Text != "")
@@ -155,8 +155,8 @@ namespace ThucTapChuyenNganh.Forms
         private void dgridTimHDB_Click(object sender, EventArgs e)
         {
             txtMaHDB.Text = dgridTimHDB.CurrentRow.Cells["MaHDB"].Value.ToString();
-            txtThang.Text = dgridTimHDB.CurrentRow.Cells["MonthOfSale"].Value.ToString();
-            txtNam.Text = dgridTimHDB.CurrentRow.Cells["YearOfSale"].Value.ToString();
+            txtThang.Text = dgridTimHDB.CurrentRow.Cells["Tháng"].Value.ToString();
+            txtNam.Text = dgridTimHDB.CurrentRow.Cells["Năm"].Value.ToString();
             txtMaHDB.Text = dgridTimHDB.CurrentRow.Cells["MaHDB"].Value.ToString();
             cboMaNV.Text = dgridTimHDB.CurrentRow.Cells["MaNV"].Value.ToString();
             cboTrangthai.Text = dgridTimHDB.CurrentRow.Cells["TrangThai"].Value.ToString();
