@@ -36,6 +36,10 @@ namespace ThucTapChuyenNganh.Forms
             drgidNhaCungCap.Columns[1].HeaderText = "Tên nhà cung cấp";
             drgidNhaCungCap.Columns[2].HeaderText = "Địa chỉ";
             drgidNhaCungCap.Columns[3].HeaderText = "Điện thoại";
+            drgidNhaCungCap.Columns[0].Width = 140;
+            drgidNhaCungCap.Columns[1].Width = 240;
+            drgidNhaCungCap.Columns[2].Width = 300;
+            drgidNhaCungCap.Columns[3].Width = 140;
             drgidNhaCungCap.AllowUserToAddRows = false;
             drgidNhaCungCap.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
