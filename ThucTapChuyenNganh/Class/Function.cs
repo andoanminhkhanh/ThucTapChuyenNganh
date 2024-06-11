@@ -16,7 +16,7 @@ namespace ThucTapChuyenNganh.Class
         public static string connString;
         public static void Connect()
         {
-            connString = "Data Source=DESKTOP-6P2TSJE\\SQLEXPRESS;Initial Catalog=TTCN;Integrated Security=True;Encrypt=False";
+            connString = "Data Source=LAPTOP-THOQUC6C\\MSSQLSERVER01;Initial Catalog=TTCN;Integrated Security=True;Encrypt=False";
             Conn = new SqlConnection();
             Conn.ConnectionString = connString;
             Conn.Open();
@@ -88,6 +88,28 @@ namespace ThucTapChuyenNganh.Class
             t = String.Format("{0}{1}{2}", partsTime[0], partsTime[1], partsTime[2]);
             key = key + t;
             return key;
+        }
+        public static string CreateHDNKey()
+        {
+            string lastHDQCID = GetLastHDNID();
+            if (string.IsNullOrEmpty(lastHDQCID))
+            {
+                return "HDN0001";
+            }
+
+            int hdqcPart = int.Parse(lastHDQCID.Substring(3));
+            hdqcPart++; // Tăng số lên 1
+
+
+            return "HDN" + hdqcPart.ToString("D4");
+        }
+        private static string GetLastHDNID()
+        {
+            string query = "SELECT TOP 1 MaHDN FROM tblhoadonnhap ORDER BY MaHDN DESC";
+
+            SqlCommand cmd = new SqlCommand(query, Conn);
+            object result = cmd.ExecuteScalar();
+            return result != null ? result.ToString() : null;
         }
         public static string ConvertTimeTo24(string hour)
         {
@@ -199,79 +221,125 @@ namespace ThucTapChuyenNganh.Class
         }
         public static string ChuyenSoSangChu(string sNumber)
         {
-            int mLen, mDigit;
-            string mTemp = "";
-            string[] mNumText;
-            //Xóa các dấu "," nếu có
-            sNumber = sNumber.Replace(",", "");
-            mNumText = "không;một;hai;ba;bốn;năm;sáu;bảy;tám;chín".Split(';');
-            mLen = sNumber.Length - 1; // trừ 1 vì thứ tự đi từ 0
-            for (int i = 0; i <= mLen; i++)
+            if (sNumber.Contains("."))
             {
-                mDigit = Convert.ToInt32(sNumber.Substring(i, 1));
-                mTemp = mTemp + " " + mNumText[mDigit];
-                if (mLen == i) // Chữ số cuối cùng không cần xét tiếp
-                    break;
-                switch ((mLen - i) % 9)
+                if (!decimal.TryParse(sNumber, out decimal dNumber))
                 {
-                    case 0:
-                        mTemp = mTemp + " tỷ";
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
-                        break;
-                    case 6:
-                        mTemp = mTemp + " triệu";
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
-                        break;
-                    case 3:
-                        mTemp = mTemp + " nghìn";
-                        if (sNumber.Substring(i + 1, 3) == "000")
-                            i = i + 3;
-                        break;
-                    default:
-                        switch ((mLen - i) % 3)
-                        {
-                            case 2:
-                                mTemp = mTemp + " trăm";
-                                break;
-                            case 1:
-                                mTemp = mTemp + " mươi";
-                                break;
-                        }
-                        break;
+                    return "Số tiền không hợp lệ.";
+                }
+                sNumber = Math.Round(dNumber).ToString();
+            }
+            else
+            {
+                if (!decimal.TryParse(sNumber, out _))
+                {
+                    return "Số tiền không hợp lệ.";
                 }
             }
-            //Loại bỏ trường hợp x00
-            mTemp = mTemp.Replace("không mươi không ", "");
-            mTemp = mTemp.Replace("không mươi không", "");
-            //Loại bỏ trường hợp 00x
-            mTemp = mTemp.Replace("không mươi ", "linh ");
-            //Loại bỏ trường hợp x0, x>=2
-            mTemp = mTemp.Replace("mươi không", "mươi");
-            //Fix trường hợp 10
-            mTemp = mTemp.Replace("một mươi", "mười");
-            //Fix trường hợp x4, x>=2
-            mTemp = mTemp.Replace("mươi bốn", "mươi tư");
-            //Fix trường hợp x04
-            mTemp = mTemp.Replace("linh bốn", "linh tư");
-            //Fix trường hợp x5, x>=2
-            mTemp = mTemp.Replace("mươi năm", "mươi lăm");
-            //Fix trường hợp x1, x>=2
-            mTemp = mTemp.Replace("mươi một", "mươi mốt");
-            //Fix trường hợp x15
-            mTemp = mTemp.Replace("mười năm", "mười lăm");
-            //Bỏ ký tự space
-            mTemp = mTemp.Trim();
-            //Viết hoa ký tự đầu tiên
-            mTemp = mTemp.Substring(0, 1).ToUpper() + mTemp.Substring(1) + " đồng";
-            return mTemp;
+
+            string[] mNumText = new string[]
+            {
+        "không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"
+            };
+
+            string[] mPowersText = new string[]
+            {
+        "", "nghìn", "triệu", "tỷ"
+            };
+
+            string result = "";
+            int len = sNumber.Length;
+            int groupIndex = 0;
+
+            while (len > 0)
+            {
+                int groupSize = Math.Min(3, len);
+                string group = sNumber.Substring(len - groupSize, groupSize);
+                len -= groupSize;
+
+                if (!int.TryParse(group, out int number))
+                {
+                    return "Số tiền không hợp lệ.";
+                }
+
+                string groupResult = "";
+                bool hasHundred = false;
+
+                for (int i = 0; i < groupSize; i++)
+                {
+                    int digit = number % 10;
+                    number /= 10;
+
+                    if (i == 0)
+                    {
+                        if (digit == 1 && groupSize > 1 && group[groupSize - 2] != '1')
+                        {
+                            groupResult = "mốt " + groupResult;
+                        }
+                        else if (digit == 5 && groupSize > 1)
+                        {
+                            groupResult = "lăm " + groupResult;
+                        }
+                        else
+                        {
+                            groupResult = mNumText[digit] + " " + groupResult;
+                        }
+                    }
+                    else if (i == 1)
+                    {
+                        if (digit == 0)
+                        {
+                            if (!string.IsNullOrEmpty(groupResult))
+                            {
+                                groupResult = "linh " + groupResult;
+                            }
+                        }
+                        else if (digit == 1)
+                        {
+                            groupResult = "mười " + groupResult;
+                        }
+                        else
+                        {
+                            groupResult = mNumText[digit] + " mươi " + groupResult;
+                        }
+                    }
+                    else if (i == 2)
+                    {
+                        hasHundred = true;
+                        groupResult = mNumText[digit] + " trăm " + groupResult;
+                    }
+                }
+
+                // Bỏ qua nhóm nếu toàn bộ là số 0
+                if (group != "000")
+                {
+                    if (!string.IsNullOrEmpty(groupResult))
+                    {
+                        groupResult = groupResult.Trim();
+                        if (groupIndex > 0)
+                        {
+                            groupResult += " " + mPowersText[groupIndex];
+                        }
+
+                        if (result != "")
+                        {
+                            result = groupResult + " " + result;
+                        }
+                        else
+                        {
+                            result = groupResult;
+                        }
+                    }
+                }
+
+                groupIndex++;
+            }
+
+            return result.Trim();
+            // Viết hoa chữ cái đầu tiên
+            result = char.ToUpper(result[0]) + result.Substring(1).Trim();
+
+            return result + " đồng";
         }
     }
 }

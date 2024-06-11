@@ -54,7 +54,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label1.Location = new System.Drawing.Point(486, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(193, 32);
+            this.label1.Size = new System.Drawing.Size(229, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "CHẤM CÔNG";
             // 
@@ -65,7 +65,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label2.Location = new System.Drawing.Point(122, 125);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 19);
+            this.label2.Size = new System.Drawing.Size(138, 24);
             this.label2.TabIndex = 1;
             this.label2.Text = "Mã nhân viên:";
             // 
@@ -84,7 +84,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label4.Location = new System.Drawing.Point(122, 165);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 19);
+            this.label4.Size = new System.Drawing.Size(88, 24);
             this.label4.TabIndex = 5;
             this.label4.Text = "Giờ vào:";
             // 
@@ -115,7 +115,7 @@
             this.label5.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label5.Location = new System.Drawing.Point(631, 124);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 19);
+            this.label5.Size = new System.Drawing.Size(102, 24);
             this.label5.TabIndex = 7;
             this.label5.Text = "Ngày làm:";
             // 
@@ -213,7 +213,7 @@
             this.label8.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label8.Location = new System.Drawing.Point(633, 177);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 19);
+            this.label8.Size = new System.Drawing.Size(74, 24);
             this.label8.TabIndex = 19;
             this.label8.Text = "Giờ ra:";
             // 
