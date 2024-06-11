@@ -49,12 +49,12 @@ namespace ThucTapChuyenNganh.Forms
 
         private void DataGridView_Click(object sender, EventArgs e)
         {
+            string manv;
             if (tblBL.Rows.Count == 0)
             {
                 MessageBox.Show("Không có dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            string manv;
             manv = DataGridView.CurrentRow.Cells["MaNV"].Value.ToString();
             cboMaNV.Text = Function.GetFieldValues("SELECT MaNV FROM tblnhanvien WHERE MaNV = N'" + manv + "'");
             txtThang.Text = DataGridView.CurrentRow.Cells["Thang"].Value.ToString();
@@ -104,7 +104,7 @@ namespace ThucTapChuyenNganh.Forms
 
         private void txtTong_TextChanged(object sender, EventArgs e)
         {
-            double tt;
+            //double tt;
             /*
             tt = sl * dg - sl * dg * gg / 100;
             txtTong.Text = tt.ToString();*/

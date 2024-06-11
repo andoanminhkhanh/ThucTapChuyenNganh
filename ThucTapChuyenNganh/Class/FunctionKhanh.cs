@@ -181,15 +181,30 @@ namespace ThucTapChuyenNganh.Class
         public static string ConvertDateTime(string d)
         {
             string[] parts = d.Split('/');
-            string dt = String.Format("{0}/{1}/{2}", parts[1], parts[0], parts[2]);
+            string dt = String.Format("{0}/{1}/{2}", parts[0], parts[1], parts[2]);
             return dt;
         }
 
         public static string ChuyenSoSangChu(string sNumber)
         {
-            if (string.IsNullOrEmpty(sNumber))
+            //if (string.IsNullOrEmpty(sNumber))
+            //{
+            //    return "Không có số tiền để chuyển đổi.";
+            //}
+            if (sNumber.Contains("."))
             {
-                return "Không có số tiền để chuyển đổi.";
+                if (!decimal.TryParse(sNumber, out decimal dNumber))
+                {
+                    return "Số tiền không hợp lệ.";
+                }
+                sNumber = Math.Round(dNumber).ToString();
+            }
+            else
+            {
+                if (!decimal.TryParse(sNumber, out _))
+                {
+                    return "Số tiền không hợp lệ.";
+                }
             }
 
             string[] mNumText = new string[]
@@ -282,5 +297,113 @@ namespace ThucTapChuyenNganh.Class
 
             return result + " đồng";
         }
+        //public static string ChuyenSoSangChu(string sNumber)
+        //{
+        //    if (string.IsNullOrEmpty(sNumber))
+        //    {
+        //        return "Không có số tiền để chuyển đổi.";
+        //    }
+
+        //    // Xử lý làm tròn số nếu có dấu phẩy
+        //    if (sNumber.Contains("."))
+        //    {
+        //        if (!decimal.TryParse(sNumber, out decimal dNumber))
+        //        {
+        //            return "Số tiền không hợp lệ.";
+        //        }
+        //        sNumber = Math.Round(dNumber).ToString();
+        //    }
+        //    else
+        //    {
+        //        if (!decimal.TryParse(sNumber, out _))
+        //        {
+        //            return "Số tiền không hợp lệ.";
+        //        }
+        //    }
+
+        //    string[] mNumText = new string[]
+        //    {"không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"};
+
+        //    string[] mPowersText = new string[]
+        //    {"", "nghìn", "triệu", "tỷ"};
+
+        //    string result = "";
+        //    int len = sNumber.Length;
+        //    int groupIndex = 0;
+
+        //    // Xử lý các nhóm ba chữ số từ phải sang trái
+        //    while (len > 0)
+        //    {
+        //        int groupSize = Math.Min(3, len);
+        //        string group = sNumber.Substring(len - groupSize, groupSize);
+        //        len -= groupSize;
+
+        //        if (!int.TryParse(group, out int number))
+        //        {
+        //            return "Số tiền không hợp lệ.";
+        //        }
+
+        //        string groupResult = "";
+
+        //        // Xử lý hàng trăm, chục và đơn vị
+        //        if (groupSize == 3)
+        //        {
+        //            int hundreds = number / 100;
+        //            number %= 100;
+        //            if (hundreds > 0)
+        //            {
+        //                groupResult += mNumText[hundreds] + " trăm ";
+        //            }
+        //            else if (number > 0)
+        //            {
+        //                groupResult += "không trăm ";
+        //            }
+        //        }
+
+        //        if (groupSize >= 2)
+        //        {
+        //            int tens = number / 10;
+        //            number %= 10;
+        //            if (tens > 0)
+        //            {
+        //                if (tens == 1)
+        //                {
+        //                    groupResult += "mười ";
+        //                }
+        //                else
+        //                {
+        //                    groupResult += mNumText[tens] + " mươi ";
+        //                }
+        //            }
+        //            else if (number > 0)
+        //            {
+        //                groupResult += "linh ";
+        //            }
+        //        }
+
+        //        if (groupSize >= 1)
+        //        {
+        //            if (number > 0)
+        //            {
+        //                groupResult += mNumText[number] + " ";
+        //            }
+        //        }
+
+        //        // Thêm đơn vị nghìn, triệu, tỷ
+        //        if (!string.IsNullOrEmpty(groupResult))
+        //        {
+        //            groupResult += mPowersText[groupIndex] + " ";
+        //        }
+
+        //        // Nối kết quả nhóm vào kết quả chính
+        //        result = groupResult + result;
+
+        //        groupIndex++;
+        //    }
+
+        //    // Viết hoa chữ cái đầu tiên và thêm "đồng" vào cuối
+        //    result = char.ToUpper(result[0]) + result.Substring(1).Trim() + " đồng";
+        //    return result;
+        //}
     }
 }

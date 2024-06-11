@@ -70,7 +70,7 @@ namespace ThucTapChuyenNganh
 
         private void mnuChitiethoadonban_Click(object sender, EventArgs e)
         {
-            Forms.Hoadonbanhang a = new Forms.Hoadonbanhang();
+            Forms.Chitiethoadonbanhang a = new Forms.Chitiethoadonbanhang();
             a.Show();
         }
 

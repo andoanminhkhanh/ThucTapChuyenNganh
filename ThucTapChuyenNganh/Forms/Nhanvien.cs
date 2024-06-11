@@ -34,7 +34,7 @@ namespace ThucTapChuyenNganh.Forms
         private void load_datagridview()
         {
             string sql;
-            sql = "SELECT MaNV, TenNV, GioiTinh, NgaySinh, DienThoai, DiaChi, MaCV, Tk_id from tblnhanvien";
+            sql = "SELECT MaNV, TenNV, GioiTinh, NgaySinh, DienThoai, DiaChi, MaCV, Tk_id, pass, quyen from tblnhanvien";
 
             tblnv = Function.GetDataToTable(sql);
             dgridNhanvien.DataSource = tblnv;
@@ -46,6 +46,8 @@ namespace ThucTapChuyenNganh.Forms
             dgridNhanvien.Columns[5].HeaderText = "Địa Chỉ";
             dgridNhanvien.Columns[6].HeaderText = "Mã công việc";
             dgridNhanvien.Columns[7].HeaderText = "ID";
+            dgridNhanvien.Columns[8].HeaderText = "Mật khẩu";
+            dgridNhanvien.Columns[9].HeaderText = "Quyền";
             dgridNhanvien.Columns[0].Width = 80;
             dgridNhanvien.Columns[1].Width = 140;
             dgridNhanvien.Columns[2].Width = 80;
@@ -54,6 +56,8 @@ namespace ThucTapChuyenNganh.Forms
             dgridNhanvien.Columns[5].Width = 140;
             dgridNhanvien.Columns[6].Width = 80;
             dgridNhanvien.Columns[7].Width = 80;
+            dgridNhanvien.Columns[8].Width = 80;
+            dgridNhanvien.Columns[9].Width = 80;
             dgridNhanvien.AllowUserToAddRows = false;
             dgridNhanvien.EditMode = DataGridViewEditMode.EditProgrammatically;
 
@@ -67,6 +71,9 @@ namespace ThucTapChuyenNganh.Forms
             txtDiaChi.Text = "";
             mtxtNgaySinh.Text = "";
             mtxtDienthoai.Text = "";
+            txtID.Text = "";
+            txtPass.Text = "";
+            txtQuyen.Text = "";
             chkGioiTinh.Checked = false;
         }
 
@@ -96,6 +103,8 @@ namespace ThucTapChuyenNganh.Forms
             mtxtDienthoai.Text = dgridNhanvien.CurrentRow.Cells["DienThoai"].Value.ToString();
             mtxtNgaySinh.Text = dgridNhanvien.CurrentRow.Cells["NgaySinh"].Value.ToString();
             txtID.Text = dgridNhanvien.CurrentRow.Cells["Tk_id"].Value.ToString();
+            txtPass.Text = dgridNhanvien.CurrentRow.Cells["pass"].Value.ToString();
+            txtQuyen.Text = dgridNhanvien.CurrentRow.Cells["quyen"].Value.ToString();
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
             btnBoqua.Enabled = true;
@@ -170,6 +179,18 @@ namespace ThucTapChuyenNganh.Forms
                 txtID.Focus();
                 return;
             }
+            if (txtPass.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn phải nhập mật khẩu tài khoản", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPass.Focus();
+                return;
+            }
+            if (txtQuyen.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn phải nhập quyền", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuyen.Focus();
+                return;
+            }
 
             sql = "SELECT MaNV FROM tblnhanvien WHERE MaNV = N'" + txtMaNV.Text.Trim() + "'";
             if (Function.CheckKey(sql))
@@ -178,7 +199,7 @@ namespace ThucTapChuyenNganh.Forms
                 txtMaNV.Focus();
                 return;
             }
-            sql = "INSERT INTO tblnhanvien(MaNV,TenNV, GioiTinh, NgaySinh, DienThoai, DiaChi, MaCV, Tk_id) VALUES(N'" + txtMaNV.Text.Trim() + "',N'" + txtTenNV.Text.Trim() + "', N'" + gt + "', N'" + Function.ConvertDateTime(mtxtNgaySinh.Text) + "', N'" + mtxtDienthoai.Text.Trim() + "', N'" + txtDiaChi.Text.Trim() + "',N'" + cboMaCV.SelectedValue.ToString() + "', N'" + txtDiaChi.Text.Trim() + "')";
+            sql = "INSERT INTO tblnhanvien(MaNV,TenNV, GioiTinh, NgaySinh, DienThoai, DiaChi, MaCV, Tk_id, pass, quyen) VALUES( N'" + txtMaNV.Text.Trim() + "',N'" + txtTenNV.Text.Trim() + "', N'" + gt + "', N'" + Function.ConvertDateTime(mtxtNgaySinh.Text) + "', N'" + mtxtDienthoai.Text.Trim() + "', N'" + txtDiaChi.Text.Trim() + "',N'" + cboMaCV.SelectedValue.ToString() + "', N'" + txtID.Text.Trim() + "', N'" + txtPass.Text.Trim() + "', N'" + txtQuyen.Text.Trim() + "')";
             Function.RunSql(sql);
             load_datagridview();
             resetvalues();
@@ -240,11 +261,30 @@ namespace ThucTapChuyenNganh.Forms
                 mtxtNgaySinh.Focus();
                 return;
             }
+
+            if (txtID.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn phải nhập ID tài khoản", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtID.Focus();
+                return;
+            }
+            if (txtPass.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn phải nhập mật khẩu tài khoản", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPass.Focus();
+                return;
+            }
+            if (txtQuyen.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn phải nhập quyền", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuyen.Focus();
+                return;
+            }
             if (chkGioiTinh.Checked == true)
                 gt = "Nam";
             else
                 gt = "Nữ";
-            sql = "UPDATE tblnhanvien SET TenNV = N'" + txtTenNV.Text.Trim().ToString() + "',GioiTinh= N'" + gt + "', NgaySinh=N'" + Function.ConvertDateTime(mtxtNgaySinh.Text) + "', DienThoai= N'" + mtxtDienthoai.Text.Trim().ToString() + "',DiaChi= N'" + txtDiaChi.Text.Trim().ToString() + "', MaCV=N'" + cboMaCV.SelectedValue.ToString() + "' ,Tk_id = N'" + txtID.Text.Trim().ToString() + "'  WHERE MaNV = N'" + txtMaNV.Text + "'";
+            sql = "UPDATE tblnhanvien SET TenNV = N'" + txtTenNV.Text.Trim().ToString() + "',GioiTinh= N'" + gt + "', NgaySinh=N'" + Function.ConvertDateTime(mtxtNgaySinh.Text) + "', DienThoai= N'" + mtxtDienthoai.Text.Trim().ToString() + "',DiaChi= N'" + txtDiaChi.Text.Trim().ToString() + "', MaCV=N'" + cboMaCV.SelectedValue.ToString() + "', Tk_id = N'" + txtID.Text.Trim().ToString() + "', pass = N'" + txtPass.Text.Trim().ToString() + "', quyen = N'" + txtQuyen.Text.Trim().ToString() + "'  WHERE MaNV = N'" + txtMaNV.Text + "'";
             Function.RunSql(sql);
             load_datagridview();
             resetvalues();

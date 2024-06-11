@@ -36,7 +36,7 @@ namespace ThucTapChuyenNganh
                 txtMatkhau.Focus();
                 return;
             }
-            sql = "select Tk_id, pass from tblnguoidung where Tk_id = N'" + txtTendangnhap.Text + "'";
+            sql = "select Tk_id, pass from tblnhanvien where Tk_id = N'" + txtTendangnhap.Text + "'";
             Class.Function.RunSql(sql);
             tblnd = Class.Function.GetDataToTable(sql);
             if (tblnd.Rows.Count == 0 )

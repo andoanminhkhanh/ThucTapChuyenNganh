@@ -181,7 +181,7 @@ namespace ThucTapChuyenNganh.Forms
             if (MessageBox.Show("Ban co chac chan xoa khong?", "Thong bao", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 sql = "delete tblkhachhang where MaKh =N'" + txtMaKH.Text + "'";
-                Class.Function.RunSqlDel(sql);
+                Class.Function.RunSql(sql);
                 load_data();
                 ResetValue();
             }

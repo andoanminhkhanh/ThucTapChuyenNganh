@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,7 @@ namespace ThucTapChuyenNganh.Forms
             btnHuyhoadon.Enabled = false;
             btnInhoadon.Enabled = false;
             txtMahoadon.ReadOnly = true;
+            txtMahoadon.Enabled = false;
             txtTennhanvien.ReadOnly = true;
             txtMakhachhang.ReadOnly = true;
             txtTenkhachhang.ReadOnly = true;
@@ -73,8 +75,7 @@ namespace ThucTapChuyenNganh.Forms
         private void Load_DataGridViewChitiet()
         {
             //a: chitiet, b:sanpham
-            //string sql = "select a.MaSP, b.TenSP, a.SoLuong, b.DonGiaBan, a.GiamGia, (a.SoLuong*b.DonGiaBan*(1-(a.GiamGia/100))) as Thanhtien from tblchitiethoadonban as a, tblsanpham as b where a.MaHDB = N'" + txtMahoadon.Text + "' and a.MaSP = b.MaSP";
-            string sql = "select a.MaSP, b.TenSP, a.SoLuong, b.DonGiaBan, a.GiamGia, (a.SoLuong*b.DonGiaBan*(1-((a.GiamGia)/100))) as ThanhTien from tblchitiethoadonban as a, tblsanpham as b where a.MaHDB = N'" + txtMahoadon.Text + "' and a.MaSP = b.MaSP";
+            string sql = "select a.MaSP, b.TenSP, a.SoLuong, b.DonGiaBan, a.GiamGia, (a.SoLuong*b.DonGiaBan*(1-(a.GiamGia/100))) as ThanhTien from tblchitiethoadonban as a, tblsanpham as b where a.MaHDB = N'" + txtMahoadon.Text + "' and a.MaSP = b.MaSP";
             tblcthdb = Class.FunctionKhanh.GetDataToTable(sql);
             DataGridViewChitiet.DataSource = tblcthdb;
 
@@ -127,21 +128,6 @@ namespace ThucTapChuyenNganh.Forms
 
             lblBangchu.Text = "Bằng chữ: " + Class.FunctionKhanh.ChuyenSoSangChu(txtTongtien.Text);
         }
-
-        //private void cboManhanvien_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (cboMasanpham.SelectedValue != null)
-        //    {
-        //        string selectedManhanvien = cboMasanpham.SelectedValue.ToString();
-        //        if (!string.IsNullOrEmpty(selectedManhanvien))
-        //        {
-        //            string query = "SELECT TenNV FROM tblnhanvien WHERE MaNV = N'" + selectedManhanvien + "'";
-        //            string TenNV = Class.FunctionKhanh.GetFieldValues(query);
-        //            txtTennhanvien.Text = TenNV;
-        //        }
-        //    }
-        //}
-
         private void cboMasanpham_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboMasanpham.SelectedValue != null)
@@ -171,25 +157,29 @@ namespace ThucTapChuyenNganh.Forms
             btnThemsanpham.Enabled = true;
             txtGiamgia.Enabled = true;
             ResetValues();
-            txtMahoadon.Text = Class.FunctionKhanh.CreateKey("HDB");
+            txtMahoadon.Text = GenerateNewBillID();
             //DisplayDiscount();
             Load_DataGridViewChitiet();
         }
-        //private void DisplayDiscount()
-        //{
-        //    if (cboMasanpham.SelectedValue != null)
-        //    {
-        //        string selectedMasanpham = cboMasanpham.SelectedValue.ToString();
-        //        if (!string.IsNullOrEmpty(selectedMasanpham))
-        //        {
-        //            string query = "SELECT GiamGia FROM tblchitiethoadonban WHERE MaSP = N'\" + selectedMasanpham + \"'";
-        //            string discount = Class.FunctionKhanh.GetFieldValues(query);
-        //            txtGiamgia.Text = string.IsNullOrEmpty(discount) ? "0" : discount;
-        //        }
-        //    }
-        //}
+        private string GenerateNewBillID()
+        {
+            // Generate a new bill ID based on your logic. For example:
+            string query = "SELECT TOP 1 MaHDB FROM tblhoadonban ORDER BY MaHDB DESC";
+            string lastID = Class.FunctionKhanh.GetFieldValues(query);
 
+            if (string.IsNullOrEmpty(lastID))
+            {
+                return "HDB00001";
+            }
+
+            int newID = int.Parse(lastID.Substring(3)) + 1;
+            return "HDB" + newID.ToString("D5"); // Format as KHxxx
+        }
         private void txtSoluong_TextChanged(object sender, EventArgs e)
+        {
+            CalculateTotal();
+        }
+        private void txtGiamgia_TextChanged(object sender, EventArgs e)
         {
             CalculateTotal();
         }
@@ -202,9 +192,19 @@ namespace ThucTapChuyenNganh.Forms
                 e.Handled = true; // Ngăn chặn âm báo mặc định của phím Enter
             }
         }
+        private void txtGiamgia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                CalculateTotal();
+                e.Handled = true;
+            }
+        }
         private void CalculateTotal()
         {
-            if (int.TryParse(txtSoluong.Text, out int soluong) && decimal.TryParse(txtDongia.Text, out decimal dongia) && decimal.TryParse(txtGiamgia.Text, out decimal giamgia))
+            if (int.TryParse(txtSoluong.Text, out int soluong) &&
+                            decimal.TryParse(txtDongia.Text, out decimal dongia) &&
+                            decimal.TryParse(txtGiamgia.Text, out decimal giamgia))
             {
                 giamgia = giamgia / 100; // Chuyển đổi phần trăm giảm giá thành dạng số thập phân
                 decimal thanhtien = (soluong * dongia) * (1 - giamgia);
@@ -437,7 +437,6 @@ namespace ThucTapChuyenNganh.Forms
         {
             this.Close();
         }
-
         private void btnLuu_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtTennhanvien.Text) || string.IsNullOrEmpty(txtTenkhachhang.Text) ||
@@ -482,19 +481,18 @@ namespace ThucTapChuyenNganh.Forms
                 }
 
                 // Save Order Details
-                string sql = $"INSERT INTO tblhoadonban (MaHDB, NgayBan, MaNV, MaKH, TongTien) " +
+                string sql = $"INSERT INTO tblhoadonban (MaHDB, NgayBan, MaNV, MaKH, TongTien, TrangThai) " +
                              $"VALUES (N'{txtMahoadon.Text.Trim()}', '{Class.FunctionKhanh.ConvertDateTime(txtNgayban.Text.Trim())}', " +
-                             $"N'{cboManhanvien.SelectedValue}', N'{customerID}', {txtTongtien.Text})";
+                             $"N'{cboManhanvien.SelectedValue}', N'{customerID}', {txtTongtien.Text}, N'Đang chuẩn bị hàng')";
                 Class.FunctionKhanh.RunSql(sql);
 
                 // Save Order Items
                 foreach (DataRow row in tblcthdb.Rows)
                 {
-                    sql = $"INSERT INTO tblchitiethoadonban (MaHDB, MaSP, SoLuong, DonGiaBan, GiamGia) " +
-                          $"VALUES (N'{txtMahoadon.Text.Trim()}', N'{row["MaSP"].ToString()}', {row["SoLuong"].ToString()}, " +
-                          $"{row["DonGiaBan"].ToString()}, {row["GiamGia"].ToString()})";
+                    sql = $"INSERT INTO tblchitiethoadonban (MaHDB, MaSP, SoLuong, GiamGia) VALUES (N'{txtMahoadon.Text.Trim()}', N'{row["MaSP"].ToString()}', {row["SoLuong"].ToString()},{row["GiamGia"].ToString()})";
                     Class.FunctionKhanh.RunSql(sql);
                 }
+
 
                 // Update the total amount in the main order table
                 double tongTien = double.Parse(txtTongtien.Text);
@@ -602,7 +600,7 @@ namespace ThucTapChuyenNganh.Forms
             exRange.Range["C9:E9"].MergeCells = true;
             exRange.Range["C9:E9"].Value = tblThongtinHD.Rows[0][5].ToString();
             //Lấy thông tin các mặt hàng
-            sql = "SELECT b.TenSP, a.Soluong, b.DonGiaBan, a.Giamgia, (a.SoLuong * b.DonGiaBan * (1 - (a.GiamGia / 100))) " +
+            sql = "SELECT b.TenSP, a.Soluong, b.DonGiaBan, a.Giamgia, (a.SoLuong*b.DonGiaBan*(1-(a.GiamGia/100))) " +
                 "FROM tblChitiethoadonban AS a , tblsanpham AS b WHERE a.MaHDB = N'" + txtMahoadon.Text + "' AND a.MaSP = b.MaSP";
             tblThongtinHang = Function.GetDataToTable(sql);
             //Tạo dòng tiêu đề bảng
@@ -634,7 +632,7 @@ namespace ThucTapChuyenNganh.Forms
             exRange.Range["A1:F1"].Font.Bold = true;
             exRange.Range["A1:F1"].Font.Italic = true;
             exRange.Range["A1:F1"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignRight;
-            exRange.Range["A1:F1"].Value = "Bằng chữ: " + Function.ChuyenSoSangChu(tblThongtinHD.Rows[0][2].ToString());
+            exRange.Range["A1:F1"].Value = "Bằng chữ: " + Class.FunctionKhanh.ChuyenSoSangChu(tblThongtinHD.Rows[0][2].ToString());
             exRange = exSheet.Cells[4][hang + 17]; //Ô A1 
             exRange.Range["A1:C1"].MergeCells = true;
             exRange.Range["A1:C1"].Font.Italic = true;
@@ -693,6 +691,12 @@ namespace ThucTapChuyenNganh.Forms
             // Khi kich chon Ma nhan vien thi ten nhan vien se tu dong hien ra
             str = "Select TenNV from tblnhanvien where MaNV = N'" + cboManhanvien.SelectedValue + "'";
             txtTennhanvien.Text = Function.GetFieldValues(str);
+        }
+
+        private void cboMahoadon_DropDown(object sender, EventArgs e)
+        {
+            Function.FillCombo("SELECT MaHDB FROM tblhoadonban", cboMahoadon, "MaHDB", "MaHDB");
+            cboMahoadon.SelectedIndex = -1;
         }
     }
 }
