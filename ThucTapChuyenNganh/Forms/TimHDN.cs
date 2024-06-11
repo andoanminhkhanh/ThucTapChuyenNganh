@@ -42,7 +42,7 @@ namespace ThucTapChuyenNganh.Forms
                 MessageBox.Show("Hãy nhập một điều kiện tìm kiếm!!!", "Yêu cầu...", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            sql = "select * from tblhoadonnhap where 1=1";
+            sql = "SELECT MaHDN, MaNV, NgayNhap, MaNCC, TongTien, MONTH(NgayNhap) AS Tháng, YEAR(NgayNhap) AS Năm from tblhoadonnhap where 1=1";
             if (txtMaHDN.Text != "")
                 sql = sql + "AND MaHDN like N'%" + txtMaHDN.Text + "%'";
             if (txtThang.Text != "")
@@ -73,11 +73,15 @@ namespace ThucTapChuyenNganh.Forms
             dgridHoadonnhap.Columns[2].HeaderText = "Ngày nhâp";
             dgridHoadonnhap.Columns[3].HeaderText = "Mã nhà cung cấp";
             dgridHoadonnhap.Columns[4].HeaderText = "Tổng tiền";
+            dgridHoadonnhap.Columns[5].HeaderText = "Tháng";
+            dgridHoadonnhap.Columns[6].HeaderText = "Năm";
             dgridHoadonnhap.Columns[0].Width = 80;
             dgridHoadonnhap.Columns[1].Width = 100;
             dgridHoadonnhap.Columns[2].Width = 80;
             dgridHoadonnhap.Columns[3].Width = 110;
-            dgridHoadonnhap.Columns[4].Width = 100;
+            dgridHoadonnhap.Columns[4].Width = 80;
+            dgridHoadonnhap.Columns[5].Width = 80;
+            dgridHoadonnhap.Columns[6].Width = 80;
             dgridHoadonnhap.AllowUserToAddRows = false;
             dgridHoadonnhap.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
@@ -98,14 +102,22 @@ namespace ThucTapChuyenNganh.Forms
 
         private void dgridHoadonnhap_DoubleClick(object sender, EventArgs e)
         {
-            string mahd;
-            if (MessageBox.Show("Bạn có muốn hiển thị thông tin chi tiết?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (dgridHoadonnhap.CurrentRow != null && dgridHoadonnhap.CurrentRow.Cells["MaHDN"] != null)
             {
-                mahd = dgridHoadonnhap.CurrentRow.Cells["MaHDN"].Value.ToString();
-                TimHDN frm = new TimHDN();
-                frm.txtMaHDN.Text = mahd;
-                frm.StartPosition = FormStartPosition.CenterScreen;
-                frm.ShowDialog();
+                string mahd = dgridHoadonnhap.CurrentRow.Cells["MaHDN"].Value?.ToString();
+
+                if (!string.IsNullOrEmpty(mahd) &&
+                    MessageBox.Show("Bạn có muốn hiển thị thông tin chi tiết?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Chitiethoadonnhap frm = new Chitiethoadonnhap();
+                    frm.StartPosition = FormStartPosition.CenterScreen;
+                    //frm.txtMahoadon.Text = mahd;
+                    frm.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không thể lấy mã hóa đơn. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

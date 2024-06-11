@@ -18,9 +18,10 @@ namespace ThucTapChuyenNganh.Forms
         public Chitiethoadonbanhang()
         {
             InitializeComponent();
+
         }
         DataTable tblcthdb;
-
+        
         private void Chitiethoadonbanhang_Load(object sender, EventArgs e)
         {
             Class.FunctionKhanh.Connect();
@@ -697,6 +698,31 @@ namespace ThucTapChuyenNganh.Forms
         {
             Function.FillCombo("SELECT MaHDB FROM tblhoadonban", cboMahoadon, "MaHDB", "MaHDB");
             cboMahoadon.SelectedIndex = -1;
+        }
+
+        private void DataGridViewChitiet_Click(object sender, EventArgs e)
+        {
+            if (btnThemhoadon.Enabled == false)
+            {
+                MessageBox.Show("Đang ở chế độ thêm mới!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtMahoadon.Focus();
+                return;
+            }
+            if (tblcthdb.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            cboMasanpham.Text = DataGridViewChitiet.CurrentRow.Cells["MaSP"].Value.ToString();
+            txtTenhang.Text = DataGridViewChitiet.CurrentRow.Cells["TenSP"].Value.ToString();
+            txtSoluong.Text = DataGridViewChitiet.CurrentRow.Cells["Soluong"].Value.ToString();
+            txtDongia.Text = DataGridViewChitiet.CurrentRow.Cells["DonGiaBan"].Value.ToString();
+            txtGiamgia.Text = DataGridViewChitiet.CurrentRow.Cells["Giamgia"].Value.ToString();
+            txtThanhtien.Text = DataGridViewChitiet.CurrentRow.Cells["Thanhtien"].Value.ToString();
+            Load_ThongtinHD();
+            //btnSua.Enabled = true;
+            btnHuyhoadon.Enabled = true;
+            btnInhoadon.Enabled = true;
         }
     }
 }

@@ -172,5 +172,26 @@ namespace ThucTapChuyenNganh.Forms
             txtTongTien.Enabled = false;
 
         }
+
+        private void dgridTimHDB_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgridTimHDB.CurrentRow != null && dgridTimHDB.CurrentRow.Cells["MaHDB"] != null)
+            {
+                string mahd = dgridTimHDB.CurrentRow.Cells["MaHDB"].Value?.ToString();
+
+                if (!string.IsNullOrEmpty(mahd) &&
+                    MessageBox.Show("Bạn có muốn hiển thị thông tin chi tiết?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Chitiethoadonbanhang frm = new Chitiethoadonbanhang();
+                    frm.StartPosition = FormStartPosition.CenterScreen;
+                    frm.txtMahoadon.Text = mahd;
+                    frm.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không thể lấy mã hóa đơn. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

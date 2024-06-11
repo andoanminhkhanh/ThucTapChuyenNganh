@@ -110,7 +110,7 @@
             this.Name = "Dangnhap";
             this.Text = "Dangnhap";
             this.Load += new System.EventHandler(this.Dangnhap_Load);
-            this.SizeChanged += new System.EventHandler(this.Dangnhap_SizeChanged);
+//            this.SizeChanged += new System.EventHandler(this.Dangnhap_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

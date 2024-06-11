@@ -135,6 +135,7 @@
             this.DataGridViewChitiet.Size = new System.Drawing.Size(987, 150);
             this.DataGridViewChitiet.TabIndex = 92;
             this.DataGridViewChitiet.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewChitiet_CellDoubleClick);
+            this.DataGridViewChitiet.Click += new System.EventHandler(this.DataGridViewChitiet_Click);
             // 
             // btnDong
             // 
@@ -607,7 +608,8 @@
         private System.Windows.Forms.TextBox txtMakhachhang;
         private System.Windows.Forms.TextBox txtDiachi;
         private System.Windows.Forms.TextBox txtTenkhachhang;
-        private System.Windows.Forms.TextBox txtMahoadon;
+        //private System.Windows.Forms.TextBox txtMahoadon;
+        public System.Windows.Forms.TextBox txtMahoadon;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;

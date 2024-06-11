@@ -98,14 +98,6 @@ namespace ThucTapChuyenNganh
             a.Show();
         }
 
-
-        private void mnuTimHDN_Click(object sender, EventArgs e)
-        {
-            Forms.TimHDN a = new Forms.TimHDN();
-            a.Show();
-        }
-
-
         private void mnuTimHDB_Click_1(object sender, EventArgs e)
         {
 
@@ -128,6 +120,12 @@ namespace ThucTapChuyenNganh
         private void mnuSanpham_Click(object sender, EventArgs e)
         {
             Forms.Sanpham a = new Forms.Sanpham();
+            a.Show();
+        }
+
+        private void mnuTimHDN_Click(object sender, EventArgs e)
+        {
+            Forms.TimHDN a = new Forms.TimHDN();
             a.Show();
         }
     }
