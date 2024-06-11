@@ -44,6 +44,7 @@
             this.mskGiora = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnBoqua = new System.Windows.Forms.Button();
+            this.cboMaNV = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgridcChamCong)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label1.Location = new System.Drawing.Point(486, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 37);
+            this.label1.Size = new System.Drawing.Size(193, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "CHẤM CÔNG";
             // 
@@ -65,7 +66,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label2.Location = new System.Drawing.Point(122, 125);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 24);
+            this.label2.Size = new System.Drawing.Size(113, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Mã nhân viên:";
             // 
@@ -84,7 +85,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label4.Location = new System.Drawing.Point(122, 165);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 24);
+            this.label4.Size = new System.Drawing.Size(73, 19);
             this.label4.TabIndex = 5;
             this.label4.Text = "Giờ vào:";
             // 
@@ -115,7 +116,7 @@
             this.label5.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label5.Location = new System.Drawing.Point(631, 124);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(102, 24);
+            this.label5.Size = new System.Drawing.Size(84, 19);
             this.label5.TabIndex = 7;
             this.label5.Text = "Ngày làm:";
             // 
@@ -213,7 +214,7 @@
             this.label8.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label8.Location = new System.Drawing.Point(633, 177);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 24);
+            this.label8.Size = new System.Drawing.Size(64, 19);
             this.label8.TabIndex = 19;
             this.label8.Text = "Giờ ra:";
             // 
@@ -230,11 +231,20 @@
             this.btnBoqua.UseVisualStyleBackColor = true;
             this.btnBoqua.Click += new System.EventHandler(this.btnBoqua_Click);
             // 
+            // cboMaNV
+            // 
+            this.cboMaNV.FormattingEnabled = true;
+            this.cboMaNV.Location = new System.Drawing.Point(269, 79);
+            this.cboMaNV.Name = "cboMaNV";
+            this.cboMaNV.Size = new System.Drawing.Size(222, 28);
+            this.cboMaNV.TabIndex = 22;
+            // 
             // Bangchamcong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 730);
+            this.Controls.Add(this.cboMaNV);
             this.Controls.Add(this.btnBoqua);
             this.Controls.Add(this.mskGiora);
             this.Controls.Add(this.label8);
@@ -279,5 +289,6 @@
         private System.Windows.Forms.MaskedTextBox mskGiora;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnBoqua;
+        private System.Windows.Forms.ComboBox cboMaNV;
     }
 }
