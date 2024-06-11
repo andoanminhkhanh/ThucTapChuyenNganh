@@ -55,7 +55,7 @@
             this.label1.Location = new System.Drawing.Point(393, 26);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(334, 26);
+            this.label1.Size = new System.Drawing.Size(392, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "DANH MỤC NHÀ CUNG CẤP";
             // 
@@ -66,7 +66,7 @@
             this.label2.Location = new System.Drawing.Point(68, 110);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 19);
+            this.label2.Size = new System.Drawing.Size(163, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "Mã nhà cung cấp: ";
             // 
@@ -74,14 +74,14 @@
             // 
             this.txtMaNCC.Location = new System.Drawing.Point(239, 110);
             this.txtMaNCC.Name = "txtMaNCC";
-            this.txtMaNCC.Size = new System.Drawing.Size(245, 25);
+            this.txtMaNCC.Size = new System.Drawing.Size(245, 28);
             this.txtMaNCC.TabIndex = 2;
             // 
             // txtTenNCC
             // 
             this.txtTenNCC.Location = new System.Drawing.Point(239, 183);
             this.txtTenNCC.Name = "txtTenNCC";
-            this.txtTenNCC.Size = new System.Drawing.Size(245, 25);
+            this.txtTenNCC.Size = new System.Drawing.Size(245, 28);
             this.txtTenNCC.TabIndex = 4;
             // 
             // label3
@@ -91,7 +91,7 @@
             this.label3.Location = new System.Drawing.Point(68, 183);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(144, 19);
+            this.label3.Size = new System.Drawing.Size(167, 23);
             this.label3.TabIndex = 3;
             this.label3.Text = "Tên nhà cung cấp: ";
             // 
@@ -110,7 +110,7 @@
             this.label4.Location = new System.Drawing.Point(644, 110);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 19);
+            this.label4.Size = new System.Drawing.Size(75, 23);
             this.label4.TabIndex = 5;
             this.label4.Text = "Địa chỉ:";
             // 
@@ -121,7 +121,7 @@
             this.label5.Location = new System.Drawing.Point(638, 186);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 19);
+            this.label5.Size = new System.Drawing.Size(103, 23);
             this.label5.TabIndex = 7;
             this.label5.Text = "Điện thoại:";
             // 
@@ -130,7 +130,7 @@
             this.mtxtDienThoai.Location = new System.Drawing.Point(753, 184);
             this.mtxtDienThoai.Mask = "(999) 000-0000";
             this.mtxtDienThoai.Name = "mtxtDienThoai";
-            this.mtxtDienThoai.Size = new System.Drawing.Size(301, 25);
+            this.mtxtDienThoai.Size = new System.Drawing.Size(301, 28);
             this.mtxtDienThoai.TabIndex = 8;
             // 
             // drgidNhaCungCap
@@ -140,13 +140,13 @@
             this.drgidNhaCungCap.Name = "drgidNhaCungCap";
             this.drgidNhaCungCap.RowHeadersWidth = 62;
             this.drgidNhaCungCap.RowTemplate.Height = 28;
-            this.drgidNhaCungCap.Size = new System.Drawing.Size(1055, 361);
+            this.drgidNhaCungCap.Size = new System.Drawing.Size(1055, 241);
             this.drgidNhaCungCap.TabIndex = 9;
             this.drgidNhaCungCap.Click += new System.EventHandler(this.drgidNhaCungCap_Click);
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(137, 650);
+            this.btnThem.Location = new System.Drawing.Point(129, 542);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(100, 37);
             this.btnThem.TabIndex = 10;
@@ -156,7 +156,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(276, 650);
+            this.btnXoa.Location = new System.Drawing.Point(268, 542);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(100, 37);
             this.btnXoa.TabIndex = 11;
@@ -166,7 +166,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(448, 650);
+            this.btnSua.Location = new System.Drawing.Point(440, 542);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(100, 37);
             this.btnSua.TabIndex = 12;
@@ -176,7 +176,7 @@
             // 
             // btnLuu
             // 
-            this.btnLuu.Location = new System.Drawing.Point(606, 650);
+            this.btnLuu.Location = new System.Drawing.Point(598, 542);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(100, 37);
             this.btnLuu.TabIndex = 13;
@@ -186,7 +186,7 @@
             // 
             // btnBoqua
             // 
-            this.btnBoqua.Location = new System.Drawing.Point(760, 650);
+            this.btnBoqua.Location = new System.Drawing.Point(752, 542);
             this.btnBoqua.Name = "btnBoqua";
             this.btnBoqua.Size = new System.Drawing.Size(100, 37);
             this.btnBoqua.TabIndex = 14;
@@ -196,7 +196,7 @@
             // 
             // btnDong
             // 
-            this.btnDong.Location = new System.Drawing.Point(912, 650);
+            this.btnDong.Location = new System.Drawing.Point(904, 542);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(100, 37);
             this.btnDong.TabIndex = 15;
@@ -206,7 +206,7 @@
             // 
             // Nhacungcap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 730);
             this.Controls.Add(this.btnDong);

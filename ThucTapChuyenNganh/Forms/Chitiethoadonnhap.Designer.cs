@@ -76,6 +76,7 @@
             this.btnThemsanpham = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.mskDienthoai = new System.Windows.Forms.MaskedTextBox();
+            this.btnBoqua = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,6 +91,7 @@
             this.DataGridView.Size = new System.Drawing.Size(1110, 201);
             this.DataGridView.TabIndex = 86;
             this.DataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellDoubleClick);
+            this.DataGridView.Click += new System.EventHandler(this.DataGridView_Click);
             // 
             // btnInhoadon
             // 
@@ -137,7 +139,7 @@
             // 
             // btnThemhoadon
             // 
-            this.btnThemhoadon.Location = new System.Drawing.Point(523, 666);
+            this.btnThemhoadon.Location = new System.Drawing.Point(381, 666);
             this.btnThemhoadon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnThemhoadon.Name = "btnThemhoadon";
             this.btnThemhoadon.Size = new System.Drawing.Size(143, 41);
@@ -533,11 +535,22 @@
             this.mskDienthoai.Size = new System.Drawing.Size(202, 26);
             this.mskDienthoai.TabIndex = 100;
             // 
+            // btnBoqua
+            // 
+            this.btnBoqua.Location = new System.Drawing.Point(556, 666);
+            this.btnBoqua.Name = "btnBoqua";
+            this.btnBoqua.Size = new System.Drawing.Size(93, 41);
+            this.btnBoqua.TabIndex = 101;
+            this.btnBoqua.Text = "Bỏ qua";
+            this.btnBoqua.UseVisualStyleBackColor = true;
+            this.btnBoqua.Click += new System.EventHandler(this.btnBoqua_Click);
+            // 
             // Chitiethoadonnhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1181, 736);
+            this.Controls.Add(this.btnBoqua);
             this.Controls.Add(this.mskDienthoai);
             this.Controls.Add(this.btnTim);
             this.Controls.Add(this.btnThemsanpham);
@@ -645,5 +658,6 @@
         private System.Windows.Forms.Button btnThemsanpham;
         private System.Windows.Forms.Button btnTim;
         private System.Windows.Forms.MaskedTextBox mskDienthoai;
+        private System.Windows.Forms.Button btnBoqua;
     }
 }

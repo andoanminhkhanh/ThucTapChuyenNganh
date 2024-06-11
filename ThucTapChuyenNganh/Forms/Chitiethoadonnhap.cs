@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using COMExcel = Microsoft.Office.Interop.Excel;
+using System.Xml;
 using ThucTapChuyenNganh.Class;
+using System.Globalization;
+
 
 namespace ThucTapChuyenNganh.Forms
 {
@@ -22,18 +25,19 @@ namespace ThucTapChuyenNganh.Forms
 
         private void Chitiethoadonnhap_Load(object sender, EventArgs e)
         {
+            Function.Connect();
             btnThemhoadon.Enabled = true;
             btnLuu.Enabled = false;
             btnHuyhoadon.Enabled = false;
             btnInhoadon.Enabled = false;
             btnThemsanpham.Enabled = false;
 
-            btnTimkiem.Click += new EventHandler(btnTimkiem_Click);
+            btnTim.Click += new EventHandler(btnTim_Click);
 
             Function.FillCombo("SELECT MaNV, TenNV FROM tblnhanvien",cboManhanvien, "MaNV", "MaNV");
             cboManhanvien.SelectedIndex = -1;
 
-            Function.FillCombo("SELECT MaHDN FROM tblchitiethoadonnhap", cboMahoadon,"MaHDN", "MaHDN");
+            Function.FillCombo("SELECT DISTINCT MaHDN FROM tblchitiethoadonnhap", cboMahoadon,"MaHDN", "MaHDN");
             cboMahoadon.SelectedIndex = -1;
 
             //Hiển thị thông tin của một hóa đơn được gọi từ form tìm kiếm
@@ -53,8 +57,9 @@ namespace ThucTapChuyenNganh.Forms
         {
             //txtMahoadon.Text = Function.CreateKey("HDB");
             txtMahoadon.Text = "";
-            txtNgaynhap.Text = DateTime.Now.ToShortDateString();
+            txtNgaynhap.Text = "";
             cboManhanvien.Text = "";
+            txtTennhanvien.Text = "";
             txtMaNCC.Text = "";
             txtTenNCC.Text = "";
             txtDiachi.Text = "";
@@ -65,9 +70,12 @@ namespace ThucTapChuyenNganh.Forms
             txtTongtien.Text = "0";
             lblBangchu.Text = "Bằng chữ: ";
             txtMaSP.Text = "";
+            txtTenSP.Text = "";
+            txtDongia.Text = "0";
             txtSoluong.Text = "";
             txtGiamgia.Text = "0";
             txtThanhtien.Text = "0";
+            Load_DataGridViewChitiet();
         }
         
         private void Load_DataGridViewChitiet()
@@ -96,13 +104,21 @@ namespace ThucTapChuyenNganh.Forms
         private void Load_ThongtinHD()
         {
             string str;
-            str = "SELECT NgayNhap FROM tblHDN WHERE MaHDN = N'" + txtMahoadon.Text + "'";
+            str = "SELECT MaNV FROM tblhoadonnhap WHERE MaHDN = N'" + txtMahoadon.Text + "'";
+            cboManhanvien.Text = Function.GetFieldValues(str);
+            str = "SELECT MaNCC FROM tblhoadonnhap WHERE MaHDN = N'" + txtMahoadon.Text + "'";
+            txtMaNCC.Text = Function.GetFieldValues(str);
+            str = "SELECT NgayNhap FROM tblhoadonnhap WHERE MaHDN = N'" + txtMahoadon.Text + "'";
             txtNgaynhap.Text = Function.ConvertDateTime(Function.GetFieldValues(str));
-            str = "SELECT MaNV FROM tblhoadonban WHERE MaHDB = N'" + txtMahoadon.Text + "'";
-            cboManhanvien.Text = Class.Function.GetFieldValues(str);
-            str = "select TenNV from tblnhanvien where MaNV = N'" + cboManhanvien.Text + "'";
-            txtTennhanvien.Text = Class.Function.GetFieldValues(str);
-            //Khi kich chon MaNCC thi ten NCC, dia chi, dien thoai se tu dong hien ra
+
+            //Khi kich chon dien thoai thi ten NCC, mã ncc, dien thoai se tu dong hien ra
+            if (txtMaNCC.Text == "")
+            {
+                txtTenNCC.Text = "";
+                txtDiachi.Text = "";
+                mskDienthoai.Text = "";
+
+            }
             str = "Select TenNCC from tblnhacungcap where MaNCC= N'" + txtMaNCC.Text + "'";
             txtTenNCC.Text = Function.GetFieldValues(str);
             str = "Select DiaChi from tblnhacungcap where MaNCC = N'" + txtMaNCC.Text + "'";
@@ -111,7 +127,15 @@ namespace ThucTapChuyenNganh.Forms
             mskDienthoai.Text = Function.GetFieldValues(str);
 
 
-            str = "SELECT TongTien FROM tblhoadonnhap WHERE MaHDN = N'" + txtMahoadon.Text + "'";
+
+            if (cboManhanvien.Text == "")
+            {
+                txtTennhanvien.Text = "";
+            }
+            str = "Select TenNV from tblNhanvien where MaNV= N'" + cboManhanvien.Text + "'";
+            txtTennhanvien.Text = Function.GetFieldValues(str);
+
+            str = "SELECT TongTien FROM tblhoadonnhap where MaHDN = N'" + txtMahoadon.Text + "'";
             txtTongtien.Text = Function.GetFieldValues(str);
 
             lblBangchu.Text = "Bằng chữ: " + Function.ChuyenSoSangChu(txtTongtien.Text);
@@ -129,6 +153,9 @@ namespace ThucTapChuyenNganh.Forms
             btnThemsanpham.Enabled = true;
             ResetValues();
             txtMahoadon.Text = Class.Function.CreateHDNKey();
+            txtNgaynhap.Text = DateTime.Now.ToShortDateString();
+            txtMahoadon.Enabled = false;
+            txtNgaynhap.Enabled = false;
             Load_DataGridViewChitiet();
         }
 
@@ -247,6 +274,7 @@ namespace ThucTapChuyenNganh.Forms
             btnLuu.Enabled = true;
             btnInhoadon.Enabled = true;
             cboMahoadon.SelectedIndex = -1;
+            btnBoqua.Enabled = true;
         }
 
         private void btnThemsanpham_Click(object sender, EventArgs e)
@@ -340,7 +368,7 @@ namespace ThucTapChuyenNganh.Forms
                 tongtien += Convert.ToDecimal(row["Thanhtien"]);
             }
             txtTongtien.Text = tongtien.ToString("0.00");
-            lblBangchu.Text = "Bằng chữ: " + Class.FunctionKhanh.ChuyenSoSangChu(txtTongtien.Text);
+            lblBangchu.Text = "Bằng chữ: " + Class.Function.ChuyenSoSangChu(txtTongtien.Text);
         }
 
         private void btnTim_Click(object sender, EventArgs e)
@@ -354,7 +382,7 @@ namespace ThucTapChuyenNganh.Forms
             }
 
             string query = $"SELECT MaNCC, TenNCC, DiaChi, DienThoai FROM tblnhacungcap WHERE REPLACE(DienThoai, ' ', '') = '{phone}'";
-            DataTable dt = Class.FunctionKhanh.GetDataToTable(query);
+            DataTable dt = Function.GetDataToTable(query);
 
             if (dt.Rows.Count > 0)
             {
@@ -394,14 +422,14 @@ namespace ThucTapChuyenNganh.Forms
         {
             // Generate a new customer ID based on your logic. For example:
             string query = "SELECT TOP 1 MaNCC FROM tblnhacungcap ORDER BY MaNCC DESC";
-            string lastID = Class.FunctionKhanh.GetFieldValues(query);
+            string lastID = Function.GetFieldValues(query);
 
             if (string.IsNullOrEmpty(lastID))
             {
                 return "NCC001";
             }
 
-            int newID = int.Parse(lastID.Substring(2)) + 1;
+            int newID = int.Parse(lastID.Substring(3)) + 1;
             return "NCC" + newID.ToString("D3"); // Format as NCCxxx
         }
 
@@ -449,7 +477,7 @@ namespace ThucTapChuyenNganh.Forms
 
                 // Cập nhật tổng tiền mới trên giao diện
                 txtTongtien.Text = Tongmoi.ToString();
-                lblBangchu.Text = "Bằng chữ: " + Class.FunctionKhanh.ChuyenSoSangChu(Tongmoi.ToString());
+                lblBangchu.Text = "Bằng chữ: " + Class.Function.ChuyenSoSangChu(Tongmoi.ToString());
             }
             catch (Exception ex)
             {
@@ -583,6 +611,39 @@ namespace ThucTapChuyenNganh.Forms
             exRange.Range["A6:C6"].Value = tblThongtinHD.Rows[0][6];
             exSheet.Name = "Hóa đơn nhập";
             exApp.Visible = true;
+        }
+
+        private void btnBoqua_Click(object sender, EventArgs e)
+        {
+            ResetValues();
+            btnBoqua.Enabled = false;
+            btnThemhoadon.Enabled = true;
+            btnHuyhoadon.Enabled = true;
+            //btnsua.Enabled = true;
+            btnLuu.Enabled = false;
+            btnTimkiem.Enabled = true;
+            cboMahoadon.Enabled = true;
+        }
+
+        private void DataGridView_Click(object sender, EventArgs e)
+        {
+            if (tblCTHDN.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            txtMaSP.Text = DataGridView.CurrentRow.Cells["MaSP"].Value.ToString();
+            txtTenSP.Text = DataGridView.CurrentRow.Cells["TenSP"].Value.ToString();
+            txtSoluong.Text = DataGridView.CurrentRow.Cells["SoLuong"].Value.ToString();
+            txtDongia.Text = DataGridView.CurrentRow.Cells["DonGiaNhap"].Value.ToString();
+            txtGiamgia.Text = DataGridView.CurrentRow.Cells["GiamGia"].Value.ToString();
+
+
+            CalculateTotal();
+            Load_ThongtinHD();
+            //btnsua.Enabled = true;
+            btnHuyhoadon.Enabled = true;
+            btnInhoadon.Enabled = true;
         }
     }
 }
