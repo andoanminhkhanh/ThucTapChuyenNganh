@@ -494,7 +494,18 @@ namespace ThucTapChuyenNganh.Forms
                     Class.FunctionKhanh.RunSql(sql);
                 }
 
+                //Cap nhat lai so luong cua mat hang vao bang tblsanpham
 
+                foreach (DataRow row in tblcthdb.Rows)
+                {
+                    string productID = row["MaSP"].ToString();
+                    int orderedQuantity = int.Parse(row["SoLuong"].ToString());
+                    int availableQuantity = GetAvailableQuantity(productID);
+
+                    double SLcon = availableQuantity - Convert.ToDouble(row["SoLuong"]);
+                    sql = "update tblsanpham set soluong = " + SLcon + " where MaSP = N'" + productID + "'";
+                    FunctionKhanh.RunSql(sql);
+                }
                 // Update the total amount in the main order table
                 double tongTien = double.Parse(txtTongtien.Text);
                 sql = $"UPDATE tblhoadonban SET TongTien = {tongTien} WHERE MaHDB = N'{txtMahoadon.Text.Trim()}'";
