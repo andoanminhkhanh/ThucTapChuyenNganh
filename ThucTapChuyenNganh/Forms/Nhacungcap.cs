@@ -57,7 +57,7 @@ namespace ThucTapChuyenNganh.Forms
                 return;
             }
             txtMaNCC.Text = drgidNhaCungCap.CurrentRow.Cells["MaNCC"].Value.ToString();
-            txtTenNCC.Text = drgidNhaCungCap.CurrentRow.Cells["MaNCC"].Value.ToString();
+            txtTenNCC.Text = drgidNhaCungCap.CurrentRow.Cells["TenNCC"].Value.ToString();
             txtDiaChi.Text = drgidNhaCungCap.CurrentRow.Cells["DiaChi"].Value.ToString();
             mtxtDienThoai.Text = drgidNhaCungCap.CurrentRow.Cells["DienThoai"].Value.ToString();
             btnSua.Enabled = true;
@@ -150,11 +150,23 @@ namespace ThucTapChuyenNganh.Forms
             }
             if (txtTenNCC.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Bạn phải nhập tên chất liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Bạn phải nhập tên nhà cung cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTenNCC.Focus();
                 return;
             }
-            sql = "UPDATE tblnhacungcap SET TenNCC=N'" + txtTenNCC.Text.ToString() + "' WHERE MaNCC=N'" + txtMaNCC.Text + "'";
+            if (txtDiaChi.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn phải nhập địa chỉ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTenNCC.Focus();
+                return;
+            }
+            if (mtxtDienThoai.Text == "(   )    -")
+            {
+                MessageBox.Show("Bạn phải nhập điện thoại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mtxtDienThoai.Focus();
+                return;
+            }
+            sql = "UPDATE tblnhacungcap SET TenNCC=N'" + txtTenNCC.Text.ToString() + "', DiaChi = N'"+txtDiaChi.Text.ToString()+"', DienThoai = N'"+mtxtDienThoai.Text.ToString()+"'  WHERE MaNCC=N'" + txtMaNCC.Text + "'";
             Class.Function.RunSql(sql);
             load_datagrid();
             resetvalue();
