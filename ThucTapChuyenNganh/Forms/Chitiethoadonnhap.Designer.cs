@@ -72,9 +72,10 @@
             this.lblBangchu = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.txtTongtien = new System.Windows.Forms.TextBox();
-            this.txtDienthoai = new System.Windows.Forms.TextBox();
             this.txtDong = new System.Windows.Forms.Button();
             this.btnThemsanpham = new System.Windows.Forms.Button();
+            this.btnTim = new System.Windows.Forms.Button();
+            this.mskDienthoai = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,6 +89,7 @@
             this.DataGridView.RowTemplate.Height = 24;
             this.DataGridView.Size = new System.Drawing.Size(1110, 201);
             this.DataGridView.TabIndex = 86;
+            this.DataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellDoubleClick);
             // 
             // btnInhoadon
             // 
@@ -98,6 +100,7 @@
             this.btnInhoadon.TabIndex = 85;
             this.btnInhoadon.Text = "In hóa đơn";
             this.btnInhoadon.UseVisualStyleBackColor = true;
+            this.btnInhoadon.Click += new System.EventHandler(this.btnInhoadon_Click);
             // 
             // btnHuyhoadon
             // 
@@ -108,6 +111,7 @@
             this.btnHuyhoadon.TabIndex = 84;
             this.btnHuyhoadon.Text = "Hủy hóa đơn";
             this.btnHuyhoadon.UseVisualStyleBackColor = true;
+            this.btnHuyhoadon.Click += new System.EventHandler(this.btnHuyhoadon_Click);
             // 
             // btnLuu
             // 
@@ -490,13 +494,6 @@
             this.txtTongtien.Size = new System.Drawing.Size(195, 26);
             this.txtTongtien.TabIndex = 95;
             // 
-            // txtDienthoai
-            // 
-            this.txtDienthoai.Location = new System.Drawing.Point(800, 197);
-            this.txtDienthoai.Name = "txtDienthoai";
-            this.txtDienthoai.Size = new System.Drawing.Size(202, 26);
-            this.txtDienthoai.TabIndex = 96;
-            // 
             // txtDong
             // 
             this.txtDong.Location = new System.Drawing.Point(1056, 666);
@@ -516,15 +513,35 @@
             this.btnThemsanpham.TabIndex = 98;
             this.btnThemsanpham.Text = "Thêm sản phẩm";
             this.btnThemsanpham.UseVisualStyleBackColor = true;
+            this.btnThemsanpham.Click += new System.EventHandler(this.btnThemsanpham_Click);
+            // 
+            // btnTim
+            // 
+            this.btnTim.Location = new System.Drawing.Point(1040, 197);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(75, 27);
+            this.btnTim.TabIndex = 99;
+            this.btnTim.Text = "Tìm";
+            this.btnTim.UseVisualStyleBackColor = true;
+            this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
+            // 
+            // mskDienthoai
+            // 
+            this.mskDienthoai.Location = new System.Drawing.Point(800, 198);
+            this.mskDienthoai.Mask = "(999) 000-0000";
+            this.mskDienthoai.Name = "mskDienthoai";
+            this.mskDienthoai.Size = new System.Drawing.Size(202, 26);
+            this.mskDienthoai.TabIndex = 100;
             // 
             // Chitiethoadonnhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1181, 736);
+            this.Controls.Add(this.mskDienthoai);
+            this.Controls.Add(this.btnTim);
             this.Controls.Add(this.btnThemsanpham);
             this.Controls.Add(this.txtDong);
-            this.Controls.Add(this.txtDienthoai);
             this.Controls.Add(this.txtTongtien);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.lblBangchu);
@@ -624,8 +641,9 @@
         private System.Windows.Forms.Label lblBangchu;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox txtTongtien;
-        private System.Windows.Forms.TextBox txtDienthoai;
         private System.Windows.Forms.Button txtDong;
         private System.Windows.Forms.Button btnThemsanpham;
+        private System.Windows.Forms.Button btnTim;
+        private System.Windows.Forms.MaskedTextBox mskDienthoai;
     }
 }

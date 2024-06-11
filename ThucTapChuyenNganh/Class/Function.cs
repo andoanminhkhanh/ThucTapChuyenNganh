@@ -89,6 +89,28 @@ namespace ThucTapChuyenNganh.Class
             key = key + t;
             return key;
         }
+        public static string CreateHDNKey()
+        {
+            string lastHDQCID = GetLastHDNID();
+            if (string.IsNullOrEmpty(lastHDQCID))
+            {
+                return "HDN0001";
+            }
+
+            int hdqcPart = int.Parse(lastHDQCID.Substring(3));
+            hdqcPart++; // Tăng số lên 1
+
+
+            return "HDN" + hdqcPart.ToString("D4");
+        }
+        private static string GetLastHDNID()
+        {
+            string query = "SELECT TOP 1 MaHDN FROM tblhoadonnhap ORDER BY MaHDN DESC";
+
+            SqlCommand cmd = new SqlCommand(query, Conn);
+            object result = cmd.ExecuteScalar();
+            return result != null ? result.ToString() : null;
+        }
         public static string ConvertTimeTo24(string hour)
         {
             string h = "";
