@@ -18,9 +18,10 @@ namespace ThucTapChuyenNganh.Forms
         public Chitiethoadonbanhang()
         {
             InitializeComponent();
+
         }
         DataTable tblcthdb;
-
+        
         private void Chitiethoadonbanhang_Load(object sender, EventArgs e)
         {
             Class.FunctionKhanh.Connect();
@@ -493,7 +494,18 @@ namespace ThucTapChuyenNganh.Forms
                     Class.FunctionKhanh.RunSql(sql);
                 }
 
+                //Cap nhat lai so luong cua mat hang vao bang tblsanpham
 
+                foreach (DataRow row in tblcthdb.Rows)
+                {
+                    string productID = row["MaSP"].ToString();
+                    int orderedQuantity = int.Parse(row["SoLuong"].ToString());
+                    int availableQuantity = GetAvailableQuantity(productID);
+
+                    double SLcon = availableQuantity - Convert.ToDouble(row["SoLuong"]);
+                    sql = "update tblsanpham set soluong = " + SLcon + " where MaSP = N'" + productID + "'";
+                    FunctionKhanh.RunSql(sql);
+                }
                 // Update the total amount in the main order table
                 double tongTien = double.Parse(txtTongtien.Text);
                 sql = $"UPDATE tblhoadonban SET TongTien = {tongTien} WHERE MaHDB = N'{txtMahoadon.Text.Trim()}'";
@@ -697,6 +709,31 @@ namespace ThucTapChuyenNganh.Forms
         {
             Function.FillCombo("SELECT MaHDB FROM tblhoadonban", cboMahoadon, "MaHDB", "MaHDB");
             cboMahoadon.SelectedIndex = -1;
+        }
+
+        private void DataGridViewChitiet_Click(object sender, EventArgs e)
+        {
+            if (btnThemhoadon.Enabled == false)
+            {
+                MessageBox.Show("Đang ở chế độ thêm mới!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtMahoadon.Focus();
+                return;
+            }
+            if (tblcthdb.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            cboMasanpham.Text = DataGridViewChitiet.CurrentRow.Cells["MaSP"].Value.ToString();
+            txtTenhang.Text = DataGridViewChitiet.CurrentRow.Cells["TenSP"].Value.ToString();
+            txtSoluong.Text = DataGridViewChitiet.CurrentRow.Cells["Soluong"].Value.ToString();
+            txtDongia.Text = DataGridViewChitiet.CurrentRow.Cells["DonGiaBan"].Value.ToString();
+            txtGiamgia.Text = DataGridViewChitiet.CurrentRow.Cells["Giamgia"].Value.ToString();
+            txtThanhtien.Text = DataGridViewChitiet.CurrentRow.Cells["Thanhtien"].Value.ToString();
+            Load_ThongtinHD();
+            //btnSua.Enabled = true;
+            btnHuyhoadon.Enabled = true;
+            btnInhoadon.Enabled = true;
         }
     }
 }
