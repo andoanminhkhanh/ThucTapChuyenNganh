@@ -21,6 +21,7 @@ namespace ThucTapChuyenNganh.Forms
         public Chitiethoadonnhap()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void Chitiethoadonnhap_Load(object sender, EventArgs e)
@@ -143,8 +144,7 @@ namespace ThucTapChuyenNganh.Forms
 
         private void btnThemhoadon_Click(object sender, EventArgs e)
         {
-            btnHuyhoadon.Enabled = true;
-            btnXoaSP.Enabled = false;
+            btnHuyhoadon.Enabled = false;
             btnLuu.Enabled = true;
             btnInhoadon.Enabled = false;
             btnThemhoadon.Enabled = false;
@@ -156,6 +156,8 @@ namespace ThucTapChuyenNganh.Forms
             txtNgaynhap.Text = DateTime.Now.ToShortDateString();
             txtMahoadon.Enabled = false;
             txtNgaynhap.Enabled = false;
+            btnTim.Enabled = true;
+            btnBoqua.Enabled = true;
             Load_DataGridViewChitiet();
         }
 
@@ -166,97 +168,92 @@ namespace ThucTapChuyenNganh.Forms
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            /*string sql;
-            double sl, SLcon, tong, Tongmoi;
-            sql = "SELECT MaHDBan FROM tblHDBan WHERE MaHDBan=N'" + txtMahoadon.Text + "'";
-            if (!Function.CheckKey(sql))
+
+            if (string.IsNullOrEmpty(txtTennhanvien.Text) || string.IsNullOrEmpty(txtTenNCC.Text) ||
+            string.IsNullOrEmpty(txtDiachi.Text) || string.IsNullOrEmpty(mskDienthoai.Text))
             {
-                // Mã hóa đơn chưa có, tiến hành lưu các thông tin chung
-                // Mã HDBan được sinh tự động do đó không có trường hợp trùng khóa
-                if (txtNgaynhap.Text.Length == 0)
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin của khách hàng và nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // Remove unwanted characters from phone number
+                string phone = mskDienthoai.Text.Trim();
+                phone = phone.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+
+                // Save Customer Information if not exists
+                string customerID = txtMaNCC.Text.Trim();
+                string query = $"SELECT COUNT(*) FROM tblnhacungcap WHERE MaNCC = N'{customerID}'";
+                int customerCount = int.Parse(Class.Function.GetFieldValues(query));
+
+                if (customerCount == 0)
                 {
-                    MessageBox.Show("Bạn phải nhập ngày bán", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtNgaynhap.Focus();
-                    return;
+                    // Insert new customer information
+                    query = $"INSERT INTO tblnhacungcap (MaNCC, TenNCC, DiaChi, DienThoai) " +
+                            $"VALUES (N'{customerID}', N'{txtTenNCC.Text.Trim()}', N'{txtDiachi.Text.Trim()}', '{phone}')";
+                    Class.Function.RunSql(query);
                 }
-                if (cboManhanvien.Text.Length == 0)
+
+                // Save Order Details
+                string sql = $"INSERT INTO tblhoadonnhap (MaHDN, MaNV, MaNCC, NgayNhap, TongTien) " +
+                             $"VALUES (N'{txtMahoadon.Text.Trim()}', " +
+                             $"N'{cboManhanvien.SelectedValue}', N'{customerID}', '{Class.Function.ConvertDateTime(txtNgaynhap.Text.Trim())}', {txtTongtien.Text.Trim()})";
+                Class.Function.RunSql(sql);
+
+                // Save Order Items
+                foreach (DataRow row in tblCTHDN.Rows)
                 {
-                    MessageBox.Show("Bạn phải nhập nhân viên", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    cboManhanvien.Focus();
-                    return;
+                    string maSP = row["MaSP"].ToString();
+
+                    // Check if the product exists in tblsanpham
+                    query = $"SELECT COUNT(*) FROM tblsanpham WHERE MaSP = N'{maSP}'";
+                    int productCount = int.Parse(Class.Function.GetFieldValues(query));
+
+                    if (productCount == 0)
+                    {
+                        MessageBox.Show($"Sản phẩm với Mã SP = {maSP} không tồn tại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        continue; // Skip this product and move to the next
+                    }
+
+                    sql = $"INSERT INTO tblchitiethoadonnhap (MaHDN, MaSP, SoLuong, DonGiaNhap, GiamGia) " +
+                          $"VALUES (N'{txtMahoadon.Text.Trim()}', N'{maSP}', '{row["SoLuong"].ToString()}', '{row["DonGiaNhap"].ToString()}', '{row["GiamGia"].ToString()}')";
+                    Class.Function.RunSql(sql);
+
+                    // Update quantity of product in product table
+                    double sl, SLcon;
+                    sl = Convert.ToDouble(Function.GetFieldValues($"SELECT Soluong FROM tblsanpham WHERE MaSP = N'{maSP}'"));
+
+                    SLcon = sl + Convert.ToDouble(row["SoLuong"].ToString());
+                    sql = $"UPDATE tblsanpham SET Soluong = {SLcon} WHERE MaSP = N'{maSP}'";
+                    Function.RunSql(sql);
                 }
-                if (txtMaNCC.Text.Length == 0)
-                {
-                    MessageBox.Show("Bạn phải nhập khách hàng", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtMaNCC.Focus();
-                    return;
-                }
-                //lưu thông tin chung vào bảng tblhdban
+
+                // Update the total amount in the main order table
+                double tongTien = double.Parse(txtTongtien.Text);
+                sql = $"UPDATE tblhoadonnhap SET TongTien = {tongTien} WHERE MaHDN = N'{txtMahoadon.Text.Trim()}'";
+                Class.Function.RunSql(sql);
+
+                MessageBox.Show("Đơn hàng đã được lưu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+               
                 
-                sql = "INSERT INTO tblHDBan(MaHDBan, Ngayban, Manhanvien, Makhach, Tongtien) VALUES(N'" + txtMahoadon.Text.Trim() + "', '" +
-                        Function.ConvertDateTime(txtNgaynhap.Text.Trim()) + "',N'" + cboManhanvien.SelectedValue + "',N'" +
-                        txtMaNCC.SelectedValue + "'," + txtTongtien.Text + ")";
-                Function.RunSql(sql);
-            }
+                // Update UI and reset form
+                btnThemhoadon.Enabled = true;
+                btnThemsanpham.Enabled = false;
+                btnLuu.Enabled = false;
+                btnHuyhoadon.Enabled = false;
+                btnInhoadon.Enabled = true;
 
-            // Lưu thông tin của các mặt hàng
-            if (txtMaSP.Text.Trim().Length == 0)
-            {
-                MessageBox.Show("Bạn phải nhập mã hàng", "Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                txtMaSP.Focus();
-                return;
+                Load_DataGridViewChitiet();
+                ResetValues();
             }
-            if ((txtSoluong.Text.Trim().Length == 0) || (txtSoluong.Text == "0"))
+            catch (Exception ex)
             {
-                MessageBox.Show("Bạn phải nhập số lượng", "Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                txtSoluong.Text = "";
-                txtSoluong.Focus();
-                return;
+                MessageBox.Show("Lỗi khi lưu đơn hàng: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (txtGiamgia.Text.Trim().Length == 0)
-            {
-                MessageBox.Show("Bạn phải nhập giảm giá", "Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                txtGiamgia.Focus();
-                return;
-            }
-            //sql = "SELECT Mahang FROM tblChitietHDBan WHERE MaHang=N'" + txtMaSP.SelectedValue + "' AND MaHDBan = N'" + txtMahoadon.Text.Trim() + "'";
-            if (Function.CheckKey(sql))
-            {
-                MessageBox.Show("Mã hàng này đã có, bạn phải nhập mã khác", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //ResetValuesHang();
-                txtMaSP.Focus();
-                return;
-            }
-            // Kiểm tra xem số lượng hàng trong kho còn đủ để cung cấp không?
-            sl = Convert.ToDouble(Function.GetFieldValues("SELECT Soluong FROM tblHang WHERE Mahang = N'" + txtMahoadon.SelectedValue + "'"));
-            if (Convert.ToDouble(txtSoluong.Text) > sl)
-            {
-                MessageBox.Show("Số lượng mặt hàng này chỉ còn " + sl, "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtSoluong.Text = "";
-                txtSoluong.Focus();
-                return;
-            }
-            //sql = "INSERT INTO tblChitietHDBan(MaHDBan,Mahang,Soluong,Dongia,Giamgia, Thanhtien) VALUES(N'" + txtMahoadon.Text.Trim() + "', N'" + txtMaSP.SelectedValue + "'," + txtSoluong.Text + ",," + txtSoluong.Text + "," + txtGiamgia.Text + "," + txtThanhtien.Text + ")";
-            Function.RunSql(sql);
-            Load_DataGridViewChitiet();
-            // Cập nhật lại số lượng của mặt hàng vào bảng tblHang
-            //SLcon = sl - Convert.ToDouble(txtSoluong.Text);
-            //sql = "UPDATE tblHang SET Soluong =" + SLcon + " WHERE Mahang= N'" + txtMaSP.SelectedValue + "'";
-            Function.RunSql(sql);
-            // Cập nhật lại tổng tiền cho hóa đơn bán
-
-            tong = Convert.ToDouble(Function.GetFieldValues("SELECT Tongtien FROM tblHDBan WHERE MaHDBan = N'" + txtMahoadon.Text + "'"));
-            Tongmoi = tong + Convert.ToDouble(txtThanhtien.Text);
-            sql = "UPDATE tblHDBan SET Tongtien =" + Tongmoi + " WHERE MaHDBan = N'" + txtMahoadon.Text + "'";
-            Function.RunSql(sql);
-            txtTongtien.Text = Tongmoi.ToString();
-            lblBangchu.Text = "Bằng chữ: " + Function.ChuyenSoSangChu(Tongmoi.ToString());
-            //ResetValuesHang();
-            btnXoaSP.Enabled = true;
-            btnThemhoadon.Enabled = true;
-            btnInhoadon.Enabled = true;*/
-
         }
+
 
         private void btnTimkiem_Click(object sender, EventArgs e)
         {
@@ -271,10 +268,12 @@ namespace ThucTapChuyenNganh.Forms
             Load_ThongtinHD();
             Load_DataGridViewChitiet();
             btnHuyhoadon.Enabled = true;
-            btnLuu.Enabled = true;
+            btnLuu.Enabled = false;
             btnInhoadon.Enabled = true;
             cboMahoadon.SelectedIndex = -1;
             btnBoqua.Enabled = true;
+            btnThemhoadon.Enabled = false;
+
         }
 
         private void btnThemsanpham_Click(object sender, EventArgs e)
@@ -309,7 +308,7 @@ namespace ThucTapChuyenNganh.Forms
                 newRow["MaSP"] = txtMaSP.Text;
                 newRow["TenSP"] = txtTenSP.Text;
                 newRow["SoLuong"] = soluong;
-                newRow["DonGiaBan"] = decimal.Parse(txtDongia.Text);
+                newRow["DonGiaNhap"] = decimal.Parse(txtDongia.Text);
                 newRow["GiamGia"] = txtGiamgia.Text;
                 newRow["Thanhtien"] = decimal.Parse(txtThanhtien.Text);
                 tblCTHDN.Rows.Add(newRow);
@@ -322,25 +321,54 @@ namespace ThucTapChuyenNganh.Forms
 
             // Reset các giá trị nhập vào
             ResetProductInputs();
+            btnBoqua.Enabled = true;
+            btnTim.Enabled = true;
         }
         private void txtSoluong_TextChanged(object sender, EventArgs e)
         {
             CalculateTotal();
         }
 
+        private void txtDongia_TextChanged(object sender, EventArgs e)
+        {
+            CalculateTotal();
+        }
+        private void txtGiamgia_TextChanged(object sender, EventArgs e)
+        {
+            CalculateTotal();
+        }
         private void txtSoluong_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
                 CalculateTotal();
-                e.Handled = true; // Ngăn chặn âm báo mặc định của phím Enter
+                e.Handled = true;
             }
         }
+
+        private void txtGiamgia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                CalculateTotal();
+                e.Handled = true;
+            }
+        }
+
+        private void txtDongia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                CalculateTotal();
+                e.Handled = true;
+            }
+        }
+
         private void CalculateTotal()
         {
             if (int.TryParse(txtSoluong.Text, out int soluong) && decimal.TryParse(txtDongia.Text, out decimal dongia) && decimal.TryParse(txtGiamgia.Text, out decimal giamgia))
             {
-                giamgia = giamgia / 100; // Chuyển đổi phần trăm giảm giá thành dạng số thập phân
+                //giamgia = giamgia / 100; // Chuyển đổi phần trăm giảm giá thành dạng số thập phân
                 decimal thanhtien = (soluong * dongia) * (1 - giamgia);
                 txtThanhtien.Text = thanhtien.ToString("0.00"); // Định dạng thành tiền với 2 chữ số thập phân
                 CalculateTotalPrice(); // Update the total price whenever the line item total changes
@@ -393,11 +421,13 @@ namespace ThucTapChuyenNganh.Forms
             }
             else
             {
-                MessageBox.Show("Khách hàng chưa có trong cơ sở dữ liệu. Vui lòng nhập thông tin khách hàng mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("NCC chưa có trong cơ sở dữ liệu. Vui lòng nhập thông tin NCC mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ResetNCCInputs();
                 txtMaNCC.Text = GenerateNewNCCID();
                 txtTenNCC.Enabled = true;
                 txtDiachi.Enabled = true;
+                
+
             }
         }
         private string GetPhoneNumber(string phoneNumber)
@@ -490,19 +520,38 @@ namespace ThucTapChuyenNganh.Forms
         {
             if (MessageBox.Show("Bạn có chắc chắn muốn hủy hóa đơn này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                // Đặt lại tất cả các giá trị và trạng thái ban đầu của hóa đơn
-                ResetValues();
+                try
+                {
+                    string maHDN = txtMahoadon.Text.Trim();
 
-                // Đặt lại trạng thái của các nút và hộp thoại
-                btnThemhoadon.Enabled = true;
-                btnThemsanpham.Enabled = false;
-                btnLuu.Enabled = false;
-                btnHuyhoadon.Enabled = false;
-                btnInhoadon.Enabled = false;
+                    // Xóa các chi tiết hóa đơn trước
+                    string query = $"DELETE FROM tblchitiethoadonnhap WHERE MaHDN = N'{maHDN}'";
+                    Class.Function.RunSql(query);
 
-                // Xóa toàn bộ dữ liệu trong DataGridView
-                tblCTHDN.Clear();
-                DataGridView.DataSource = tblCTHDN;
+                    // Xóa hóa đơn
+                    query = $"DELETE FROM tblhoadonnhap WHERE MaHDN = N'{maHDN}'";
+                    Class.Function.RunSql(query);
+
+                    // Đặt lại tất cả các giá trị và trạng thái ban đầu của hóa đơn
+                    ResetValues();
+
+                    // Đặt lại trạng thái của các nút và hộp thoại
+                    btnThemhoadon.Enabled = true;
+                    btnThemsanpham.Enabled = false;
+                    btnLuu.Enabled = false;
+                    btnHuyhoadon.Enabled = false;
+                    btnInhoadon.Enabled = false;
+
+                    // Xóa toàn bộ dữ liệu trong DataGridView
+                    tblCTHDN.Clear();
+                    DataGridView.DataSource = tblCTHDN;
+
+                    MessageBox.Show("Hóa đơn đã được hủy thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi hủy hóa đơn: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -563,7 +612,7 @@ namespace ThucTapChuyenNganh.Forms
             exRange.Range["C9:E9"].MergeCells = true;
             exRange.Range["C9:E9"].Value = tblThongtinHD.Rows[0][5].ToString();
             //Lấy thông tin các mặt hàng
-            sql = "SELECT TenSP, tblchitiethoadonnhap.SoLuong,DonGiaNhap, Giamgia, (DonGiaNhap*(1-GiamGia)*tblchitiethoadonnhap.SoLuong) as Thanhtien FROM tblchitiethoadonnhap JOIN tblsanpham on tblchitiethoadonnhap.MaSP = tblsanpham.MaSP  WHERE a.MaHDB = N'" + txtMahoadon.Text + "'";
+            sql = "SELECT TenSP, tblchitiethoadonnhap.SoLuong,DonGiaNhap, Giamgia, (DonGiaNhap*(1-GiamGia)*tblchitiethoadonnhap.SoLuong) as Thanhtien FROM tblchitiethoadonnhap JOIN tblsanpham on tblchitiethoadonnhap.MaSP = tblsanpham.MaSP  WHERE MaHDN = N'" + txtMahoadon.Text + "'";
             tblThongtinHang = Function.GetDataToTable(sql);
             //Tạo dòng tiêu đề bảng
             exRange.Range["A11:F11"].Font.Bold = true;
@@ -623,6 +672,7 @@ namespace ThucTapChuyenNganh.Forms
             btnLuu.Enabled = false;
             btnTimkiem.Enabled = true;
             cboMahoadon.Enabled = true;
+            
         }
 
         private void DataGridView_Click(object sender, EventArgs e)
@@ -644,6 +694,26 @@ namespace ThucTapChuyenNganh.Forms
             //btnsua.Enabled = true;
             btnHuyhoadon.Enabled = true;
             btnInhoadon.Enabled = true;
+        }
+
+        private void cboManhanvien_TextChanged(object sender, EventArgs e)
+        {
+            string str;
+            if (cboManhanvien.Text == "")
+                txtTennhanvien.Text = "";
+            // Khi kich chon Ma nhan vien thi ten nhan vien se tu dong hien ra
+            str = "Select TenNV from tblnhanvien where MaNV = N'" + cboManhanvien.SelectedValue + "'";
+            txtTennhanvien.Text = Function.GetFieldValues(str);
+        }
+
+        private void txtMaSP_TextChanged(object sender, EventArgs e)
+        {
+            string str;
+            if (txtMaSP.Text == "")
+                txtTenSP.Text = "";
+            // Khi kich chon Ma nhan vien thi ten nhan vien se tu dong hien ra
+            str = "Select TenSP from tblsanpham where MaSP = N'" + txtMaSP.Text + "'";
+            txtTenSP.Text = Function.GetFieldValues(str);
         }
     }
 }
