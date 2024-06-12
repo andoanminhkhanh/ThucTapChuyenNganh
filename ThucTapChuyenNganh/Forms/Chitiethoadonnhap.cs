@@ -201,7 +201,7 @@ namespace ThucTapChuyenNganh.Forms
                              $"N'{cboManhanvien.SelectedValue}', N'{customerID}', '{Class.Function.ConvertDateTime(txtNgaynhap.Text.Trim())}', {txtTongtien.Text.Trim()})";
                 Class.Function.RunSql(sql);
 
-                // Save Order Items
+                //Save Order Items
                 foreach (DataRow row in tblCTHDN.Rows)
                 {
                     string maSP = row["MaSP"].ToString();
@@ -228,6 +228,7 @@ namespace ThucTapChuyenNganh.Forms
                     sql = $"UPDATE tblsanpham SET Soluong = {SLcon} WHERE MaSP = N'{maSP}'";
                     Function.RunSql(sql);
                 }
+
 
                 // Update the total amount in the main order table
                 double tongTien = double.Parse(txtTongtien.Text);

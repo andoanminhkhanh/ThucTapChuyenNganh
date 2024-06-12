@@ -16,7 +16,7 @@ namespace ThucTapChuyenNganh.Class
         public static string connString;
         public static void Connect()
         {
-            connString = "Data Source=DESKTOP-JANPPMN;Initial Catalog=TTCN;Integrated Security=True;Encrypt=False";
+            connString = "Data Source=LAPTOP-THOQUC6C\\MSSQLSERVER01;Initial Catalog=TTCN;Integrated Security=True;Encrypt=False";
             Conn = new SqlConnection();
             Conn.ConnectionString = connString;
             Conn.Open();
@@ -91,17 +91,17 @@ namespace ThucTapChuyenNganh.Class
         }
         public static string CreateHDNKey()
         {
-            string lastHDQCID = GetLastHDNID();
-            if (string.IsNullOrEmpty(lastHDQCID))
+            string lastHDNID = GetLastHDNID();
+            if (string.IsNullOrEmpty(lastHDNID))
             {
                 return "HDN0001";
             }
 
-            int hdqcPart = int.Parse(lastHDQCID.Substring(3));
-            hdqcPart++; // Tăng số lên 1
+            int hdnPart = int.Parse(lastHDNID.Substring(3));
+            hdnPart++; // Tăng số lên 1
 
 
-            return "HDN" + hdqcPart.ToString("D4");
+            return "HDN" + hdnPart.ToString("D4");
         }
         private static string GetLastHDNID()
         {
