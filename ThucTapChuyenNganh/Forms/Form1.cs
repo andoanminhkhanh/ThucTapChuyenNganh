@@ -92,12 +92,6 @@ namespace ThucTapChuyenNganh
             a.Show();
         }
 
-        private void côngTheoThángToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.Tonghopcongtheothang a = new Forms.Tonghopcongtheothang();
-            a.Show();
-        }
-
         private void mnuTimHDB_Click_1(object sender, EventArgs e)
         {
 
