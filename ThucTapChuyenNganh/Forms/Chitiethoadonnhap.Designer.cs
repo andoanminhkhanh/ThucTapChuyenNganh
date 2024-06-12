@@ -623,7 +623,8 @@
         private System.Windows.Forms.TextBox txtMaNCC;
         private System.Windows.Forms.TextBox txtDiachi;
         private System.Windows.Forms.TextBox txtTenNCC;
-        private System.Windows.Forms.TextBox txtMahoadon;
+        //private System.Windows.Forms.TextBox txtMahoadon;
+        public System.Windows.Forms.TextBox txtMahoadon;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;

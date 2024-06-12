@@ -111,7 +111,7 @@ namespace ThucTapChuyenNganh.Forms
                 {
                     Chitiethoadonnhap frm = new Chitiethoadonnhap();
                     frm.StartPosition = FormStartPosition.CenterScreen;
-                    //frm.txtMahoadon.Text = mahd;
+                    frm.txtMahoadon.Text = mahd;
                     frm.ShowDialog();
                 }
             }
