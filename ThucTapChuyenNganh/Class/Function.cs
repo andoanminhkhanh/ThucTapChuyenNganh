@@ -16,7 +16,7 @@ namespace ThucTapChuyenNganh.Class
         public static string connString;
         public static void Connect()
         {
-            connString = "Data Source=DESKTOP-6P2TSJE\\SQLEXPRESS;Initial Catalog=TTCN;Integrated Security=True;Encrypt=False";
+            connString = "Data Source=DESKTOP-JANPPMN;Initial Catalog=TTCN;Integrated Security=True;Encrypt=False";
             Conn = new SqlConnection();
             Conn.ConnectionString = connString;
             Conn.Open();
